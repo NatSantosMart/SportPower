@@ -12,8 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
+            $table->id('id')->primary();
+            $table->string('url_imagen', 255)->nullable();
+            $table->text('descripcion')->nullable();
+            $table->string('nombre', 100);
+            $table->decimal('precio', 10, 2);
+            $table->unsignedBigInteger('id_admin');
             $table->timestamps();
+
+            $table->foreign('id_admin')
+            ->references('id')
+            ->on('admins')
+            ->onUpdate('cascade')
+            ->onDelete('no action');
         });
     }
 
