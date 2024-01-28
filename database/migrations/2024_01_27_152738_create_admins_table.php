@@ -9,11 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('admins', function (Blueprint $table) {
-            $table->id();
+            $table->string('dni', 20)->primary();
             $table->timestamps();
+
+            $table->foreign('dni')
+                  ->references('dni')
+                  ->on('people')
+                  ->onUpdate('cascade')
+                  ->onDelete('restrict');
         });
     }
 

@@ -9,24 +9,27 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+
+    public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id('id')->primary();
-            $table->string('url_imagen', 255)->nullable();
-            $table->text('descripcion')->nullable();
-            $table->string('nombre', 100);
-            $table->decimal('precio', 10, 2);
-            $table->unsignedBigInteger('id_admin');
+            $table->increments('id');
+            $table->string('url_image', 255)->nullable();
+            $table->text('description')->nullable();
+            $table->string('name', 100);
+            $table->decimal('price', 10, 2);
+            $table->string('admin_dni', 20);
+
             $table->timestamps();
 
-            $table->foreign('id_admin')
-            ->references('id')
-            ->on('admins')
-            ->onUpdate('cascade')
-            ->onDelete('no action');
+            $table->foreign('admin_dni')
+                  ->references('dni')
+                  ->on('admins')
+                  ->onUpdate('cascade')
+                  ->onDelete('no action');
         });
     }
+
 
     /**
      * Reverse the migrations.

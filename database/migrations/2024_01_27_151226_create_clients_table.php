@@ -9,22 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->string('dni', 20)->primary();
-            $table->string('telefono', 20)->nullable(false);
-            $table->string('pais', 100)->nullable();
-            $table->string('cod_postal', 20)->nullable();
-            $table->string('ciudad', 100)->nullable();
-            $table->string('direccion', 255)->nullable();
+            $table->string('phone', 20)->nullable(false);
+            $table->string('country', 100)->nullable();
+            $table->string('postal_code', 20)->nullable();
+            $table->string('city', 100)->nullable();
+            $table->string('address', 255)->nullable();
             $table->timestamps();
 
             $table->foreign('dni')
-            ->references('dni')
-            ->on('persona')
-            ->onUpdate('cascade')
-            ->onDelete('restrict');
+                  ->references('dni')
+                  ->on('people')
+                  ->onUpdate('cascade')
+                  ->onDelete('restrict');
         });
     }
 
