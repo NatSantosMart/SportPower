@@ -9,13 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+   public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
             $table->text('description');
-            $table->unsignedInteger('client_dni');
+            $table->string('client_dni', 20);
 
             $table->foreign('client_dni')
                   ->references('dni')
