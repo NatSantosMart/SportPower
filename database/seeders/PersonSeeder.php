@@ -10,30 +10,45 @@ class PersonSeeder extends Seeder
 {
     public function run()
     {
-        // Sample person data
         $people = [
             [
                 'dni' => '12345678A',
-                'email' => 'person1@example.com',
-                'password' => bcrypt('password1'), // You may want to hash passwords
-                'name' => 'John',
-                'surnames' => 'Doe',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'email' => 'juan@gmail.com',
+                'password' => bcrypt('password123'),
+                'name' => 'Juan',
+                'surnames' => 'Pérez',
             ],
             [
-                'dni' => '87654321B',
-                'email' => 'person2@example.com',
-                'password' => bcrypt('password2'),
-                'name' => 'Jane',
-                'surnames' => 'Smith',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'dni' => '23456789B',
+                'email' => 'ana@yahoo.com',
+                'password' => bcrypt('securepass'),
+                'name' => 'Ana',
+                'surnames' => 'Gómez García',
             ],
-            // Add more sample people as needed
+            [
+                'dni' => '34567890C',
+                'email' => 'carlos@hotmail.com',
+                'password' => bcrypt('carlos456'),
+                'name' => 'Carlos',
+                'surnames' => 'García Lopez',
+            ],
+            [
+                'dni' => '45678901D',
+                'email' => 'laura@gmail.com',
+                'password' => bcrypt('laurita123'),
+                'name' => 'Laura',
+                'surnames' => 'Martínez Lopez',
+            ],
+            [
+                'dni' => '11111111D',
+                'email' => 'ines@gmail.com',
+                'password' => bcrypt('laurita123'),
+                'name' => 'Admin Carla',
+                'surnames' => 'Lopez García',
+            ],
         ];
 
-        // Insert people into the database
+        // Insert personas into the database
         DB::table('people')->insert($people);
     }
 }

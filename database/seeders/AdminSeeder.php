@@ -14,11 +14,9 @@ class AdminSeeder extends Seeder
         // Sample admin data
         $admins = [
             [
-                'dni' => '87654321B', // Replace with actual admin DNI
-                'created_at' => now(),
-                'updated_at' => now(),
+                'dni' => '11111111D', 
             ],
-            // Add more sample admins as needed
+           
         ];
 
         // Insert admins into the database
