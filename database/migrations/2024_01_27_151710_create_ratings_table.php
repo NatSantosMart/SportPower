@@ -9,26 +9,25 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('ratings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 100);
-            $table->decimal('price', 10, 2);
-            $table->string('url_image', 255)->nullable();
-            $table->text('description')->nullable();
+            $table->decimal('score', 10, 2);
+            $table->unsignedInteger('comment_id');
 
             $table->timestamps();
+
+             // Herencia
+             $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('ratings');
     }
 };

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
+            $table->string('url_image', 255)->nullable();
             $table->text('description');
             $table->string('client_dni', 20);
 
