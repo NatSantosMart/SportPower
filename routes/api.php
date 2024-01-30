@@ -27,10 +27,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(PersonController::class)->prefix('people')->group(function() {
     Route::get('/', 'index'); 
     Route::post('/', 'store'); 
-    Route::post('/{id}', 'update'); 
-    Route::put('/{id}', 'put'); 
-    Route::get('/{id}', 'show'); 
-    Route::delete('/{id}', 'destroy'); 
+    Route::post('/{dni}', 'update'); 
+    Route::put('/{dni}', 'put'); 
+    Route::get('/{dni}', 'show'); 
+    Route::delete('/{dni}', 'destroy'); 
 });
 Route::controller(AdminController::class)->prefix('admins')->group(function() {
     Route::get('/', 'index'); 

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->string('dni', 20)->primary();
             $table->string('email', 255)->unique();
             $table->string('password', 255);
-            $table->string('name', 100)->nullable();
-            $table->string('surnames', 100)->nullable();
+            $table->string('name', 100);
+            $table->string('surnames', 100);
             $table->timestamps();
         });
     }

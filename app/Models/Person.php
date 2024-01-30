@@ -10,6 +10,7 @@ class Person extends Model
     use HasFactory;
 
     protected $primaryKey = 'dni';
+    protected $fillable = ['dni', 'email', 'password', 'name', 'surnames'];
 
     public function admin()
     {

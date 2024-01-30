@@ -47,7 +47,6 @@ class ProductController extends Controller
             $newProduct = new Product ([
                 'name' => $request->get('name'), 
                 'price' => $request->get('price'), 
-                'admin_dni' => $request->get('admin_dni'), 
             ]); 
 
            // description and url_image pueden ser nulos 
@@ -124,7 +123,6 @@ class ProductController extends Controller
 
             $product->name = $request->get('name'); 
             $product->price = $request->get('price'); 
-            $product->admin_dni = $request->get('admin_dni'); ; 
             
             //description and url_image pueden ser nulos 
             if($request->has('url_image')){
@@ -150,14 +148,6 @@ class ProductController extends Controller
     //En caso de no llegar todos los campos
     public function put(Request $request, $id)
     {
-        $validation = $this->validateProduct($request);
-        if ($validation->fails()) {
-            return response()->json([
-                'statusCode' => ResultResponse::ERROR_CODE,
-                'message' => ResultResponse::TXT_ERROR_CODE,
-                'data' => $validation->errors()
-            ], 400);
-        }
 
         $resultResponse = new ResultResponse(); 
 
@@ -166,7 +156,6 @@ class ProductController extends Controller
 
             $product->name = $request->get('name', $product->name); 
             $product->price = $request->get('price', $product->price); 
-            $product->admin_dni = $request->get('admin_dni', $product->admin_dni); ; 
 
             $product->url_image = $request->get('url_image', $product->url_image); 
             $product->description = $request->get('description', $product->description); ; 
@@ -220,9 +209,6 @@ class ProductController extends Controller
 
         $rules['price'] = 'required'; 
         $messages['price.required'] = Lang::get('alerts.product_price_required'); 
-
-        $rules['admin_dni'] = 'required'; 
-        $messages['admin_dni.required'] = Lang::get('alerts.product_admin_dni_required'); 
 
         return Validator::make($request->all(), $rules, $messages); 
     }
