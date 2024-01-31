@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommentController; 
 use App\Http\Controllers\PersonController; 
 use App\Http\Controllers\ProductController; 
+use App\Http\Controllers\AddedToCartController; 
 
 /*
 |--------------------------------------------------------------------------

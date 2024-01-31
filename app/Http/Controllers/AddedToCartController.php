@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\AddedToCart;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Libs\ResultResponse;
 use Lang;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+
+
 class AddedToCartController extends Controller
 {
     /**
