@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class AddedToCartSeeder extends Seeder
+class CartSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -41,6 +41,6 @@ class AddedToCartSeeder extends Seeder
         ];
 
         // Insertar los datos en la tabla 'anyadir_carrito'
-        DB::table('added_to_carts')->insert($cartData);
+        DB::table('carts')->insert($cartData);
     }
 }

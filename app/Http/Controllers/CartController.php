@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AddedToCart;
+use App\Models\Cart;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Libs\ResultResponse;
@@ -34,7 +34,44 @@ class AddedToCartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $this->validateProduct($request);
+        if ($validation->fails()) {
+            return response()->json([
+                'statusCode' => ResultResponse::ERROR_CODE,
+                'message' => ResultResponse::TXT_ERROR_CODE,
+                'data' => $validation->errors()
+            ], 400);
+        }
+        $resultResponse = new ResultResponse(); 
+
+        try{
+            $newProduct = new Product ([
+                'name' => $request->get('name'), 
+                'price' => $request->get('price'), 
+            ]); 
+
+           // description and url_image pueden ser nulos 
+            if($request->has('url_image')){
+                $newProduct->url_image = $request->get('url_image'); 
+            }
+            if($request->has('description')){
+                $newProduct->description = $request->get('description'); 
+            }
+
+            $newProduct->save(); 
+
+            $resultResponse->setData($newProduct); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        } catch(\Exception $e){
+            Log::debug($e); 
+            dd($e); 
+            $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
+        }
+
+        return response()->json($resultResponse); 
     }
 
     /**

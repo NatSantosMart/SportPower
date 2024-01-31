@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RatingSeeder::class);  
         $this->call(OrderSeeder::class); 
         $this->call(OrderProductSeeder::class); 
-        $this->call(FavoriteAssignmentsSeeder::class); 
-        $this->call(AddedToCartSeeder::class); 
+        $this->call(FavoriteSeeder::class); 
+        $this->call(CartSeeder::class); 
         $this->call(ClothingSeeder::class); 
         $this->call(SupplementSeeder::class); 
     }

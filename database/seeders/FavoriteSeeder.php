@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class FavoriteAssignmentsSeeder extends Seeder
+class FavoriteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -42,6 +42,6 @@ class FavoriteAssignmentsSeeder extends Seeder
         ];
 
         // Insertar los datos en la tabla 'ASIGNA_FAVORITO'
-        DB::table('favorite_assignments')->insert($favorites);
+        DB::table('favorites')->insert($favorites);
     }
 }

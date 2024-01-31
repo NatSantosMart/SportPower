@@ -7,7 +7,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommentController; 
 use App\Http\Controllers\PersonController; 
 use App\Http\Controllers\ProductController; 
-use App\Http\Controllers\AddedToCartController; 
+use App\Http\Controllers\CartController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -57,5 +57,6 @@ Route::controller(ProductController::class)->prefix('products')->group(function(
     Route::delete('/{id}', 'destroy'); 
 });
 Route::controller(AddedToCartController::class)->prefix('added_to_carts')->group(function() {
+    Route::post('/', 'store'); 
     Route::get('/from_client/{dni}', 'indexFromClient'); 
 });
