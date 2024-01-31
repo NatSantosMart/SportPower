@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->string('status', 100);
-            $table->date('delivery_date')->nullable();
+            $table->date('delivery_date'); 
             $table->date('request_date');
             $table->decimal('total_price', 10, 2);
             $table->string('client_dni', 20);

@@ -2,64 +2,79 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FavoriteAssignments;
+use App\Models\Favorite;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Libs\ResultResponse;
+use Lang;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
-class FavoriteAssignmentsController extends Controller
+
+class FavoriteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $resultResponse = new ResultResponse(); 
+
+        try{
+            $addProduct = new Favorite ([
+                'client_dni' => $request->get('client_dni'), 
+                'product_id' => $request->get('product_id'), 
+            ]); 
+
+            $addProduct->save(); 
+
+            $resultResponse->setData($addProduct); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        } catch(\Exception $e){
+            $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
+        }
+
+        return response()->json($resultResponse); 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(FavoriteAssignments $favoriteAssignments)
+
+    public function destroy($id)
     {
-        //
+        $resultResponse = new ResultResponse(); 
+
+        try{
+            $productInFavorite = Favorite::findOrFail($id); 
+
+            $productInFavorite->delete();
+
+            $resultResponse->setData($productInFavorite); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        } catch(\Exception $e){
+            $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
+        }
+        return response()->json($resultResponse); 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(FavoriteAssignments $favoriteAssignments)
-    {
-        //
-    }
+    public function indexFromClient($dni){
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, FavoriteAssignments $favoriteAssignments)
-    {
-        //
-    }
+        try{
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(FavoriteAssignments $favoriteAssignments)
-    {
-        //
+            $products = Favorite::where('client_dni', $dni)->get(); 
+
+            $resultResponse = new ResultResponse(); 
+
+            $resultResponse->setData($products); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        } catch(\Exception $e){
+            $resultResponse->setStatusCode(ResultResponse::ERROR_ELEMENT_NOT_FOUND_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_ELEMENT_NOT_FOUND_CODE);
+        }
+        
+        return response()->json($resultResponse); 
     }
 }
