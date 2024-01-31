@@ -64,3 +64,6 @@ Route::controller(ProductController::class)->prefix('products')->group(function(
     Route::get('/{id}', 'show'); 
     Route::delete('/{id}', 'destroy'); 
 });
+Route::controller(AddedToCartController::class)->prefix('added_to_carts')->group(function() {
+    Route::get('/from_client/{dni}', 'indexFromClient'); 
+});

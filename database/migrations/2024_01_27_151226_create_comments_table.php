@@ -18,11 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('client_dni', 20);
 
-            $table->foreign('client_dni')
-                  ->references('dni')
-                  ->on('clients')
-                  ->onUpdate('cascade')
-                  ->onDelete('restrict');
+            $table->foreign('client_dni')->references('dni')->on('clients')->onUpdate('cascade')->onDelete('restrict');
 
             $table->timestamps();
         });

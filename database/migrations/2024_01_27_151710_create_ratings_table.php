@@ -15,11 +15,13 @@ return new class extends Migration
             $table->increments('id');
             $table->decimal('score', 10, 2);
             $table->unsignedInteger('comment_id');
+            $table->unsignedInteger('product_id');
 
             $table->timestamps();
 
              // Herencia
              $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
+             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

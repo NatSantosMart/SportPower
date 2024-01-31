@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AddedToCart;
+use App\Models\Product;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Libs\ResultResponse;
+use Lang;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 class AddedToCartController extends Controller
 {
     /**
@@ -61,5 +65,25 @@ class AddedToCartController extends Controller
     public function destroy(AddedToCart $addedToCart)
     {
         //
+    }
+
+    public function indexFromClient($dni){
+
+        try{
+
+            $products = AddedToCart::where('client_dni', $dni)->get(); 
+
+            $resultResponse = new ResultResponse(); 
+
+            $resultResponse->setData($products); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        } catch(\Exception $e){
+            $resultResponse->setStatusCode(ResultResponse::ERROR_ELEMENT_NOT_FOUND_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_ELEMENT_NOT_FOUND_CODE);
+        }
+        
+        return response()->json($resultResponse); 
     }
 }
