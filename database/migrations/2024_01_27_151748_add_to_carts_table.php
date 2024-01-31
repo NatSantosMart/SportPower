@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('client_dni', 20);
             $table->unsignedInteger('product_id');
+            $table->unsignedInteger('quantity')->nullable(); //Si no se indica se le considerará como 1 unidad
 
             // Clave foránea para el cliente
             $table->foreign('client_dni')->references('dni')->on('clients')->onDelete('cascade')->onUpdate('cascade');

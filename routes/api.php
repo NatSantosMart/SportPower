@@ -56,7 +56,9 @@ Route::controller(ProductController::class)->prefix('products')->group(function(
     Route::get('/{id}', 'show'); 
     Route::delete('/{id}', 'destroy'); 
 });
-Route::controller(AddedToCartController::class)->prefix('added_to_carts')->group(function() {
+Route::controller(CartController::class)->prefix('carts')->group(function() {
     Route::post('/', 'store'); 
+    Route::put('/{id}', 'put'); 
+    Route::delete('/{id}', 'destroy');
     Route::get('/from_client/{dni}', 'indexFromClient'); 
 });

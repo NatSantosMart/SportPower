@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 
-class AddedToCartController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,39 +34,25 @@ class AddedToCartController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = $this->validateProduct($request);
-        if ($validation->fails()) {
-            return response()->json([
-                'statusCode' => ResultResponse::ERROR_CODE,
-                'message' => ResultResponse::TXT_ERROR_CODE,
-                'data' => $validation->errors()
-            ], 400);
-        }
         $resultResponse = new ResultResponse(); 
 
         try{
-            $newProduct = new Product ([
-                'name' => $request->get('name'), 
-                'price' => $request->get('price'), 
+            $addProduct = new Cart ([
+                'client_dni' => $request->get('client_dni'), 
+                'product_id' => $request->get('product_id'), 
             ]); 
 
-           // description and url_image pueden ser nulos 
-            if($request->has('url_image')){
-                $newProduct->url_image = $request->get('url_image'); 
-            }
-            if($request->has('description')){
-                $newProduct->description = $request->get('description'); 
+            if($request->has('quantity')){
+                $addProduct->quantity = $request->get('quantity'); 
             }
 
-            $newProduct->save(); 
+            $addProduct->save(); 
 
-            $resultResponse->setData($newProduct); 
+            $resultResponse->setData($addProduct); 
             $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
             $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
 
         } catch(\Exception $e){
-            Log::debug($e); 
-            dd($e); 
             $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
             $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
         }
@@ -77,7 +63,7 @@ class AddedToCartController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(AddedToCart $addedToCart)
+    public function show(Cart $addedToCart)
     {
         //
     }
@@ -85,7 +71,7 @@ class AddedToCartController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AddedToCart $addedToCart)
+    public function edit(Cart $addedToCart)
     {
         //
     }
@@ -93,24 +79,60 @@ class AddedToCartController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AddedToCart $addedToCart)
+    public function update(Request $request, Cart $addedToCart)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(AddedToCart $addedToCart)
+    public function put(Request $request, $id)
     {
-        //
+
+        $resultResponse = new ResultResponse(); 
+
+        try{
+            $productInCart = Cart::findOrFail($id); 
+
+            //Solo se puede modificar la quantity del productInCart
+            $productInCart->quantity = $request->get('quantity', $productInCart->quantity); 
+
+            $productInCart->save(); 
+
+            $resultResponse->setData($productInCart); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        } catch(\Exception $e){
+            $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
+        }
+        return response()->json($resultResponse); 
+    }
+
+    public function destroy($id)
+    {
+        $resultResponse = new ResultResponse(); 
+
+        try{
+            $productInCart = Cart::findOrFail($id); 
+
+            $productInCart->delete();
+
+            $resultResponse->setData($productInCart); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        } catch(\Exception $e){
+            $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
+        }
+        return response()->json($resultResponse); 
     }
 
     public function indexFromClient($dni){
 
         try{
 
-            $products = AddedToCart::where('client_dni', $dni)->get(); 
+            $products = Cart::where('client_dni', $dni)->get(); 
 
             $resultResponse = new ResultResponse(); 
 
