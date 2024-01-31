@@ -14,7 +14,9 @@ class AdminSeeder extends Seeder
         // Sample admin data
         $admins = [
             [
-                'dni' => '11111111D', 
+                'dni' => '11111111D',
+                'email' => 'ines@gmail.com',
+                'password' => bcrypt('laurita123'),
             ],
            
         ];

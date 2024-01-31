@@ -23,15 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//http://localhost/api/people
-Route::controller(PersonController::class)->prefix('people')->group(function() {
-    Route::get('/', 'index'); 
-    Route::post('/', 'store'); 
-    Route::post('/{dni}', 'update'); 
-    Route::put('/{dni}', 'put'); 
-    Route::get('/{dni}', 'show'); 
-    Route::delete('/{dni}', 'destroy'); 
-});
 Route::controller(AdminController::class)->prefix('admins')->group(function() {
     Route::get('/', 'index'); 
     Route::post('/', 'store'); 
@@ -43,10 +34,10 @@ Route::controller(AdminController::class)->prefix('admins')->group(function() {
 Route::controller(ClientController::class)->prefix('clients')->group(function() {
     Route::get('/', 'index'); 
     Route::post('/', 'store'); 
-    Route::post('/{id}', 'update'); 
-    Route::put('/{id}', 'put'); 
-    Route::get('/{id}', 'show'); 
-    Route::delete('/{id}', 'destroy'); 
+    Route::post('/{dni}', 'update'); 
+    Route::put('/{dni}', 'put'); 
+    Route::get('/{dni}', 'show'); 
+    Route::delete('/{dni}', 'destroy'); 
 });
 Route::controller(CommentController::class)->prefix('comments')->group(function() {
     Route::get('/', 'index'); 

@@ -22,6 +22,10 @@ class ClientSeeder extends Seeder
                 'postal_code' => '28001',
                 'city' => 'Madrid',
                 'address' => 'Calle Principal 123',
+                'email' => 'juan@gmail.com',
+                'password' => bcrypt('password123'),
+                'name' => 'Juan',
+                'surnames' => 'Pérez',
             ],
             [
                 'dni' => '23456789B',
@@ -30,6 +34,10 @@ class ClientSeeder extends Seeder
                 'postal_code' => '12345',
                 'city' => 'Almería',
                 'address' => 'Avenida Central 456',
+                'email' => 'ana@yahoo.com',
+                'password' => bcrypt('securepass'),
+                'name' => 'Ana',
+                'surnames' => 'Gómez García',
             ],
             [
                 'dni' => '34567890C',
@@ -38,6 +46,10 @@ class ClientSeeder extends Seeder
                 'postal_code' => '90210',
                 'city' => 'Bilbao',
                 'address' => 'Calle Margara 123',
+                'email' => 'carlos@hotmail.com',
+                'password' => bcrypt('carlos456'),
+                'name' => 'Carlos',
+                'surnames' => 'García Lopez',
             ],
             [
                 'dni' => '45678901D',
@@ -46,6 +58,10 @@ class ClientSeeder extends Seeder
                 'postal_code' => '75001',
                 'city' => 'Valencia',
                 'address' => 'Rue de la Paix 101',
+                'email' => 'laura@gmail.com',
+                'password' => bcrypt('laurita123'),
+                'name' => 'Laura',
+                'surnames' => 'Martínez Lopez',
             ],
         ];
 

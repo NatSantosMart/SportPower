@@ -12,19 +12,19 @@ return new class extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->string('dni', 20)->primary();
-            $table->string('phone', 20)->nullable(false);
-            $table->string('country', 100)->nullable();
-            $table->string('postal_code', 20)->nullable();
-            $table->string('city', 100)->nullable();
-            $table->string('address', 255)->nullable();
-            $table->timestamps();
+            $table->string('dni', 30)->primary();
+            $table->string('phone', 20)->nullable();
+            $table->string('country', 100);
+            $table->string('postal_code', 20);
+            $table->string('city', 100);
+            $table->string('address', 255);
 
-            $table->foreign('dni')
-                  ->references('dni')
-                  ->on('people')
-                  ->onUpdate('cascade')
-                  ->onDelete('restrict');
+            $table->string('email', 255)->unique();
+            $table->string('password', 255);
+            $table->string('name', 100);
+            $table->string('surnames', 100);
+
+            $table->timestamps();
         });
     }
 

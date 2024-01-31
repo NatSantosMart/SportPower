@@ -13,13 +13,10 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->string('dni', 20)->primary();
-            $table->timestamps();
+            $table->string('email', 255)->unique();
+            $table->string('password', 255);
 
-            $table->foreign('dni')
-                  ->references('dni')
-                  ->on('people')
-                  ->onUpdate('cascade')
-                  ->onDelete('restrict');
+            $table->timestamps();
         });
     }
 
