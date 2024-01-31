@@ -13,25 +13,6 @@ use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $resultResponse = new ResultResponse(); 
@@ -58,30 +39,6 @@ class CartController extends Controller
         }
 
         return response()->json($resultResponse); 
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cart $addedToCart)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cart $addedToCart)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Cart $addedToCart)
-    {
-        //
     }
 
     public function put(Request $request, $id)

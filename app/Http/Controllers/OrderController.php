@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Libs\ResultResponse;
+use Lang;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+
 
 class OrderController extends Controller
 {
@@ -12,15 +18,15 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $orders = Order::all(); 
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $resultResponse = new ResultResponse(); 
+
+        $resultResponse->setData($orders); 
+        $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+        $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+        
+        return response()->json($resultResponse); 
     }
 
     /**
@@ -28,38 +34,69 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $resultResponse = new ResultResponse(); 
+
+        try{
+            $order= new Order ([
+                'status' => $request->get('status'), 
+                'delivery_date' => $request->get('delivery_date'), 
+                'request_date' => $request->get('request_date'), 
+                'total_price' => $request->get('total_price'), 
+                'client_dni' => $request->get('client_dni'), 
+            ]); 
+
+            $order->save(); 
+
+            $resultResponse->setData($order); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        } catch(\Exception $e){
+            $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
+        }
+
+        return response()->json($resultResponse); 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+        $resultResponse = new ResultResponse(); 
+
+        try{
+            $order = Order::findOrFail($id); 
+
+            $resultResponse->setData($order); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+            
+        } catch(\Exception $e){
+            $resultResponse->setStatusCode(ResultResponse::ERROR_ELEMENT_NOT_FOUND_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_ELEMENT_NOT_FOUND_CODE);
+        }
+        return response()->json($resultResponse); 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
+    public function destroy($id)
     {
-        //
-    }
+        $resultResponse = new ResultResponse(); 
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
+        try{
+            $order = Order::findOrFail($id); 
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order)
-    {
-        //
+            $order->delete();
+
+            $resultResponse->setData($order); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        } catch(\Exception $e){
+            $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
+        }
+        return response()->json($resultResponse); 
     }
 }

@@ -8,6 +8,9 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PersonController; 
 use App\Http\Controllers\ProductController; 
 use App\Http\Controllers\CartController; 
+use App\Http\Controllers\FavoriteController; 
+use App\Http\Controllers\OrderController; 
+use App\Http\Controllers\OrderProductController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -61,4 +64,18 @@ Route::controller(CartController::class)->prefix('carts')->group(function() {
     Route::put('/{id}', 'put'); 
     Route::delete('/{id}', 'destroy');
     Route::get('/from_client/{dni}', 'indexFromClient'); 
+});
+Route::controller(FavoriteController::class)->prefix('favorites')->group(function() {
+    Route::post('/', 'store'); 
+    Route::delete('/{id}', 'destroy');
+    Route::get('/from_client/{dni}', 'indexFromClient'); 
+});
+Route::controller(OrderController::class)->prefix('orders')->group(function() {
+    Route::get('/', 'index'); 
+    Route::post('/', 'store'); 
+    Route::get('/{id}', 'show'); 
+    Route::delete('/{id}', 'destroy'); 
+});
+Route::controller(OrderProductController::class)->prefix('order_products')->group(function() {
+    Route::get('/', 'indexFromOrder'); 
 });
