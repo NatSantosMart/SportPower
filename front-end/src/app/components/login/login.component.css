@@ -1,0 +1,28 @@
+.center-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.custom-box{
+  border: 1px solid #ccc;
+  padding: 3.5rem;
+  margin-bottom: 10px;
+  border-radius: 3rem;
+  background-color: #88D4F3;
+}
+
+.title{
+  color:#88D4F3; 
+  font-weight: bold; 
+  font-size:xx-large
+}
+
+.buttomStyle{
+  background-color: #C5CDD1;
+  border: 1px solid black;
+  color:black;
+  padding:0.5rem;
+
+}
