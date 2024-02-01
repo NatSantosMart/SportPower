@@ -12,9 +12,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ratings', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('comment_id')->primary();
             $table->decimal('score', 10, 2);
-            $table->unsignedInteger('comment_id');
             $table->unsignedInteger('product_id');
 
             $table->timestamps();

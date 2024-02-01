@@ -29,6 +29,25 @@ class OrderController extends Controller
         return response()->json($resultResponse); 
     }
 
+    public function indexFromClient($dni){
+        try{
+            $products = Order::where('client_dni', $dni)->get(); 
+
+            $resultResponse = new ResultResponse(); 
+
+            $resultResponse->setData($products); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        } catch(\Exception $e){
+            Log::debug($e); 
+            dd($e); 
+            $resultResponse->setStatusCode(ResultResponse::ERROR_ELEMENT_NOT_FOUND_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_ELEMENT_NOT_FOUND_CODE);
+        }      
+        return response()->json($resultResponse); 
+    }
+
     /**
      * Store a newly created resource in storage.
      */

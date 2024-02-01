@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController; 
 use App\Http\Controllers\ClientController; 
 use App\Http\Controllers\CommentController; 
+use App\Http\Controllers\PostController; 
+use App\Http\Controllers\RatingController; 
 use App\Http\Controllers\PersonController; 
 use App\Http\Controllers\ProductController; 
 use App\Http\Controllers\CartController; 
@@ -51,6 +53,20 @@ Route::controller(CommentController::class)->prefix('comments')->group(function(
     Route::get('/{id}', 'show'); 
     Route::delete('/{id}', 'destroy'); 
 });
+Route::controller(PostController::class)->prefix('posts')->group(function() {
+    Route::get('/', 'index'); 
+    Route::post('/', 'store'); 
+    Route::put('/{comment_id}', 'put'); 
+    Route::get('/{comment_id}', 'show'); 
+    Route::delete('/{comment_id}', 'destroy'); 
+});
+Route::controller(RatingController::class)->prefix('ratings')->group(function() {
+    Route::get('/', 'index'); 
+    Route::post('/', 'store'); 
+    Route::put('/{comment_id}', 'put'); 
+    Route::get('/{comment_id}', 'show'); 
+    Route::delete('/{comment_id}', 'destroy'); 
+});
 Route::controller(ProductController::class)->prefix('products')->group(function() {
     Route::get('/', 'index'); 
     Route::post('/', 'store'); 
@@ -75,7 +91,9 @@ Route::controller(OrderController::class)->prefix('orders')->group(function() {
     Route::post('/', 'store'); 
     Route::get('/{id}', 'show'); 
     Route::delete('/{id}', 'destroy'); 
+    Route::get('/from_client/{dni}', 'indexFromClient'); 
 });
 Route::controller(OrderProductController::class)->prefix('order_products')->group(function() {
-    Route::get('/', 'indexFromOrder'); 
+    Route::get('/from_order/{id}', 'indexFromOrder'); 
+    Route::post('/', 'store'); 
 });
