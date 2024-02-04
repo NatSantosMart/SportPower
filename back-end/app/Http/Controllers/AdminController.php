@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Libs\ResultResponse;
+use Lang;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+
 
 class AdminController extends Controller
 {
@@ -13,54 +18,33 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Admin::all(); 
+
+        $resultResponse = new ResultResponse(); 
+
+        $resultResponse->setData($clients); 
+        $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+        $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+        
+        return response()->json($resultResponse); 
+    }
+    
+    public function show($id)
+    {
+        $resultResponse = new ResultResponse(); 
+
+        try{
+            $admin = Admin::findOrFail($id); 
+
+            $resultResponse->setData($admin); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+            
+        } catch(\Exception $e){
+            $resultResponse->setStatusCode(ResultResponse::ERROR_ELEMENT_NOT_FOUND_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_ELEMENT_NOT_FOUND_CODE);
+        }
+        return response()->json($resultResponse); 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Admin $admin)
-    {
-        //
-    }
 }
