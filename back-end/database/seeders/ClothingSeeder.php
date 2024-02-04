@@ -19,6 +19,6 @@ class ClothingSeeder extends Seeder
             ],
         ];
 
-        DB::table('clothing')->insert($clothing);
+        DB::table('clothes')->insert($clothing);
     }
 }

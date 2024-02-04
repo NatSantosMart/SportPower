@@ -17,28 +17,17 @@ class ClothingController extends Controller
      */
     public function index()
     {
-        $clothings = Clothing::all();
+        $clothes = Clothing::all();
 
         $resultResponse = new ResultResponse();
 
-        $resultResponse->setData($clothings);
+        $resultResponse->setData($clothes);
         $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE);
         $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
 
         return response()->json($resultResponse);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validation = $this->validateClothing($request);
@@ -54,19 +43,11 @@ class ClothingController extends Controller
 
         try {
             $newClothing = new Clothing([
-                'name' => $request->get('name'),
-                'price' => $request->get('price'),
-                'genero' => $request->get('genero'),
-                'talla' => $request->get('talla'),
+                'clothing_id' => $request->get('clothing_id'),
+                'gender' => $request->get('gender'),
+                'size' => $request->get('size'),
                 'color' => $request->get('color'),
             ]);
-
-            if ($request->has('url_image')) {
-                $newClothing->url_image = $request->get('url_image');
-            }
-            if ($request->has('description')) {
-                $newClothing->description = $request->get('description');
-            }
 
             $newClothing->save();
 
@@ -75,7 +56,7 @@ class ClothingController extends Controller
             $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
 
         } catch (\Exception $e) {
-            Log::debug($e);
+            dd($e);
             $resultResponse->setStatusCode(ResultResponse::ERROR_CODE);
             $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
         }
@@ -99,6 +80,7 @@ class ClothingController extends Controller
                 $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
                 
             } catch(\Exception $e){
+                dd($e);
                 $resultResponse->setStatusCode(ResultResponse::ERROR_ELEMENT_NOT_FOUND_CODE); 
                 $resultResponse->setMessage(ResultResponse::TXT_ERROR_ELEMENT_NOT_FOUND_CODE);
             }
@@ -106,17 +88,30 @@ class ClothingController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Clothing $clothing)
+    public function put(Request $request, $id)
     {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
+        $resultResponse = new ResultResponse(); 
+
+        try{
+            $clothing = Clothing::findOrFail($id); 
+
+            $clothing->gender = $request->get('gender', $clothing->gender); 
+            $clothing->size = $request->get('size', $clothing->size); 
+            $clothing->color = $request->get('color', $clothing->color); 
+
+            $clothing->save(); 
+
+            $resultResponse->setData($clothing); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        } catch(\Exception $e){
+            $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
+        }
+        return response()->json($resultResponse); 
+    }
     public function update(Request $request,$id)
     {
         $validation = $this->validateClothing($request);
@@ -133,19 +128,9 @@ class ClothingController extends Controller
         try{
             $clothing = Clothing::findOrFail($id); 
 
-            $clothing->name = $request->get('name');
-            $clothing->price = $request->get('price');
-            $clothing->genero = $request->get('genero');
-            $clothing->talla = $request->get('talla');
+            $clothing->gender = $request->get('gender');
+            $clothing->size = $request->get('size');
             $clothing->color = $request->get('color');
-            
-            
-            if ($request->has('url_image')) {
-                $clothing->url_image = $request->get('url_image');
-            }
-            if ($request->has('description')) {
-                $clothing->description = $request->get('description');
-            }
 
             $clothing->save(); 
 
@@ -154,6 +139,7 @@ class ClothingController extends Controller
             $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
 
         } catch(\Exception $e){
+            dd($e);
             $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
             $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
         }
@@ -188,21 +174,14 @@ class ClothingController extends Controller
         $rules = [];
         $messages = [];
 
-        // Campos obligatorios
+        $rules['clothing_id'] = 'required';
+        $messages['clothing_id.required'] = Lang::get('alerts.clothing_clothing_id_required');
 
-        $rules['name'] = 'required';
-        $messages['name.required'] = Lang::get('alerts.product_name_required');
+        $rules['gender'] = 'required';
+        $messages['gender.required'] = Lang::get('alerts.clothing_gender_required');
 
-        $rules['price'] = 'required';
-        $messages['price.required'] = Lang::get('alerts.product_price_required');
-
-        // Campos específicos de Clothing
-
-        $rules['genero'] = 'required';
-        $messages['genero.required'] = Lang::get('alerts.clothing_genero_required');
-
-        $rules['talla'] = 'required';
-        $messages['talla.required'] = Lang::get('alerts.clothing_talla_required');
+        $rules['size'] = 'required';
+        $messages['size.required'] = Lang::get('alerts.clothing_size_required');
 
         $rules['color'] = 'required';
         $messages['color.required'] = Lang::get('alerts.clothing_color_required');

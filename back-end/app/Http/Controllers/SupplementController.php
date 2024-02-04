@@ -28,18 +28,6 @@ class SupplementController extends Controller
         return response()->json($resultResponse);
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validation = $this->validateSupplement($request);
@@ -55,17 +43,9 @@ class SupplementController extends Controller
 
         try {
             $newSupplement = new Supplement([
-                'name' => $request->get('name'),
-                'price' => $request->get('price'),
-                'cantidad' => $request->get('cantidad'),
+                'product_id' => $request->get('product_id'),
+                'quantity' => $request->get('quantity'),
             ]);
-
-            if ($request->has('url_image')) {
-                $newSupplement->url_image = $request->get('url_image');
-            }
-            if ($request->has('description')) {
-                $newSupplement->description = $request->get('description');
-            }
 
             $newSupplement->save();
 
@@ -74,7 +54,7 @@ class SupplementController extends Controller
             $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
 
         } catch (\Exception $e) {
-            Log::debug($e);
+            dd($e);
             $resultResponse->setStatusCode(ResultResponse::ERROR_CODE);
             $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
         }
@@ -98,6 +78,7 @@ class SupplementController extends Controller
                 $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
                 
             } catch(\Exception $e){
+                dd($e);
                 $resultResponse->setStatusCode(ResultResponse::ERROR_ELEMENT_NOT_FOUND_CODE); 
                 $resultResponse->setMessage(ResultResponse::TXT_ERROR_ELEMENT_NOT_FOUND_CODE);
             }
@@ -105,61 +86,29 @@ class SupplementController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Supplement $supplement)
+    public function put(Request $request, $id)
     {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request,$id)
-    {
-        $validation = $this->validateSupplement($request);
-    if ($validation->fails()) {
-        return response()->json([
-            'statusCode' => ResultResponse::ERROR_CODE,
-            'message' => ResultResponse::TXT_ERROR_CODE,
-            'data' => $validation->errors()
-        ], 400);
-    }
+        $resultResponse = new ResultResponse(); 
 
-    $resultResponse = new ResultResponse();
+        try{
+            $supplement = Supplement::findOrFail($id); 
 
-    try {
-        $supplement = Supplement::findOrFail($id);
+            $supplement->quantity = $request->get('quantity', $supplement->quantity); 
 
-        $supplement->name = $request->get('name');
-        $supplement->price = $request->get('price');
-        $supplement->cantidad = $request->get('cantidad');
+            $supplement->save(); 
 
-        if ($request->has('url_image')) {
-            $supplement->url_image = $request->get('url_image');
+            $resultResponse->setData($supplement); 
+            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        } catch(\Exception $e){
+            $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
+            $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
         }
-        if ($request->has('description')) {
-            $supplement->description = $request->get('description');
-        }
-
-        $supplement->save();
-
-        $resultResponse->setData($supplement);
-        $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE);
-        $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
-
-    } catch (\Exception $e) {
-        $resultResponse->setStatusCode(ResultResponse::ERROR_CODE);
-        $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
+        return response()->json($resultResponse); 
     }
 
-    return response()->json($resultResponse);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $resultResponse = new ResultResponse(); 
@@ -185,18 +134,11 @@ class SupplementController extends Controller
         $rules = [];
         $messages = [];
 
-        // Campos obligatorios
+        $rules['product_id'] = 'required';
+        $messages['product_id.required'] = Lang::get('alerts.supplement_product_id_required');
 
-        $rules['name'] = 'required';
-        $messages['name.required'] = Lang::get('alerts.product_name_required');
-
-        $rules['price'] = 'required';
-        $messages['price.required'] = Lang::get('alerts.product_price_required');
-
-        // Campos específicos de Supplement
-
-        $rules['cantidad'] = 'required';
-        $messages['cantidad.required'] = Lang::get('alerts.supplement_cantidad_required');
+        $rules['quantity'] = 'required';
+        $messages['quantity.required'] = Lang::get('alerts.supplement_quantity_required');
 
         return Validator::make($request->all(), $rules, $messages);
     }

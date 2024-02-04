@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supplement extends Product
 {
+    protected $primaryKey = 'product_id';
+    public $table = 'supplements';
     use HasFactory;
-    protected $fillable = ['cantidad']; 
+    protected $fillable = ['product_id', 'quantity']; 
 
 }
