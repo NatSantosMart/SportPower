@@ -6,10 +6,26 @@
       </mat-form-field>
       <mat-icon style="margin-left:1rem">search</mat-icon>
     </div>
-    <span>Ropa</span>
-    <span>Suplementación</span>
-    <span>Foro</span>
-    <span>Cuenta</span>
-    <span>Carrito</span>
+    <button class = "fontSize" mat-button [matMenuTriggerFor]="clothesMenu">Ropa</button>
+    <mat-menu #clothesMenu="matMenu" class="custom-menu">
+      <button (click)="redirectToProductsList('women')" mat-menu-item>Mujer</button>
+      <button (click)="redirectToProductsList('men')" mat-menu-item>Hombre</button>
+    </mat-menu>
+    <button class = "fontSize" mat-button [matMenuTriggerFor]="supplementationMenu">Suplementación</button>
+    <mat-menu #supplementationMenu="matMenu" class="custom-menu">
+      <button (click)="redirectToProductsList('proteins')" mat-menu-item>Proteína</button>
+      <button (click)="redirectToProductsList('vitamins')" mat-menu-item>Vitaminas</button>
+      <button (click)="redirectToProductsList('snacks')" mat-menu-item>Snacks</button>
+    </mat-menu>
+    <span class = "fontSize">Foro</span>
+    <button class = "fontSize" mat-button [matMenuTriggerFor]="ProfileMenu">Cuenta</button>
+    <mat-menu #ProfileMenu="matMenu" class="custom-menu">
+      <button (click)="redirectToProductsList('favorites')" mat-menu-item>Favoritos</button>
+      <button (click)="redirectToProductsList('vitamins')" mat-menu-item>Pedidos</button>
+      <button (click)="redirectToProductsList('profile')" mat-menu-item>Perfil personal</button>
+      <button (click)="redirectToProductsList('logout')" mat-menu-item>Cerrar sesión</button>
+    </mat-menu>
+    <span></span>
+    <span class = "fontSize">Carrito</span>
   </mat-toolbar>
 </div>

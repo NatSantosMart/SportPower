@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MaterialModule } from '../../material.module';
-import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -11,5 +11,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './toolbar.component.css'
 })
 export class ToolbarComponent {
+
+  constructor(private router: Router) { }
+
+  redirectToProductsList(gender : string): void {
+    this.router.navigate(['/products/clothing/women']);
+  }
 
 }

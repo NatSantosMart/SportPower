@@ -1,0 +1,38 @@
+img{
+    height: 30rem;
+    width: 30rem;
+}
+
+.titleFont{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.infoSize{
+    font-size: 1.5rem;
+}
+
+.addCartButton{
+    font-size: 1.5rem; 
+    padding: 1rem;
+}
+
+.addFavorite{
+    margin-left:1rem;
+    color: red;
+    font-size: 3.5rem;
+    height: 4rem;
+    width: 4rem;
+  
+}
+
+.topMargin{
+    margin-top:1.5rem
+}
+
+.sizeButton{
+    font-size: 1.5rem;
+    width: 3.5rem;
+    height: 3rem;
+
+}

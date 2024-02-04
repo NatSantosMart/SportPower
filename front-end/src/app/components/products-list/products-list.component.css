@@ -1,0 +1,17 @@
+img{
+    width: 20rem;
+    height: 20rem;
+}
+
+.product-container {
+    flex: 1 0 calc(25% - 20px);
+    margin: 10px; 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.scroll{
+    overflow-y: auto;
+    scrollbar-width:thin;
+}

@@ -1,0 +1,60 @@
+<app-toolbar></app-toolbar>
+<div class="d-flex " style="margin-top:1rem; margin-left:7rem">
+    <div class="d-flex flex-column" *ngIf="product !== undefined">
+        <img [src]=product.url_image>
+        <h2 class = "titleFont topMargin">Descripción del producto</h2>
+        <p class="infoSize topMargin">{{product.description}}</p>
+        <h2 class = "titleFont topMargin">Valoraciones</h2>
+    </div>
+    <div class="d-flex flex-column " style="margin-left:14rem; margin-top:4rem">
+        <h1 style="font-size:2rem; font-weight:bold;">{{product.name}}</h1>
+        <p class="infoSize topMargin">{{product.price}} €</p>
+        <p class="infoSize topMargin">Talla:</p>
+        <div class ="d-flex justify-content-between topMargin">
+            <div class="d-flex flex-column ">
+                <button class="sizeButton">XS</button>
+            </div>
+            <div class="d-flex flex-column ">
+                <button class="sizeButton">S</button>
+            </div>
+            <div class="d-flex flex-column">
+                <button  class="sizeButton">M</button>
+            </div>
+            <div class="d-flex flex-column">
+                <button  class="sizeButton">L</button>
+            </div>
+            <div class="d-flex flex-column">
+                <button  class="sizeButton">XL</button>
+            </div>
+
+        </div>
+        <mat-form-field class="topMargin" appearance="outline">
+            <mat-label>Color</mat-label>
+            <mat-select [(ngModel)]="product.color">
+                <mat-option value="Rosa">Rosa</mat-option>
+                <mat-option value="Negro">Negro</mat-option>
+                <mat-option value="Azul">Azul</mat-option>
+                <mat-option value="Rojo">Rojo</mat-option>
+                <mat-option value="Verde">Verde</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="topMargin" appearance="outline">
+            <mat-label>Unididades</mat-label>
+            <mat-select>
+                <mat-option [value]="1">1</mat-option>
+                <mat-option [value]="2">2</mat-option>
+                <mat-option [value]="3">3</mat-option>
+                <mat-option [value]="4">4</mat-option>
+                <mat-option [value]="5">5</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class ="d-flex">
+            <div class="d-flex flex-column">
+                <button class="addCartButton topMargin">Añadir al carrito</button>
+            </div>
+            <div class="d-flex flex-column">
+                <mat-icon class="addFavorite topMargin">favorite</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>
