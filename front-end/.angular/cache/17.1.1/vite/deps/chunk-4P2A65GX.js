@@ -10,15 +10,15 @@ import {
   trigger
 } from "./chunk-6X2MEE47.js";
 import {
+  MatCommonModule
+} from "./chunk-EWRR74WF.js";
+import {
   ComponentPortal
 } from "./chunk-V6UKTLJF.js";
 import {
   CdkScrollableModule,
   ScrollDispatcher
 } from "./chunk-Z5WS2MKF.js";
-import {
-  MatCommonModule
-} from "./chunk-EWRR74WF.js";
 import {
   Directionality
 } from "./chunk-6RAHKLD7.js";
@@ -1035,4 +1035,4 @@ export {
   matTooltipAnimations,
   MatTooltipModule
 };
-//# sourceMappingURL=chunk-YCRU5FV2.js.map
+//# sourceMappingURL=chunk-4P2A65GX.js.map

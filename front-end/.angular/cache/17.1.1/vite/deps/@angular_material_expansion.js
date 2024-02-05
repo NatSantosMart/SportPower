@@ -6,6 +6,9 @@ import {
   trigger
 } from "./chunk-6X2MEE47.js";
 import {
+  MatCommonModule
+} from "./chunk-EWRR74WF.js";
+import {
   CdkPortalOutlet,
   PortalModule,
   TemplatePortal
@@ -13,9 +16,6 @@ import {
 import {
   UniqueSelectionDispatcher
 } from "./chunk-DXRLPFBV.js";
-import {
-  MatCommonModule
-} from "./chunk-EWRR74WF.js";
 import "./chunk-6RAHKLD7.js";
 import {
   ENTER,

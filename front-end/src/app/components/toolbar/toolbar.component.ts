@@ -18,4 +18,7 @@ export class ToolbarComponent {
     this.router.navigate(['/products/clothing/women']);
   }
 
+  redirectToForo(): void {
+    this.router.navigate(['/foro']);
+  }
 }

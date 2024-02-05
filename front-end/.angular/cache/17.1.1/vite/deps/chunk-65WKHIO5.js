@@ -1,10 +1,12 @@
 import {
-  DomSanitizer,
-  HttpClient
-} from "./chunk-JTGENUAZ.js";
+  DomSanitizer
+} from "./chunk-EITLX7QK.js";
 import {
   MatCommonModule
 } from "./chunk-EWRR74WF.js";
+import {
+  HttpClient
+} from "./chunk-ARTD5HR5.js";
 import {
   DOCUMENT
 } from "./chunk-Q4D7HIHF.js";
@@ -948,4 +950,4 @@ export {
   MatIcon,
   MatIconModule
 };
-//# sourceMappingURL=chunk-UEP77YGF.js.map
+//# sourceMappingURL=chunk-65WKHIO5.js.map

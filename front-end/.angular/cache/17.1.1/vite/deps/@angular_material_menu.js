@@ -11,6 +11,11 @@ import {
   trigger
 } from "./chunk-6X2MEE47.js";
 import {
+  MatCommonModule,
+  MatRipple,
+  MatRippleModule
+} from "./chunk-EWRR74WF.js";
+import {
   DomPortalOutlet,
   TemplatePortal
 } from "./chunk-V6UKTLJF.js";
@@ -18,11 +23,6 @@ import {
   CdkScrollableModule
 } from "./chunk-Z5WS2MKF.js";
 import "./chunk-DXRLPFBV.js";
-import {
-  MatCommonModule,
-  MatRipple,
-  MatRippleModule
-} from "./chunk-EWRR74WF.js";
 import {
   Directionality
 } from "./chunk-6RAHKLD7.js";

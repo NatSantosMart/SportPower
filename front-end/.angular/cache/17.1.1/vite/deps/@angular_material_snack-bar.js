@@ -15,6 +15,9 @@ import {
   trigger
 } from "./chunk-6X2MEE47.js";
 import {
+  MatCommonModule
+} from "./chunk-EWRR74WF.js";
+import {
   BasePortalOutlet,
   CdkPortalOutlet,
   ComponentPortal,
@@ -23,9 +26,6 @@ import {
 } from "./chunk-V6UKTLJF.js";
 import "./chunk-Z5WS2MKF.js";
 import "./chunk-DXRLPFBV.js";
-import {
-  MatCommonModule
-} from "./chunk-EWRR74WF.js";
 import "./chunk-6RAHKLD7.js";
 import {
   BreakpointObserver,

@@ -1,4 +1,7 @@
 import {
+  MatCommonModule
+} from "./chunk-EWRR74WF.js";
+import {
   CDK_TABLE,
   CdkCell,
   CdkCellDef,
@@ -33,9 +36,6 @@ import {
   _RecycleViewRepeaterStrategy,
   _VIEW_REPEATER_STRATEGY
 } from "./chunk-DXRLPFBV.js";
-import {
-  MatCommonModule
-} from "./chunk-EWRR74WF.js";
 import "./chunk-6RAHKLD7.js";
 import "./chunk-SV3YR266.js";
 import {
