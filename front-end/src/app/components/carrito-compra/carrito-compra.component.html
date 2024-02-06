@@ -1,8 +1,8 @@
 <div class="carrito-container">
     <div class="row">
+        <h2>Productos Seleccionados</h2>
         <div class="col-md-6">
             <div class="productos-seleccionados">
-                <h2>Productos Seleccionados</h2>
                 <ul class="list-group">
                     <li class="list-group-item" *ngFor="let producto of productosCarrito">
                         <app-producto [producto]="producto"></app-producto>
@@ -14,6 +14,11 @@
         <div class="col-md-6">
             <div class="resumen-compra">
                 <h2>Resumen de la Compra</h2>
+                <p>PVP: {{getPrecioTotal()}}€</p>
+                <p>Impuestos: {{getImpuestos()}}€</p>
+                <p>Gastos de envio: 5€</p>
+                <div class="divider"></div>
+                <p>Total: {{getTotal()}}€</p>
             </div>
         </div>
     </div>
