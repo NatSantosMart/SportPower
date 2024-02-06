@@ -2,9 +2,12 @@
     <div class="d-flex">
         <div style="text-align: center;">
             <h1 *ngIf="login" class="title">INICIO DE SESIÓN</h1>
-            <h1 *ngIf="!login" class="title">REGISTRARSE</h1>
+            <h1 *ngIf="!login" class="title">REGISTRO</h1>
             <div class="custom-box d-flex flex-column">
-                <p style="margin-bottom:3rem">Bienvenido a SportPower! <span *ngIf="login">Inicia sesión</span><span *ngIf="!login">Registrese</span> para poder <br> acceder a todos los servicios</p>
+                <div *ngIf="errorMessage" class="error-box"> <!-- mensaje de error superior -->
+                    <p style="text-align: center;"><i style="margin-right: 10px;" class="fas fa-exclamation-circle"></i>{{ errorMessage }}</p> 
+                </div>
+                <p style="margin-bottom:3rem">¡Bienvenido a SportPower! <span *ngIf="login">Inicia sesión</span><span *ngIf="!login">Regístrate</span> para poder <br> acceder a todos los servicios.</p>
                 <div *ngIf="!login" class="d-flex justify-content-around">
                     <div class="d-flex flex-column">
                         <mat-form-field appearance="outline">
@@ -12,9 +15,9 @@
                             <input matInput [(ngModel)]="name" #input>
                         </mat-form-field>
                     </div>
-                    <div class="d-flex flex-column" style="margin-left:1rem">
+                    <div class="d-flex flex-clumn" style="margin-left:1rem">
                         <mat-form-field appearance="outline">
-                            <mat-label>Apellido</mat-label>
+                            <mat-label>Apellidos</mat-label>
                             <input matInput [(ngModel)]="lastname" #input>
                         </mat-form-field>
                     </div>
@@ -34,8 +37,8 @@
                 </mat-form-field>
                 <button style="margin-top:1rem" class="buttomStyle" *ngIf="login; else signupButtons"
                     (click)="checkUser()">Iniciar Sesión</button>
-                <p *ngIf="login" style="margin-top:2rem">No tienes cuenta todavía?</p>
-                <a *ngIf="login" (click)="changeToSignUp()">Resgitrarse</a>
+                <p *ngIf="login" style="margin-top:2rem">¿No tienes cuenta todavía?</p>
+                <a *ngIf="login" (click)="changeToSignUp()">Regístrarme</a>
                 <ng-template #signupButtons>
                     <button style="margin-top:1rem" class="buttomStyle"
                     (click)="signup()">Registrar</button>

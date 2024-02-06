@@ -1,3 +1,6 @@
+@import '../../../../../front-end/node_modules/@fortawesome/fontawesome-free/css/all.css';
+
+
 .center-container {
     display: flex;
     align-items: center;
@@ -25,4 +28,20 @@
   color:black;
   padding:0.5rem;
 
+}
+
+.error-box {
+  background-color: #f8d7da;
+  color: #721c24; 
+  border: 1px solid #f5c6cb; 
+  padding: 8px; 
+  margin-bottom: 15px; 
+  
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.error-box p {
+  margin: 0;
 }
