@@ -1,3 +1,7 @@
+.carrito-container{
+    margin-top: 30px;
+}
+
 .resumen-compra{
     padding: 20px;
     border: 1px solid #e0e0e0;
@@ -12,3 +16,13 @@
     border-top: 1px solid #ccc; 
     margin: 10px 0; 
 }
+
+.button-section{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    width: 80%;
+}
+
+
+

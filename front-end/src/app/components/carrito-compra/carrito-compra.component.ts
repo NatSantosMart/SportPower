@@ -4,11 +4,15 @@ import { Product } from '../../models/product.model';
 import { UserService } from '../../services/user.service';
 import { ProductService } from '../../services/product.service';
 import { ProductoComponent } from '../elements/producto/producto.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-carrito-compra',
   standalone: true,
-  imports: [CommonModule, ProductoComponent],
+  imports: [CommonModule, ProductoComponent, MatIconModule, HttpClientModule],
   providers: [UserService, ProductService],
   templateUrl: './carrito-compra.component.html',
   styleUrl: './carrito-compra.component.css'
@@ -17,7 +21,12 @@ export class CarritoCompraComponent {
   productosCarrito : Product[] = []
   ProductService: any;
   
-  constructor(private productService: ProductService){}
+  constructor(private productService: ProductService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer){
+    this.matIconRegistry.addSvgIcon(
+      'papelera',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/papelera.svg')
+    );
+  }
   ngOnInit(): void {
 
     this.productosCarrito = this.productService.getAllClothes();
@@ -37,5 +46,9 @@ export class CarritoCompraComponent {
 
   getTotal = () => {
     return this.getPrecioTotal() + this.getImpuestos() + 5;
+  }
+
+  realizarCompra = () => {
+    console.log('Realizando compra');
   }
 }
