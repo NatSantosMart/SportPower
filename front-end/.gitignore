@@ -1,7 +1,8 @@
-/.node_modules
+/node_modules
 /.angular
 /.angular-cli
 /.angular/*
 /.agular/cache
 /..angular
 /..angular/*
+/angular
