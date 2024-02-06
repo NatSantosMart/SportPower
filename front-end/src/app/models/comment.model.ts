@@ -1,10 +1,10 @@
-export class Comment {
-    constructor(
-        public id : number,
-        public date : Date,
-        public url_image : String,
-        public description : String,
-        public client_dni : String,
-        public client: any
-    ){}
+
+
+export interface Comment{
+    id : number;
+    date : Date;
+    url_image : String;
+    description : String;
+    client_dni : String;
+    client: any;
 }
