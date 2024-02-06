@@ -53,7 +53,25 @@ class CommentSeeder extends Seeder
                 'description' => 'El entrenamiento regular es fundamental para alcanzar tus objetivos de condición física. Varía tu rutina para evitar estancamientos y mantener la motivación alta. Combina ejercicios de fuerza, cardio y flexibilidad para obtener un entrenamiento completo y equilibrado.',
                 'id' => 7,
                 'client_dni' => '23456789B',
+            ],        
+            [
+                'date' => '2023-11-23',
+                'description' => 'Investiga y consulta con un profesional de la salud antes de incorporar suplementos a tu dieta, asegurándote de entender sus beneficios y posibles efectos secundarios.',
+                'id' => 8,
+                'client_dni' => '23456789B',
             ],           
+            [
+                'date' => '2024-01-24',
+                'description' => 'Encuentra lo que te apasiona: Ya sea correr, practicar yoga, bailar, o jugar un deporte, encuentra actividades físicas que disfrutes para que sea más fácil mantenerte activo(a) a largo plazo',
+                'id' => 9,
+                'client_dni' => '23456789B',
+            ],           
+            [
+                'date' => '2024-02-06',
+                'description' => 'Cambiar de actividad regularmente no solo evita el aburrimiento, sino que también desafía diferentes partes de tu cuerpo y reduce el riesgo de lesiones por sobreuso.',
+                'id' => 10,
+                'client_dni' => '23456789B',
+            ],              
         ];
 
         // Insertar los datos en la tabla 'COMENTARIO'

@@ -16,12 +16,24 @@ class PostSeeder extends Seeder
                 'comment_id' => 3,
             ],
             [
-                'type' => 'rutinas de recuperación',
+                'type' => 'Rutinas de recuperación',
                 'comment_id' => 6,
             ],
             [
                 'type' => 'Entrenamientos',
                 'comment_id' => 7,
+            ],
+            [
+                'type' => 'Información sobre suplementos',
+                'comment_id' => 8,
+            ],
+            [
+                'type' => 'Estilo de vida activa',
+                'comment_id' => 9,
+            ],
+            [
+                'type' => 'Estilo de vida activa',
+                'comment_id' => 10,
             ],
         ];
         DB::table('posts')->insert($datosPost);
