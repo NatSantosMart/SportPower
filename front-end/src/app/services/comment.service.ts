@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { ApiConfig } from "./ApiConfig"; 
 
 @Injectable()
 export class CommentService{
@@ -10,10 +11,11 @@ export class CommentService{
     ){}
 
     getAllComments(): Observable<any>{
-        return this.http.get('http://localhost/api/comments');
+        return this.http.get(`${ApiConfig.baseUrl}/comments`);
     }
 
     getCommentById(id : number) {
-        return this.http.get('http://localhost/api/comments/' + id);
+        return this.http.get(`${ApiConfig.baseUrl}/comments` + id);
+        
     }
 }

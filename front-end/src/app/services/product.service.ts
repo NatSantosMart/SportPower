@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Clothing } from "../models/clothes.model";
+import { ApiConfig } from "./ApiConfig"; 
 
 @Injectable()
 export class ProductService{

@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { ApiConfig } from "./ApiConfig"; 
 
 @Injectable()
 export class PostService{
@@ -10,6 +11,6 @@ export class PostService{
     ){}
 
     getAllPosts(): Observable<any>{
-        return this.http.get('http://localhost/api/posts');
+        return this.http.get(`${ApiConfig.baseUrl}/posts`);
     }
 }

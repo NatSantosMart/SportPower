@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { ApiConfig } from "./ApiConfig"; 
 
 @Injectable()
 export class ClientService{
@@ -10,10 +11,10 @@ export class ClientService{
     ){}
 
     getAllClients(): Observable<any>{
-        return this.http.get('http://localhost/api/clients');
+        return this.http.get(`${ApiConfig.baseUrl}/clients`);
     }
 
     getClientById(dni : string) {
-        return this.http.get('http://localhost/api/clients/' + dni);
+        return this.http.get(`${ApiConfig.baseUrl}/clients` + dni);
     }
 }
