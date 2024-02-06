@@ -1,3 +1,6 @@
+@import '../../../../../front-end/node_modules/@fortawesome/fontawesome-free/css/all.css';
+
+
 .center-container {
     display: flex;
     align-items: center;
@@ -25,4 +28,20 @@
   color:black;
   padding:0.5rem;
 
+}
+
+.error-box {
+  background-color: #f8d7da; /* Rojo claro */
+  color: #721c24; /* Rojo oscuro */
+  border: 1px solid #f5c6cb; /* Borde rojo fino */
+  padding: 8px; /* Espaciado interno más pequeño */
+  margin-bottom: 15px; /* Margen inferior */
+  
+  display: flex; /* Utilizar flexbox */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.error-box p {
+  margin: 0; /* Eliminar margen predeterminado del párrafo */
 }

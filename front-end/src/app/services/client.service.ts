@@ -15,6 +15,10 @@ export class ClientService{
     }
 
     getClientById(dni : string) {
-        return this.http.get(`${ApiConfig.baseUrl}/clients` + dni);
+        return this.http.get(`${ApiConfig.baseUrl}/clients/` + dni);
+    }
+
+    createClient(clientData: any): Observable<any> {
+        return this.http.post(`${ApiConfig.baseUrl}/clients`, clientData);
     }
 }

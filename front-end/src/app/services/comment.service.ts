@@ -15,7 +15,7 @@ export class CommentService{
     }
 
     getCommentById(id : number) {
-        return this.http.get(`${ApiConfig.baseUrl}/comments` + id);
+        return this.http.get(`${ApiConfig.baseUrl}/comments/` + id);
         
     }
 }
