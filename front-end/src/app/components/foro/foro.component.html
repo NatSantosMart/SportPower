@@ -1,0 +1,18 @@
+<app-toolbar></app-toolbar>
+
+<div class="container">
+  <h1>Foro de Posts</h1>
+  
+  <div *ngFor="let post of posts" class="post">
+    <div class="post-header">
+      <p class="client-email">{{ post.comment.client.email }}</p>
+      <p class="post-date">Publicado el {{ post.comment.date | date:'medium' }}</p>
+    </div>
+    
+    <div class="post-content">
+      <h2 class="post-title">{{ post.type }}</h2>
+      <img class="post-image" [src]="post.comment.url_image" alt="Imagen del comentario" *ngIf="post.comment.url_image">
+      <p class="post-description">{{ post.comment.description }}</p>
+    </div>
+  </div>
+</div>
