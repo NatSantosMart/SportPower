@@ -36,3 +36,9 @@ img{
     height: 3rem;
 
 }
+
+.addAssessmentButton{
+    background-color: #B5E4FB;
+    padding:0.7rem;
+    width: 12rem;
+}

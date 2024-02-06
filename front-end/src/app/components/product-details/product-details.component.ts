@@ -24,10 +24,13 @@ export class ProductDetailsComponent  implements OnInit{
     product: any;
     productId! : any;
 
-
   ngOnInit(): void {
 
     this.productId = this.route.snapshot.paramMap.get('id');
     this.product = this._productService.getProductById(this.productId)
+  }
+
+  public addAssessment(){
+    this.router.navigate(['/products/clothing/women', this.productId, 'assessment']);
   }
 }
