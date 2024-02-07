@@ -6,6 +6,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { AssessmentComponent } from './components/assessment/assessment.component';
 import { ForoComponent } from './components/foro/foro.component';
 import { CarritoCompraComponent } from './components/carrito-compra/carrito-compra.component';
+import { ProductsListAdminComponent } from './components/admin/products-list/products-list.component';
 
 export const routes: Routes = [
     {path: 'home', component : HomeComponent},
@@ -16,4 +17,5 @@ export const routes: Routes = [
     {path: 'foro', component : ForoComponent},
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: "carrito_compra", component: CarritoCompraComponent},
+    {path: "products", component : ProductsListAdminComponent}
 ];

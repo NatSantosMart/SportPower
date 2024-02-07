@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Clothing } from "../models/clothes.model";
+import { Product } from "../models/product.model";
 
 @Injectable()
 export class ProductService{
@@ -44,5 +45,20 @@ export class ProductService{
     getProductById(id : number) : Clothing | undefined {
         
         return this.clothes.find(clothing => clothing.id == id)
+    }
+
+    deleteProduct(id : number) : boolean{
+        console.log(id)
+        return true;
+    }
+
+    addProduct(product : Product) : boolean{
+        console.log(product)
+        return true;
+    }
+
+    editProduct(product : Product) : boolean{
+        console.log(product)
+        return true;
     }
 }

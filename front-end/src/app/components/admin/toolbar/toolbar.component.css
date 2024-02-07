@@ -1,0 +1,28 @@
+mat-toolbar {
+    display: flex;
+    justify-content: space-around;
+}
+
+mat-toolbar {
+  display: flex;
+  background-color:#88D4F3;
+}
+
+.search{
+  height: 3.8rem;
+  margin-top: 1.3rem;
+}
+
+.custom-menu {
+  padding: 10px;
+}
+
+.custom-menu button {
+  width: 100%;
+  text-align: left;
+}
+
+.fontSize{
+  font-size: 1.5rem;
+}
+
