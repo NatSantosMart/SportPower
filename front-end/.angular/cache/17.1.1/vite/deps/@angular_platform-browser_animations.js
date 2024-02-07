@@ -1,7 +1,8 @@
 import {
   BrowserModule,
   DomRendererFactory2
-} from "./chunk-JTGENUAZ.js";
+} from "./chunk-EITLX7QK.js";
+import "./chunk-ARTD5HR5.js";
 import {
   AUTO_STYLE,
   AnimationGroupPlayer,

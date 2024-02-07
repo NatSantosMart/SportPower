@@ -1,7 +1,4 @@
 import {
-  BidiModule
-} from "./chunk-6RAHKLD7.js";
-import {
   ENTER,
   HighContrastModeDetector,
   SPACE,
@@ -18,6 +15,9 @@ import {
   coerceNumberProperty,
   normalizePassiveListenerOptions
 } from "./chunk-FV2ABW4N.js";
+import {
+  BidiModule
+} from "./chunk-6RAHKLD7.js";
 import {
   DOCUMENT
 } from "./chunk-Q4D7HIHF.js";
@@ -2219,4 +2219,4 @@ export {
   MatRippleLoader,
   _MatInternalFormField
 };
-//# sourceMappingURL=chunk-EWRR74WF.js.map
+//# sourceMappingURL=chunk-YIRSQKRA.js.map
