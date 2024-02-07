@@ -7,6 +7,7 @@ import { MaterialModule } from '../../material.module';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'; 
+import { AuthenticatorService } from '../../services/authenticator.service';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +15,20 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [CommonModule, MaterialModule, FormsModule, HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  providers: [ClientService]
+  providers: [ClientService, AuthenticatorService]
 })
 export class LoginComponent {
   constructor(
-    private _clientService : ClientService,
-    private router : Router
-  ){}
+    private _clientService: ClientService,
+    private _authenticatorService: AuthenticatorService,
+    private router: Router
+  ) {
+    const storedUser = localStorage.getItem('currentUser');
+    if (storedUser) {
+      this.isLoggedIn = true;
+      this.currentUser = JSON.parse(storedUser);
+    }
+  }
 
   hide = true;
   email! : string;
@@ -32,6 +40,8 @@ export class LoginComponent {
   lastname! : string;
   wrongEmail! : boolean;
   errorMessage: string = '';
+  isLoggedIn = false;
+  currentUser: any;
 
   ngOnInit(): void {
     this.login = true;
@@ -43,14 +53,15 @@ export class LoginComponent {
       const clientsData: Client[] = response.data; 
       this.clients = clientsData; 
       const exists = this.clients.find(client => client.email === this.email && client.password === this.password);
+
       if (exists) {
+        this._authenticatorService.logIn(exists); 
         this.router.navigate(['/home']);
       } else {
         this.errorMessage = 'Usuario no existe. Inténtelo de nuevo. '; 
       }
     });
   }
-  
 
   public changeToSignUp(){
     this.login = false;
@@ -59,6 +70,12 @@ export class LoginComponent {
   public changeToLogin(){
     this.login = true;
     this.wrongEmail = false;
+  }
+
+  public logout(): void {
+    localStorage.removeItem('currentUser');
+    this.isLoggedIn = false;
+    this.router.navigate(['/login']);
   }
 
   public signup(): void {

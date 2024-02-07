@@ -9,6 +9,7 @@ class Client extends Model
 {
     use HasFactory;
     protected $primaryKey = 'dni';
+    public $incrementing = false;
     protected $fillable = ['dni', 'country', 'postal_code', 'city', 'address', 'email', 'password', 'name', 'surnames'];
 
     public function person()

@@ -2,7 +2,7 @@
 
 namespace App\Libs; 
 
-class ResultResponse
+class ResultResponse 
 {
     const SUCCESS_CODE = 200;
     const ERROR_CODE = 300;

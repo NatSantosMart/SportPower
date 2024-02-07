@@ -19,15 +19,21 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::all(); 
-
+    
         $resultResponse = new ResultResponse(); 
-
+    
+        // Convertir el DNI a cadena de texto antes de asignarlo como datos en ResultResponse
+        foreach ($clients as $client) {
+            $client->dni = strval($client->dni);
+        }
+    
         $resultResponse->setData($clients); 
         $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
         $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
         
         return response()->json($resultResponse); 
     }
+    
     /**
      * Store a newly created resource in storage.
      */

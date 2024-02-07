@@ -11,13 +11,14 @@ import { Comment } from '../../models/comment.model';
 import { Post } from '../../models/post.model';
 import { FormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthenticatorService } from '../../services/authenticator.service';
 
 @Component({
   selector: 'app-dialog-post',
   templateUrl: './dialog-post.component.html',
   styleUrl: './dialog-post.component.css', 
   standalone: true,
-  providers: [ CommentService, PostService],
+  providers: [ CommentService, PostService, AuthenticatorService],
   imports: [FormsModule, MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule],
 })
 export class DialogPostComponent {
@@ -29,6 +30,7 @@ export class DialogPostComponent {
     private dialogRef: MatDialogRef<DialogPostComponent>,
     private _commentsService: CommentService,
     private _postsService: PostService,
+    private _authenticatorService: AuthenticatorService,
     private router: Router
   ) {
     this.newComment = {
@@ -50,7 +52,7 @@ export class DialogPostComponent {
     const formattedDate = currentDate.toISOString().split('T')[0];
     this.newComment.date = formattedDate;
 
-    this.newComment.client_dni = "34567890C"; 
+    this.newComment.client_dni = this._authenticatorService.currentUser.dni; //Obtiene datos del Usuario que ha sido autenticado
     this.newComment.description = this.solicitud.description; 
 
     this._commentsService.createComment(this.newComment).subscribe(
