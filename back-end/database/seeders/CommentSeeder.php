@@ -42,6 +42,18 @@ class CommentSeeder extends Seeder
                 'id' => 5,
                 'client_dni' => '23456789B',
             ],
+            [
+                'date' => '2023-11-04',
+                'description' => '¿Te has detenido alguna vez a pensar en cómo tu estilo de vida afecta tu bienestar? La actividad física no solo es buena para tu cuerpo, sino también para tu mente y espíritu. ¡Es hora de ponerse en movimiento y disfrutar de una vida activa!',
+                'id' => 6,
+                'client_dni' => '23456789B',
+            ],
+            [
+                'date' => '2023-11-04',
+                'description' => 'Descansa y recupérate: El descanso es igual de importante que el ejercicio. Asegúrate de dormir lo suficiente y tomar tiempo para relajarte y recargar energías. El cuerpo necesita tiempo para repararse y rejuvenecerse.',
+                'id' => 7,
+                'client_dni' => '23456789B',
+            ],
         ];
 
         // Insertar los datos en la tabla 'COMENTARIO'
