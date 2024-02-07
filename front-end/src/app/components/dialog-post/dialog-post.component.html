@@ -1,6 +1,7 @@
 <h2 mat-dialog-title class="custom-dialog-title">Añadir post</h2>
 <mat-dialog-content class="mat-typography custom-dialog-content">
   <mat-form-field class="custom-form-field">
+
     <mat-label>Tipo</mat-label>
     <mat-select [(ngModel)]="solicitud.type" name="type" #type="ngModel">
       <mat-option value="Recetas saludables">Recetas saludables</mat-option>
@@ -11,11 +12,21 @@
       <mat-option value="Consejos deportivos">Consejos deportivos</mat-option>
     </mat-select>
   </mat-form-field>
+
   <mat-form-field class="custom-form-field">
     <mat-label>Contenido del post</mat-label>
     <textarea matInput [(ngModel)]="solicitud.description" name="description" #description="ngModel"></textarea>
   </mat-form-field>
+
+  <mat-form-field class="custom-form-field">
+    <mat-label>Enlace a una imagen (opcional)</mat-label>
+    <input matInput [(ngModel)]="solicitud.imageUrl" name="imageUrl" #imageUrl="ngModel" type="url">
+    <mat-hint>Ejemplo: https://ejemplo.com/imagen.jpg</mat-hint>
+  </mat-form-field>
+  
+  
 </mat-dialog-content>
+
 <mat-dialog-actions align="end">
   <button mat-button (click)="pressAddPostComment()">Añadir</button>
   <button mat-button mat-dialog-close>Cancel</button>
