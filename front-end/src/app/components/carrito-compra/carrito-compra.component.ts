@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-carrito-compra',
@@ -28,8 +29,9 @@ export class CarritoCompraComponent {
     );
   }
   ngOnInit(): void {
-
-    this.productosCarrito = this.productService.getAllClothes();
+    this.productService.getAllProducts().subscribe((products: Product[]) => {
+      this.productosCarrito = products;
+    });
   }
 
    getPrecioTotal = () => {

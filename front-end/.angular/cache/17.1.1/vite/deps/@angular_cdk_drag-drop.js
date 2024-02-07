@@ -1,16 +1,12 @@
 import {
+  isFakeMousedownFromScreenReader,
+  isFakeTouchstartFromScreenReader
+} from "./chunk-BZIPDSN6.js";
+import {
   CdkScrollableModule,
   ScrollDispatcher,
   ViewportRuler
-} from "./chunk-K3XO2QQP.js";
-import "./chunk-DXRLPFBV.js";
-import {
-  isFakeMousedownFromScreenReader,
-  isFakeTouchstartFromScreenReader
-} from "./chunk-YXOSZZDE.js";
-import {
-  Directionality
-} from "./chunk-6RAHKLD7.js";
+} from "./chunk-JXR4OIBD.js";
 import {
   _getEventTarget,
   _getShadowRoot,
@@ -18,10 +14,14 @@ import {
   coerceElement,
   coerceNumberProperty,
   normalizePassiveListenerOptions
-} from "./chunk-ERTXSJZE.js";
+} from "./chunk-TYL4KG6S.js";
+import "./chunk-MZ5YR7Y3.js";
+import {
+  Directionality
+} from "./chunk-QQCT6PCZ.js";
 import {
   DOCUMENT
-} from "./chunk-Q4D7HIHF.js";
+} from "./chunk-C4PXXXUQ.js";
 import {
   ChangeDetectorRef,
   ContentChild,
@@ -70,7 +70,7 @@ import {
   ɵɵinject,
   ɵɵloadQuery,
   ɵɵqueryRefresh
-} from "./chunk-5NQ3AFYG.js";
+} from "./chunk-5TC62LAI.js";
 
 // node_modules/@angular/cdk/fesm2022/drag-drop.mjs
 function extendStyles(dest, source, importantProperties) {

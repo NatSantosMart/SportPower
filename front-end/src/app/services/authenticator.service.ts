@@ -18,7 +18,6 @@ export class AuthenticatorService {
 
   public logIn(userData: any): void {
     console.log(userData); 
-    localStorage.setItem('currentUser', JSON.stringify(userData));
   }
 
   public logout(): void {
