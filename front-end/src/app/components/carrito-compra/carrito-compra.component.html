@@ -1,0 +1,28 @@
+<div class="carrito-container">
+    <div class="row">
+        <h2> Carrito de compra</h2>
+        <div class="col-md-6">
+            <div class="productos-seleccionados">
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let producto of productosCarrito">
+                        <app-producto [producto]="producto" [eliminar]="true"></app-producto>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="resumen-compra">
+                <h2>Resumen de la Compra</h2>
+                <p>PVP: {{getPrecioTotal()}}€</p>
+                <p>Impuestos: {{getImpuestos()}}€</p>
+                <p>Gastos de envio: 5€</p>
+                <div class="divider"></div>
+                <p>Total: {{getTotal()}}€</p>
+            </div>
+            <div class="button-section">
+                <button class="btn btn-secondary" style="width: 100%" (click)="realizarCompra()">Realizar Compra</button>
+            </div>
+        </div>
+    </div>
+  </div>

@@ -1,7 +1,7 @@
-export class Post {
-    constructor(
-        public comment_id : number,
-        public type : string,
-        public comment: Comment | null = null
-    ){}
+import { Comment } from "./comment.model";
+
+export interface Post{
+    comment_id : number;
+    type : string;
+    comment: Comment | null;
 }

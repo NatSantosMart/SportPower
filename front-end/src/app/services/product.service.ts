@@ -4,10 +4,38 @@ import { Clothing } from "../models/clothes.model";
 @Injectable()
 export class ProductService{
 
-
-    clothes : Clothing [] = [new Clothing(1,"Camiseta deportiva 1", 45, "../../../assets/imgs/61823BwBHaL.jpg", "Descripción producto 1", "Mujer", "Azul", "S"),
-                             new Clothing(2, "Camiseta deportiva 2", 50, "../../../assets/imgs/1179300812_2_1_5.jpg", "Descripción producto 2", "Mujer", "Negro", "M"),
-                             new Clothing(3, "Camiseta deportiva 3", 50, "../../../assets/imgs/3-2.jpg", "Descripción producto 3", "Mujer", "Negro", "S")]
+    clothes: Clothing[] = [
+        {
+            id: 1,
+            name: "Camiseta deportiva",
+            price: 45,
+            url_image: "../../../assets/imgs/61823BwBHaL.jpg",
+            description: "Descripcion producto 1",
+            gendre: "Mujer",
+            color: "negro",
+            size: "S"
+        },
+        {
+            id: 2,
+            name: "Camiseta deportiva",
+            price: 50,
+            url_image: "../../../assets/imgs/1179300812_2_1_5.jpg",
+            description: "Descripcion producto 2",
+            gendre: "Mujer",
+            color: "negro",
+            size: "M"  
+        },
+        {
+            id: 3,
+            name: "Camiseta deportiva",
+            price: 55,
+            url_image: "../../../assets/imgs/3-2.jpg",
+            description: "Descripcion producto 3",
+            gendre: "Mujer",
+            color: "negro",
+            size: "S"
+        }
+    ]                      
 
     getAllClothes() : Clothing[]{
         return this.clothes;
