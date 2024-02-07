@@ -17,7 +17,7 @@
       <button (click)="redirectToProductsList('vitamins')" mat-menu-item>Vitaminas</button>
       <button (click)="redirectToProductsList('snacks')" mat-menu-item>Snacks</button>
     </mat-menu>
-    <span class = "fontSize">Foro</span>
+    <span (click)="redirectToForo()"class = "fontSize">Foro</span>
     <button class = "fontSize" mat-button [matMenuTriggerFor]="ProfileMenu">Cuenta</button>
     <mat-menu #ProfileMenu="matMenu" class="custom-menu">
       <button (click)="redirectToProductsList('favorites')" mat-menu-item>Favoritos</button>

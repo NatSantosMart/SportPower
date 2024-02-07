@@ -17,5 +17,8 @@ export class ToolbarComponent {
   redirectToProductsList(gender : string): void {
     this.router.navigate(['/products/clothing/women']);
   }
+  redirectToForo(): void {
+    this.router.navigate(['/foro']);
+  }
 
 }
