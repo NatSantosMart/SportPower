@@ -57,3 +57,9 @@
 .comments-section h3 {
   color: #333;
 }
+img {
+  width: 100%;
+  max-width: 350px;
+  max-height: 350px;
+  margin-bottom: 10px;
+}

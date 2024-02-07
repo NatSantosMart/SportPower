@@ -54,6 +54,7 @@ export class DialogPostComponent {
 
     this.newComment.client_dni = this._authenticatorService.currentUser.dni; //Obtiene datos del Usuario que ha sido autenticado
     this.newComment.description = this.solicitud.description; 
+    this.newComment.url_image = this.solicitud.imageUrl; 
 
     this._commentsService.createComment(this.newComment).subscribe(
       (response) => {
