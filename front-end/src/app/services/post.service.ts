@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ApiConfig } from "./ApiConfig"; 
 
@@ -12,5 +12,11 @@ export class PostService{
 
     getAllPosts(): Observable<any>{
         return this.http.get(`${ApiConfig.baseUrl}/posts`);
+    }
+
+    createPost(newPost: Comment): Observable<any> {
+        let params = JSON.stringify(newPost); 
+        let headersCreate = new HttpHeaders().set('Content-Type', 'application/json'); 
+        return this.http.post(`${ApiConfig.baseUrl}/posts`, params, {headers:headersCreate});
     }
 }

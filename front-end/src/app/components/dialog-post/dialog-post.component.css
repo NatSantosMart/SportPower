@@ -1,0 +1,18 @@
+.custom-dialog-title {
+    font-size: 24px; /* Ajusta el tamaño del título */
+  }
+  
+  .custom-dialog-content {
+    min-width: 650px; /* Define el ancho mínimo del contenido */
+    min-height: 300px;
+  }
+  
+  .custom-form-field {
+    width: 100%; /* Ajusta el ancho de los campos de formulario */
+    margin-bottom: 15px; /* Añade un espacio entre los campos */
+  }
+  textarea {
+    min-height: 150px; /* Altura mínima */
+    max-height: 250px; /* Altura máxima */
+  }
+  
