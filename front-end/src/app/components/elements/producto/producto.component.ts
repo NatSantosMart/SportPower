@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './producto.component.css'
 })
 export class ProductoComponent {
-  @Input() producto: Product;
+  @Input() producto: any;
   @Input() eliminar: boolean = false;
 
   constructor() {

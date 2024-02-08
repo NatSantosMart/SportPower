@@ -13,6 +13,7 @@ export class ClothingService{
     ){}
 
     getAllClothes(): Observable<any>{
+        console.log("URL: ",ApiConfig.baseUrl)
         return this.http.get(`${ApiConfig.baseUrl}/clothes`);
     }
 
@@ -34,4 +35,10 @@ export class ClothingService{
         let headersCreate = new HttpHeaders().set('Content-Type', 'application/json'); 
         return this.http.post(`${ApiConfig.baseUrl}/clothes`, params, {headers:headersCreate});
     }
+
+    updateClothing(updatedClothing: Clothing): Observable<any> {
+        let params = JSON.stringify(updatedClothing); 
+        let headersUpdate = new HttpHeaders().set('Content-Type', 'application/json'); 
+        return this.http.put(`${ApiConfig.baseUrl}/clothes/${updatedClothing.id}`, params, {headers: headersUpdate});
+      }
 }

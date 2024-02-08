@@ -1,10 +1,11 @@
+<app-toolbar></app-toolbar>
 <div class="carrito-container">
     <div class="row">
         <h2> Carrito de compra</h2>
         <div class="col-md-6">
             <div class="productos-seleccionados">
                 <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let producto of productosCarrito">
+                    <li class="list-group-item" *ngFor="let producto of allProducts">
                         <app-producto [producto]="producto" [eliminar]="true"></app-producto>
                     </li>
                 </ul>

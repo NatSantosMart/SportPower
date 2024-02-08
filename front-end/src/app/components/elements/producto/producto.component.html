@@ -1,7 +1,7 @@
 <div class="producto-detalle">
-    <h3>{{ producto.name }}</h3>
-    <p>Precio: {{ producto.price }}€</p>
-    <p>Descripción: {{ producto.description }}</p>
+    <h3>{{ producto.product.name }}</h3>
+    <p>Precio: {{ producto.product.price }}€</p>
+    <p>Descripción: {{ producto.product.description }}</p>
     <div class="delete-secction" *ngIf="eliminar">
       <button class="delete-button" (click)="eliminarProducto()">Eliminar</button>
     </div>
