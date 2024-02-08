@@ -11,9 +11,14 @@ import { ForoComponent } from './components/foro/foro.component';
 export const routes: Routes = [
     {path: 'home', component : HomeComponent},
     {path: 'login', component : LoginComponent},
+    
     {path: 'products/clothing/women', component : ProductsListComponent},
     {path: 'products/clothing/women/:id', component : ProductDetailsComponent},
     {path: 'products/clothing/women/:id/assessment', component : AssessmentComponent},
+
+    {path: 'products/clothing/men', component : ProductsListComponent},
+    {path: 'products/clothing/men/:id', component : ProductDetailsComponent},
+    
     {path: 'foro', component : ForoComponent},
     {path: '', redirectTo: 'login', pathMatch: 'full'}
     // {path: "carrito_compra", component: CarritoCompraComponent},

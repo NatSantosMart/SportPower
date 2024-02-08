@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../filter/filter.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import { Clothing } from '../../models/clothes.model';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-products-list',
@@ -21,33 +23,38 @@ export class ProductsListComponent implements OnInit {
   
   constructor(private _productService : ProductService,
     private _clothingService : ClothingService, 
+    private route: ActivatedRoute, 
     private router : Router){}
 
+    gender: any; 
     products: any[] = [];
     clothes: any[] = [];
     filteredProducts: any[] = [];
     allProducts: any[] = [];
 
-  // ngOnInit() {
-  //   // Al cargar la página, mostrar todos los productos por defecto
-  //   this.products = this._clothingService.getAllClothes();
-  //   this.allProducts = [...this.products];
-  //   this.filteredProducts = this.allProducts;
-  // }
-
   ngOnInit(): void {
-    this._clothingService.getAllClothes().subscribe(
-      (clothingData: any) => {
+      const url = this.route.snapshot.url;
+      const typePerson = url[url.length - 1].path;
 
-        this.allProducts  = clothingData.data;
-        this.filteredProducts = this.allProducts;
-
-        console.log(this.filteredProducts); 
-      },
-      (error: any) => {
-        console.error(error);
+      if(typePerson === 'men'){
+        this.gender = "masculino"; 
+      } else{
+        this.gender = "femenino"; 
       }
-    );
+
+      //Obtiene toda la ropa del genero seleccionado
+      this._clothingService.getAllClothesByGender(this.gender).subscribe(
+        (clothingData: any) => {
+
+          this.allProducts  = clothingData.data;
+          this.filteredProducts = this.allProducts;
+
+          console.log(this.filteredProducts); 
+        },
+        (error: any) => {
+          console.error(error);
+        }
+      );
   }
 
   updateFilters(selectedFilters: { type: string; values: string[] }[]) {
@@ -78,4 +85,5 @@ export class ProductsListComponent implements OnInit {
     console.log("productId: " + productId); 
     this.router.navigate(['/products/clothing/women', productId]);
   }
+  
 }
