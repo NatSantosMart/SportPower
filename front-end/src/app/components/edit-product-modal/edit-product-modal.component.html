@@ -1,0 +1,66 @@
+<div class="container">
+    <h2 mat-dialog-title>Editar Producto</h2>
+
+<mat-dialog-content>
+  <form style="gap: 3rem; width: 100%; box-sizing: border-box;" >
+    <!-- Nombre del producto -->
+    <div class="form-group" style="gap: 1rem;">
+      <label for="nombre">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" [(ngModel)]="productoSeleccionado.name" name="nombre" required>
+    </div>
+
+    <!-- Código del producto -->
+    <div class="form-group" >
+      <label for="codigo">Código:</label>
+      <input class="form-control" type="text" id="codigo" [(ngModel)]="productoSeleccionado.id" name="codigo" required>
+    </div>
+
+    <!-- Precio del producto -->
+    <div class="form-group" >
+      <label for="precio">Precio:</label>
+      <input class="form-control" type="number" id="precio" [(ngModel)]="productoSeleccionado.price" name="precio" required>
+    </div>
+
+    <!-- Color del producto (dropdown) -->
+    <div class="form-group" >
+      <label for="color">Color:</label>
+      <select class="form-control" id="color" [(ngModel)]="productoSeleccionado.color" name="color">
+        <option value="rojo">Rojo</option>
+        <option value="azul">Azul</option>
+        <option value="verde">Verde</option>
+        <option value="amarillo">Amarillo</option>
+      </select>
+    </div>
+
+    <!-- Género del producto (dropdown) -->
+    <div class="form-group" >
+      <label for="genero">Género:</label>
+      <select class="form-control" id="genero" [(ngModel)]="productoSeleccionado.gendre" name="genero">
+        <option value="Hombre">Hombre</option>
+        <option value="Mujer">Mujer</option>
+        <option value="Unisex">Unisex</option>
+      </select>
+    </div>
+
+    <!-- Talla del producto (dropdown) -->
+    <div class="form-group" >
+      <label for="talla">Talla:</label>
+      <select class="form-control" id="talla" [(ngModel)]="productoSeleccionado.size" name="talla">
+        <option value="s">S</option>
+        <option value="m">M</option>
+        <option value="l">L</option>
+        <option value="xl">XL</option>
+      </select>
+    </div>
+  </form>
+</mat-dialog-content>
+<div class="buttons-container">
+   
+  <button mat-button class="btn btn-light" (click)="confirmarEdicion()">Confirmar</button>
+  <button mat-button class="btn btn-light"(click)="cancelarEdicion()">Cancelar</button>
+
+</div>
+</div>
+
+
+

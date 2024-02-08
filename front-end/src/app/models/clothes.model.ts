@@ -6,7 +6,7 @@ export interface Clothing extends Product{
     price: number;
     url_image: string;
     description: string;
-    gendre: string;
+    gendre: "Femenino" | "Masculino" | "Unisex";
     color: string;
-    size: string;
+    size: "S" | "M" | "L" | "XL";
 }
