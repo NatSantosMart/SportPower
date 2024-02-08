@@ -22,13 +22,7 @@ export class LoginComponent {
     private _clientService: ClientService,
     private _authenticatorService: AuthenticatorService,
     private router: Router
-  ) {
-    const storedUser = localStorage.getItem('currentUser');
-    if (storedUser) {
-      this.isLoggedIn = true;
-      this.currentUser = JSON.parse(storedUser);
-    }
-  }
+  ) {}
 
   hide = true;
   email! : string;

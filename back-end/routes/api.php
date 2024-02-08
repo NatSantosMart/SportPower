@@ -84,7 +84,7 @@ Route::controller(ClothingController::class)->prefix('clothes')->group(function(
     Route::post('/{id}', 'update'); 
     Route::put('/{id}', 'put'); 
     Route::get('/{id}', 'showByIdClothing'); 
-    Route::get('/{id}', 'showByIdProduct'); 
+    Route::get('/from_product/{id}', 'showByIdProduct'); 
     Route::delete('/{id}', 'destroy'); 
 });
 Route::controller(SupplementController::class)->prefix('supplements')->group(function() {
