@@ -14,8 +14,20 @@ class ClothingSeeder extends Seeder
             [
                 'gender' => 'masculino',
                 'size' => 'M',
-                'color' => 'azul',
+                'color' => 'negro',
                 'product_id' => 3,
+            ],
+            [
+                'gender' => 'masculino',
+                'size' => 'L',
+                'color' => 'azul',
+                'product_id' => 6,
+            ],
+            [
+                'gender' => 'femenino',
+                'size' => 'S',
+                'color' => 'gris',
+                'product_id' => 7,
             ],
         ];
 

@@ -79,14 +79,17 @@ Route::controller(ProductController::class)->prefix('products')->group(function(
 });
 Route::controller(ClothingController::class)->prefix('clothes')->group(function() {
     Route::get('/', 'index'); 
+    Route::get('/{gender}', 'indexGender'); 
     Route::post('/', 'store'); 
     Route::post('/{id}', 'update'); 
     Route::put('/{id}', 'put'); 
-    Route::get('/{id}', 'show'); 
+    Route::get('/{id}', 'showByIdClothing'); 
+    Route::get('/{id}', 'showByIdProduct'); 
     Route::delete('/{id}', 'destroy'); 
 });
-Route::controller(ProductController::class)->prefix('supplements')->group(function() {
+Route::controller(SupplementController::class)->prefix('supplements')->group(function() {
     Route::get('/', 'index'); 
+    Route::get('/{type}', 'indexType'); 
     Route::post('/', 'store'); 
     Route::post('/{id}', 'update'); 
     Route::put('/{id}', 'put'); 

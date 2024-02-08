@@ -1,15 +1,15 @@
 <app-toolbar></app-toolbar>
 <div class="d-flex " style="margin-top:1rem; margin-left:7rem">
-    <div class="d-flex flex-column" *ngIf="product !== undefined">
-        <img [src]=product.url_image>
-        <h2 class = "titleFont topMargin">Descripción del producto</h2>
-        <p class="infoSize topMargin">{{product.description}}</p>
+    <div class="d-flex flex-column" *ngIf="clothing !== undefined">
+        <img [src]=clothing.product.url_image>
+        <h2 class = "titleFont topMargin">Descripción del clothingo</h2>
+        <p class="infoSize topMargin">{{clothing.product.description}}</p>
         <h2 class = "titleFont topMargin">Valoraciones</h2>
         <button class="addAssessmentButton" (click)="addAssessment()">Añadir valoración</button>
     </div>
     <div class="d-flex flex-column " style="margin-left:14rem; margin-top:4rem">
-        <h1 style="font-size:2rem; font-weight:bold;">{{product.name}}</h1>
-        <p class="infoSize topMargin">{{product.price}} €</p>
+        <h1 style="font-size:2rem; font-weight:bold;">{{clothing.product.name}}</h1>
+        <p class="infoSize topMargin">{{clothing.product.price}} €</p>
         <p class="infoSize topMargin">Talla:</p>
         <div class ="d-flex justify-content-between topMargin">
             <div class="d-flex flex-column ">
@@ -31,7 +31,7 @@
         </div>
         <mat-form-field class="topMargin" appearance="outline">
             <mat-label>Color</mat-label>
-            <mat-select [(ngModel)]="product.color">
+            <mat-select [(ngModel)]="clothing.color">
                 <mat-option value="Rosa">Rosa</mat-option>
                 <mat-option value="Negro">Negro</mat-option>
                 <mat-option value="Azul">Azul</mat-option>

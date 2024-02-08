@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('supplements', function (Blueprint $table) {
             $table->increments('id');
             $table->string('quantity', 100);
+            $table->string('type', 100);
+            $table->string('flavor', 100);
             $table->unsignedInteger('product_id');
 
             $table->timestamps();

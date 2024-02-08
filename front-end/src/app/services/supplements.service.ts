@@ -1,0 +1,28 @@
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { ApiConfig } from "./ApiConfig"; 
+import { Supplement } from "../models/supplement.model";
+
+@Injectable()
+export class SupplementService{
+
+    
+    constructor(
+        private http: HttpClient
+    ){}
+
+    getAllSupplements(): Observable<any>{
+        return this.http.get(`${ApiConfig.baseUrl}/supplements`);
+    }
+
+    getAllSupplementsByType(type : string): Observable<any>{
+        return this.http.get(`${ApiConfig.baseUrl}/supplements/` + type);
+    }
+
+    createClothing(newProduct: Supplement): Observable<any> {
+        let params = JSON.stringify(newProduct); 
+        let headersCreate = new HttpHeaders().set('Content-Type', 'application/json'); 
+        return this.http.post(`${ApiConfig.baseUrl}/supplements`, params, {headers:headersCreate});
+    }
+}

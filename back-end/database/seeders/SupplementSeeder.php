@@ -14,18 +14,20 @@ class SupplementSeeder extends Seeder
             [
                 'quantity' => '5kg',
                 'product_id' => 1,
+                'flavor' => 'chocolate',
+                'type' => 'proteina',
             ],
             [
                 'quantity' => '1kg',
                 'product_id' => 2,
+                'flavor' => 'fresa',
+                'type' => 'proteina',
             ],
             [
                 'quantity' => '3 unidades',
                 'product_id' => 4,
-            ],
-            [
-                'quantity' => '90 cápsulas',
-                'product_id' => 5,
+                'flavor' => 'fresa',
+                'type' => 'snack',
             ],
         ];
 

@@ -17,6 +17,12 @@ export class ProductService{
         return this.http.get(`${ApiConfig.baseUrl}/products`);
     }
 
+    
+    getProductById(id : number) {
+        return this.http.get(`${ApiConfig.baseUrl}/products/` + id);      
+    }
+
+
     createProduct(newProduct: Product): Observable<any> {
         let params = JSON.stringify(newProduct); 
         let headersCreate = new HttpHeaders().set('Content-Type', 'application/json'); 

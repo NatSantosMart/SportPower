@@ -17,11 +17,25 @@ class ClothingController extends Controller
      */
     public function index()
     {
-        $clothings = Clothing::all();
+        $clothingsProducts = Clothing::with('product')->get();
+        
+        $resultResponse = new ResultResponse();
+
+        $resultResponse->setData($clothingsProducts);
+        $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE);
+        $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        return response()->json($resultResponse);
+    }
+
+    public function indexGender($gender)
+    {
+
+        $clothing = Clothing::where('gender', $gender)->with('product')->get();
 
         $resultResponse = new ResultResponse();
 
-        $resultResponse->setData($clothings);
+        $resultResponse->setData($clothing);
         $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE);
         $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
 
@@ -86,13 +100,36 @@ class ClothingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function showByIdClothing($id)
     {
         {
             $resultResponse = new ResultResponse(); 
     
             try{
-                $clothing = Clothing::findOrFail($id); 
+                
+                $clothing = Clothing::with('product')->findOrFail($id); 
+    
+                $resultResponse->setData($clothing); 
+                $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+                $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+                
+            } catch(\Exception $e){
+                $resultResponse->setStatusCode(ResultResponse::ERROR_ELEMENT_NOT_FOUND_CODE); 
+                $resultResponse->setMessage(ResultResponse::TXT_ERROR_ELEMENT_NOT_FOUND_CODE);
+            }
+            return response()->json($resultResponse); 
+        }
+    }
+
+    public function showByIdProduct($id)
+    {
+        {
+            $resultResponse = new ResultResponse(); 
+    
+            try{
+                
+                $clothing = Clothing::where('product_id', $id)->with('product')->firstOrFail(); 
+
     
                 $resultResponse->setData($clothing); 
                 $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 

@@ -5,8 +5,8 @@ import { ProductsListComponent } from './components/products-list/products-list.
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { AssessmentComponent } from './components/assessment/assessment.component';
 import { ForoComponent } from './components/foro/foro.component';
-import { CarritoCompraComponent } from './components/carrito-compra/carrito-compra.component';
-import { ProductsListAdminComponent } from './components/admin/products-list/products-list.component';
+// import { CarritoCompraComponent } from './components/carrito-compra/carrito-compra.component';
+// import { ProductsListAdminComponent } from './components/admin/products-list/products-list.component';
 
 export const routes: Routes = [
     {path: 'home', component : HomeComponent},
@@ -15,7 +15,7 @@ export const routes: Routes = [
     {path: 'products/clothing/women/:id', component : ProductDetailsComponent},
     {path: 'products/clothing/women/:id/assessment', component : AssessmentComponent},
     {path: 'foro', component : ForoComponent},
-    {path: '', redirectTo: 'login', pathMatch: 'full'},
-    {path: "carrito_compra", component: CarritoCompraComponent},
-    {path: "products", component : ProductsListAdminComponent}
+    {path: '', redirectTo: 'login', pathMatch: 'full'}
+    // {path: "carrito_compra", component: CarritoCompraComponent},
+    // {path: "products", component : ProductsListAdminComponent}
 ];

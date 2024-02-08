@@ -17,7 +17,19 @@ class SupplementController extends Controller
      */
     public function index()
     {
-        $supplements = Supplement::all();
+        $supplements = Supplement::with('product')->get();
+
+        $resultResponse = new ResultResponse();
+
+        $resultResponse->setData($supplements);
+        $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE);
+        $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+
+        return response()->json($resultResponse);
+    }
+    public function indexType($type)
+    {
+        $supplements = Supplement::where('type', $type)->with('product')->get();
 
         $resultResponse = new ResultResponse();
 
@@ -28,18 +40,6 @@ class SupplementController extends Controller
         return response()->json($resultResponse);
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validation = $this->validateSupplement($request);
@@ -55,16 +55,14 @@ class SupplementController extends Controller
 
         try {
             $newSupplement = new Supplement([
-                'name' => $request->get('name'),
-                'price' => $request->get('price'),
-                'cantidad' => $request->get('cantidad'),
+                'quantity' => $request->get('quantity'),
+                'product_id' => $request->get('product_id'),
+                'type' => $request->get('type'),
+                'flavor' => $request->get('flavor'),
             ]);
 
-            if ($request->has('url_image')) {
-                $newSupplement->url_image = $request->get('url_image');
-            }
-            if ($request->has('description')) {
-                $newSupplement->description = $request->get('description');
+            if ($request->has('flavor')) {
+                $newSupplement->flavor = $request->get('flavor');
             }
 
             $newSupplement->save();
@@ -105,17 +103,6 @@ class SupplementController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Supplement $supplement)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request,$id)
     {
         $validation = $this->validateSupplement($request);
@@ -132,15 +119,11 @@ class SupplementController extends Controller
     try {
         $supplement = Supplement::findOrFail($id);
 
-        $supplement->name = $request->get('name');
-        $supplement->price = $request->get('price');
-        $supplement->cantidad = $request->get('cantidad');
+        $supplement->type = $request->get('type');
+        $supplement->quantity = $request->get('quantity');
 
-        if ($request->has('url_image')) {
-            $supplement->url_image = $request->get('url_image');
-        }
-        if ($request->has('description')) {
-            $supplement->description = $request->get('description');
+        if ($request->has('flavor')) {
+            $supplement->flavor = $request->get('flavor');
         }
 
         $supplement->save();
@@ -190,13 +173,12 @@ class SupplementController extends Controller
         $rules['name'] = 'required';
         $messages['name.required'] = Lang::get('alerts.product_name_required');
 
-        $rules['price'] = 'required';
-        $messages['price.required'] = Lang::get('alerts.product_price_required');
+        $rules['quantity'] = 'required';
+        $messages['quantity.required'] = Lang::get('alerts.supplement_quantity_required');
 
-        // Campos específicos de Supplement
+        $rules['type'] = 'required';
+        $messages['type.required'] = Lang::get('alerts.supplement_type_required');
 
-        $rules['cantidad'] = 'required';
-        $messages['cantidad.required'] = Lang::get('alerts.supplement_cantidad_required');
 
         return Validator::make($request->all(), $rules, $messages);
     }
