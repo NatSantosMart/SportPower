@@ -26,6 +26,7 @@ export class ProductsListComponent implements OnInit {
     private route: ActivatedRoute, 
     private router : Router){}
 
+    typePerson: any; 
     gender: any; 
     products: any[] = [];
     clothes: any[] = [];
@@ -34,9 +35,9 @@ export class ProductsListComponent implements OnInit {
 
   ngOnInit(): void {
       const url = this.route.snapshot.url;
-      const typePerson = url[url.length - 1].path;
+      this.typePerson = url[url.length - 1].path;
 
-      if(typePerson === 'men'){
+      if(this.typePerson === 'men'){
         this.gender = "masculino"; 
       } else{
         this.gender = "femenino"; 
@@ -82,8 +83,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   redirectToProductDetails(productId: number): void {
-    console.log("productId: " + productId); 
-    this.router.navigate(['/products/clothing/women', productId]);
+    this.router.navigate(['/products/clothing/'+ this.typePerson + '/' + productId]);
   }
   
 }

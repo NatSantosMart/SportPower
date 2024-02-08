@@ -26,7 +26,7 @@ export class ClothingService{
     }
     //Se obtiene una ropa desde el id de un producto
     getClothesByIdProduct(id : number) {
-        return this.http.get(`${ApiConfig.baseUrl}/clothes/` + id);      
+        return this.http.get(`${ApiConfig.baseUrl}/clothes/from_product/` + id);      
     }
 
     createClothing(newProduct: Clothing): Observable<any> {
