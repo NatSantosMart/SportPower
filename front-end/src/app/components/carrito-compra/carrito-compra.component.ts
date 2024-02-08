@@ -34,7 +34,6 @@ export class CarritoCompraComponent {
   ngOnInit(): void {
     this._clothingService.getAllClothes().subscribe(
         (response: any) => {
-            console.log(response)
           this.allProducts = response.data;
         },
         (error: any) => {
@@ -45,7 +44,6 @@ export class CarritoCompraComponent {
    getPrecioTotal = () => {
     let precioTotal = 0;
     this.allProducts.forEach(producto => {
-        console.log(producto.product.price)
       precioTotal += parseInt(producto.product.price);
     });
     return precioTotal;
