@@ -1,7 +1,8 @@
 <app-toolbar></app-toolbar>
 <div class="d-flex" style="margin-top:2rem">
   <div class="d-flex flex-column" style="width:20%">
-    <app-filter (filtersChanged)="updateFilters($event)"></app-filter>
+    <app-filter [typeProduct]="typeProduct" (filtersChanged)="updateFilters($event)"></app-filter>
+
   </div>
   <div class="d-flex flex-column" style="width:80%">
     <div class="d-flex flex-wrap scroll">

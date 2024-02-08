@@ -129,7 +129,6 @@ class ClothingController extends Controller
             try{
                 
                 $clothing = Clothing::where('product_id', $id)->with('product')->firstOrFail(); 
-
     
                 $resultResponse->setData($clothing); 
                 $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 

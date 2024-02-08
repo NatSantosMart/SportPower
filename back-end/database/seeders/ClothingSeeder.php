@@ -12,37 +12,37 @@ class ClothingSeeder extends Seeder
     {
         $clothing = [
             [
-                'gender' => 'masculino',
+                'gender' => 'Masculino',
                 'size' => 'M',
                 'color' => 'Negro',
                 'product_id' => 3,
             ],
             [
-                'gender' => 'masculino',
+                'gender' => 'Masculino',
                 'size' => 'L',
                 'color' => 'Azul',
                 'product_id' => 6,
             ],
             [
-                'gender' => 'femenino',
+                'gender' => 'Femenino',
                 'size' => 'S',
                 'color' => 'Gris',
                 'product_id' => 7,
             ],
             [
-                'gender' => 'femenino',
+                'gender' => 'Femenino',
                 'size' => 'L',
                 'color' => 'Negro',
                 'product_id' => 8,
             ],
             [
-                'gender' => 'femenino',
+                'gender' => 'Femenino',
                 'size' => 'S',
                 'color' => 'Rosa',
                 'product_id' => 9,
             ],
             [
-                'gender' => 'femenino',
+                'gender' => 'Femenino',
                 'size' => 'S',
                 'color' => 'Blanco',
                 'product_id' => 10,

@@ -83,14 +83,36 @@ class SupplementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function showByIdSupplement($id)
     {
         {
             $resultResponse = new ResultResponse(); 
     
             try{
-                $supplement = Supplement::findOrFail($id); 
+
+                $clothing = Supplement::with('product')->findOrFail($id); 
     
+                $resultResponse->setData($supplement); 
+                $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
+                $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
+                
+            } catch(\Exception $e){
+                $resultResponse->setStatusCode(ResultResponse::ERROR_ELEMENT_NOT_FOUND_CODE); 
+                $resultResponse->setMessage(ResultResponse::TXT_ERROR_ELEMENT_NOT_FOUND_CODE);
+            }
+            return response()->json($resultResponse); 
+        }
+    }
+
+    public function showByIdProduct($id)
+    {
+        {
+            $resultResponse = new ResultResponse(); 
+    
+            try{
+
+                $supplement = Supplement::where('product_id', $id)->with('product')->firstOrFail(); 
+
                 $resultResponse->setData($supplement); 
                 $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
                 $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);

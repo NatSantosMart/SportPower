@@ -18,6 +18,15 @@ export const routes: Routes = [
 
     {path: 'products/clothing/men', component : ProductsListComponent},
     {path: 'products/clothing/men/:id', component : ProductDetailsComponent},
+
+    {path: 'products/supplement/vitamins', component : ProductsListComponent},
+    {path: 'products/supplement/vitamins/:id', component : ProductDetailsComponent},
+
+    {path: 'products/supplement/proteins', component : ProductsListComponent},
+    {path: 'products/supplement/proteins/:id', component : ProductDetailsComponent},
+
+    {path: 'products/supplement/snacks', component : ProductsListComponent},
+    {path: 'products/supplement/snacks/:id', component : ProductDetailsComponent},
     
     {path: 'foro', component : ForoComponent},
     {path: '', redirectTo: 'login', pathMatch: 'full'}

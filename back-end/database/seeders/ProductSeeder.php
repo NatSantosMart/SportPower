@@ -12,13 +12,13 @@ class ProductSeeder extends Seeder
     {
         $products = [
             [
-                'url_image' => 'https://www.indalas.com/15524-large_default/zapatillas-deportivas-palermo.jpg',
+                'url_image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGgsIYhpPvmlllkmiM_NWiW71JkN5lkMkVvg&usqp=CAU',
                 'description' => 'Impact Whey Protein te aporta un valor nutricional sin igual de la mano de nuestros nutricionistas más expertos. Dale a tu cuerpo la energía que necesita gracias a sus ingredientes de la más alta calidad, que te aportan 23g* de proteína por cada ración.',
                 'name' => 'Mezcla proteina vegana',
                 'price' => 29.99,
             ],
             [
-                'url_image' => 'https://www.indalas.com/15524-large_default/zapatillas-deportivas-palermo.jpg',
+                'url_image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjYaoOFnSGUJMzWAXY2AeoVEUdzIcAhtA4Arlq8mtW32nuIbD9vomeVj6mZtbK5szI2DY&usqp=CAU',
                 'description' => 'Prueba Clear Whey Isolate, y no mirarás atrás. Si quieres una consistencia más ligera que el lactosuero tradicional y más intensa que los zumos, no busques más. Ha sido ganadora del «mejor polvo de proteínas» de los European Specialist Sports Nutrition Awards de 2022, pero ahí no acaba la cosa.                               Clear Whey Isolate te ofrece una explosión de sabores afrutados junto con 20 g* de proteína por ración gracias a su aislado de proteína de lactosuero hidrolizado. Se podría decir que es «la repera».',
                 'name' => 'Mezcla ganador de peso',
                 'price' => 19.99,
@@ -30,8 +30,8 @@ class ProductSeeder extends Seeder
                 'price' => 39.99,
             ],
             [
-                'url_image' => 'https://www.indalas.com/15524-large_default/zapatillas-deportivas-palermo.jpg',
-                'description' => 'Descripción del producto 4',
+                'url_image' => 'https://www.vita33.com/images/productos/my-protein-brownie-proteico-75g-chocolate-chip-1-22805.jpeg',
+                'description' => 'Nuestra Barrita Vegana Proteica contiene una mezcla totalmente natural de proteínas de origen vegetal, elaborada con la mejor manteca de cacao, chips de chocolate y nueces tostadas. No contiene gluten, ni edulcorantes artificiales, ni azúcares añadidos. Es ideal para complementar un estilo de vida vegano.',
                 'name' => 'Brownie proteico',
                 'price' => 49.99,
             ],

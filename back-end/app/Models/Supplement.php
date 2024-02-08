@@ -13,7 +13,7 @@ class Supplement extends Product
         //Acceso al producto asociado de un Clothing
         public function product()
         {
-            return $this->belongsTo(Supplement::class, 'product_id', 'id');
+            return $this->belongsTo(Product::class, 'product_id', 'id');
         }
 
 }

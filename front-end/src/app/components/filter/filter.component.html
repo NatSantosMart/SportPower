@@ -1,21 +1,35 @@
 <div class="d-flex flex-column" style="margin-left:4rem">
     <h2>Filtrar</h2>
-    <h3>Talla</h3>
-    <hr style="width:10rem; margin-top:-1rem">
-    <mat-checkbox (change)="filterChanged('size', 'XS')">XS</mat-checkbox>
-    <mat-checkbox (change)="filterChanged('size', 'S')">S</mat-checkbox>
-    <mat-checkbox (change)="filterChanged('size', 'M')">M</mat-checkbox>
-    <mat-checkbox (change)="filterChanged('size', 'L')">L</mat-checkbox>
-    <mat-checkbox (change)="filterChanged('size', 'XL')">XL</mat-checkbox>
+   
+    <div *ngIf="typeProduct === 'clothing'" class="d-flex flex-column" style="margin-left:4rem">
+        <h3>Talla</h3>
+        <hr style="width:10rem; margin-top:-1rem">
+        <mat-checkbox (change)="filterChanged('size', 'XS')">XS</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('size', 'S')">S</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('size', 'M')">M</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('size', 'L')">L</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('size', 'XL')">XL</mat-checkbox>
+    
+        <h3 style="margin-top:1rem">Color</h3>
+        <hr style="width:10rem; margin-top:-1rem">
+        <mat-checkbox (change)="filterChanged('color', 'Rojo')">Rojo</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('color', 'Azul')">Azul</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('color', 'Verde')">Verde</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('color', 'Blanco')">Blanco</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('color', 'Negro')">Negro</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('color', 'Rosa')">Rosa</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('color', 'Gris')">Gris</mat-checkbox>
+    </div>
 
-    <h3 style="margin-top:1rem">Color</h3>
-    <hr style="width:10rem; margin-top:-1rem">
-    <mat-checkbox (change)="filterChanged('color', 'Rojo')">Rojo</mat-checkbox>
-    <mat-checkbox (change)="filterChanged('color', 'Azul')">Azul</mat-checkbox>
-    <mat-checkbox (change)="filterChanged('color', 'Verde')">Verde</mat-checkbox>
-    <mat-checkbox (change)="filterChanged('color', 'Blanco')">Blanco</mat-checkbox>
-    <mat-checkbox (change)="filterChanged('color', 'Negro')">Negro</mat-checkbox>
-    <mat-checkbox (change)="filterChanged('color', 'Rosa')">Rosa</mat-checkbox>
-    <mat-checkbox (change)="filterChanged('color', 'Gris')">Gris</mat-checkbox>
+    <div *ngIf="typeProduct === 'supplement'" class="d-flex flex-column" style="margin-left:4rem">
+        <h3 style="margin-top:1rem">Sabor</h3>
+        <hr style="width:10rem; margin-top:-1rem">
+        <mat-checkbox (change)="filterChanged('flavor', 'Chocolate')">Chocolate</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('flavor', 'Caramelo')">Caramelo</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('flavor', 'Limón')">Limón</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('flavor', 'Galleta')">Galleta</mat-checkbox>
+        <mat-checkbox (change)="filterChanged('flavor', 'Fresa')">Fresa</mat-checkbox>
+    </div>
+    
 
 </div>

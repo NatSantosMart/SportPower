@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input} from '@angular/core';
 import { MaterialModule } from '../../material.module';
 
 @Component({
@@ -10,6 +10,8 @@ import { MaterialModule } from '../../material.module';
   styleUrl: './filter.component.css'
 })
 export class FilterComponent {
+
+  @Input() typeProduct: string = ''; // Recibe el tipo de producto como entrada
 
   @Output() filtersChanged = new EventEmitter<{ type: string; values: string[] }[]>();
 

@@ -14,9 +14,14 @@ export class ToolbarComponent {
 
   constructor(private router: Router) { }
 
-  redirectToProductsList(gender : string): void {
+  redirectToClothingList(gender : string): void {
     this.router.navigate(['/products/clothing/' + gender]);
   }
+
+  redirectToSupplementList(type : string): void {
+    this.router.navigate(['/products/supplement/' + type]);
+  }
+
   redirectToForo(): void {
     this.router.navigate(['/foro']);
   }

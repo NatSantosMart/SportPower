@@ -16,6 +16,7 @@ export class SupplementService{
         return this.http.get(`${ApiConfig.baseUrl}/supplements`);
     }
 
+    //Obtie
     getAllSupplementsByType(type : string): Observable<any>{
         return this.http.get(`${ApiConfig.baseUrl}/supplements/` + type);
     }

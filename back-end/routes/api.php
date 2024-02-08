@@ -93,7 +93,8 @@ Route::controller(SupplementController::class)->prefix('supplements')->group(fun
     Route::post('/', 'store'); 
     Route::post('/{id}', 'update'); 
     Route::put('/{id}', 'put'); 
-    Route::get('/{id}', 'show'); 
+    Route::get('/{id}', 'showByIdSupplement'); 
+    Route::get('/from_product/{id}', 'showByIdProduct'); 
     Route::delete('/{id}', 'destroy'); 
 });
 Route::controller(CartController::class)->prefix('carts')->group(function() {
