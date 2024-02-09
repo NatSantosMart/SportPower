@@ -17,7 +17,7 @@ export class CartService{
     }
 
     deleteProductToCart(dni : string, id: number) {
-        return this.http.delete(`${ApiConfig.baseUrl}/carts/` + dni + '/id');      
+        return this.http.delete(`${ApiConfig.baseUrl}/carts/` + dni + '/' + id);      
     }
   
     storeProductToCart(cartObject: Cart): Observable<any> {
