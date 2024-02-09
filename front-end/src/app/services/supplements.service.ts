@@ -16,9 +16,12 @@ export class SupplementService{
         return this.http.get(`${ApiConfig.baseUrl}/supplements`);
     }
 
-    //Obtie
     getAllSupplementsByType(type : string): Observable<any>{
         return this.http.get(`${ApiConfig.baseUrl}/supplements/` + type);
+    }
+
+    getSupplementsByIdProduct(id : number) {
+        return this.http.get(`${ApiConfig.baseUrl}/supplements/from_product/` + id);      
     }
 
     createClothing(newProduct: Supplement): Observable<any> {

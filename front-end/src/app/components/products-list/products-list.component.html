@@ -6,11 +6,11 @@
   </div>
   <div class="d-flex flex-column" style="width:80%">
     <div class="d-flex flex-wrap scroll">
-      <ng-container *ngFor="let clothing of filteredProducts; let i = index">
-        <div class="product-container" (click)="redirectToProductDetails(clothing.product.id)" style="cursor: pointer;">
-          <img [src]=clothing.product.url_image>
-          <span>{{clothing.product.name}}</span>
-          <span>{{clothing.product.price}}</span>
+      <ng-container *ngFor="let element of filteredProducts; let i = index">
+        <div class="product-container" (click)="redirectToProductDetails(element.product.id)" style="cursor: pointer;">
+          <img [src]=element.product.url_image>
+          <span>{{element.product.name}}</span>
+          <span>{{element.product.price}}</span>
         </div>
       </ng-container>
     </div>

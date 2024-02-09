@@ -90,7 +90,7 @@ class SupplementController extends Controller
     
             try{
 
-                $clothing = Supplement::with('product')->findOrFail($id); 
+                $supplement = Supplement::with('product')->findOrFail($id); 
     
                 $resultResponse->setData($supplement); 
                 $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 

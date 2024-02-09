@@ -127,7 +127,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   redirectToProductDetails(productId: number): void {
-    this.router.navigate(['/products/clothing/'+ this.typeAtribute + '/' + productId]);
+    this.router.navigate(['/products/'+ this.typeProduct +'/'+ this.typeAtribute + '/' + productId]);
   }
   
 }

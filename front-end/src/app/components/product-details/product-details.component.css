@@ -12,33 +12,56 @@ img{
     font-size: 14px;
 }
 
-.addCartButton{
-    font-size: 1.5rem; 
-    padding: 1rem;
-}
-
-.addFavorite{
-    margin-left:1rem;
-    color: red;
-    font-size: 3.5rem;
+.addFavorite {
+    margin-left: 1rem;
+    font-size: 3.0rem;
     height: 4rem;
     width: 4rem;
-  
+    color: red;
+    transition: color 0.3s ease; 
+    cursor: pointer;
 }
+
 
 .topMargin{
     margin-top:1.5rem
 }
 
-.sizeButton{
+.sizeButton {
     font-size: 1.5rem;
     width: 3.5rem;
     height: 3rem;
-
+    margin-right: 10px;
+    background-color: white; 
+    border: 2px solid #3A506B; 
+    color: #3A506B; 
+}
+.sizeButton {
+    font-size: 1.5rem;
+    width: 3.5rem;
+    height: 3rem;
+    background-color: white; 
+    border: 2px solid #3A506B; 
+    color: #3A506B;  
 }
 
-.addAssessmentButton{
-    background-color: #B5E4FB;
-    padding:0.7rem;
+.sizeButton:focus,
+.sizeButton:active {
+    background-color: #3A506B; 
+    color: white; 
+    outline: none; 
+}
+
+.buttonCartValoracion {
+    background-color: #aae2f9;
+    padding: 0.7rem;
     width: 12rem;
+    border: 2px solid #3A506B;
+    border-radius: 10px; 
+    transition: background-color 0.3s ease; 
+    margin-bottom: 40px
+}
+
+.buttonCartValoracion:hover {
+    background-color: #d4f2fe;
 }
