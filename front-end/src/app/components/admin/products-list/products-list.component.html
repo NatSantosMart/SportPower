@@ -8,17 +8,17 @@
     <div class="d-flex flex-wrap">
       <ng-container *ngFor="let product of products; let i = index">
         <div class="product-container">
-          <img [src]="product.url_image">
+          <img [src]="product.product.url_image">
           <div class="product-details d-flex">
             <div class="d-flex flex-column">
               <div class="product-info">
-                <span>{{ product.name }}</span>
-                <span style="margin-top:0.5rem">{{ product.price }}€</span>
+                <span>{{ product.product.name }}</span>
+                <span style="margin-top:0.5rem">{{ product.product.price }}€</span>
               </div>
             </div>
             <div class="d-flex" >
               <div class="d-flex flex-column" style="margin-left:1rem">
-                <button mat-icon-button (click)="editProduct(product)" style="font-size: 1.5rem; border-radius: 10px;">
+                <button mat-icon-button (click)="updateProduct(product)" style="font-size: 1.5rem; border-radius: 10px;">
                   <mat-icon>edit</mat-icon>
                 </button>
               </div>

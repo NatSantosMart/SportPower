@@ -99,8 +99,8 @@ Route::controller(SupplementController::class)->prefix('supplements')->group(fun
 });
 Route::controller(CartController::class)->prefix('carts')->group(function() {
     Route::post('/', 'store'); 
-    Route::put('/{id}', 'put'); 
-    Route::delete('/{id}', 'destroy');
+    Route::put('/{client_dni}/{product_id}', 'put');
+    Route::delete('/{client_dni}/{product_id}', 'destroy');
     Route::get('/from_client/{dni}', 'indexFromClient'); 
 });
 Route::controller(FavoriteController::class)->prefix('favorites')->group(function() {

@@ -29,6 +29,12 @@ export class ProductService{
         return this.http.post(`${ApiConfig.baseUrl}/products`, params, {headers:headersCreate});
     }
 
+    updateProduct(id:number, product: Product): Observable<any> {
+        let params = JSON.stringify(product); 
+        let headersCreate = new HttpHeaders().set('Content-Type', 'application/json'); 
+        return this.http.post(`${ApiConfig.baseUrl}/products/` + id, params, {headers:headersCreate});
+    }
+
     // clothes: Clothing[] = [
     //     {
     //         id: 1,

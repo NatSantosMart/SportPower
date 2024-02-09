@@ -167,21 +167,11 @@ class ClothingController extends Controller
         $resultResponse = new ResultResponse(); 
 
         try{
-            $clothing = Clothing::findOrFail($id); 
+            $clothing = Clothing::where('product_id', $id)->firstOrFail(); 
 
-            $clothing->name = $request->get('name');
-            $clothing->price = $request->get('price');
-            $clothing->genero = $request->get('genero');
-            $clothing->talla = $request->get('talla');
+            $clothing->gender = $request->get('gender');
+            $clothing->size = $request->get('size');
             $clothing->color = $request->get('color');
-            
-            
-            if ($request->has('url_image')) {
-                $clothing->url_image = $request->get('url_image');
-            }
-            if ($request->has('description')) {
-                $clothing->description = $request->get('description');
-            }
 
             $clothing->save(); 
 
@@ -190,6 +180,7 @@ class ClothingController extends Controller
             $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
 
         } catch(\Exception $e){
+            dd($e);
             $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
             $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
         }
@@ -224,24 +215,14 @@ class ClothingController extends Controller
         $rules = [];
         $messages = [];
 
-        // Campos obligatorios
-
-        $rules['name'] = 'required';
-        $messages['name.required'] = Lang::get('alerts.product_name_required');
-
-        $rules['price'] = 'required';
-        $messages['price.required'] = Lang::get('alerts.product_price_required');
-
-        // Campos específicos de Clothing
-
-        $rules['genero'] = 'required';
-        $messages['genero.required'] = Lang::get('alerts.clothing_genero_required');
-
-        $rules['talla'] = 'required';
-        $messages['talla.required'] = Lang::get('alerts.clothing_talla_required');
-
         $rules['color'] = 'required';
         $messages['color.required'] = Lang::get('alerts.clothing_color_required');
+
+        $rules['gender'] = 'required';
+        $messages['gender.required'] = Lang::get('alerts.clothing_gender_required');
+
+        $rules['size'] = 'required';
+        $messages['size.required'] = Lang::get('alerts.clothing_size_required');
 
         return Validator::make($request->all(), $rules, $messages);
     }

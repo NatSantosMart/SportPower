@@ -36,9 +36,9 @@ export class ClothingService{
         return this.http.post(`${ApiConfig.baseUrl}/clothes`, params, {headers:headersCreate});
     }
 
-    updateClothing(updatedClothing: Clothing): Observable<any> {
-        let params = JSON.stringify(updatedClothing); 
+    updateClothing(id:number, clothing: Clothing): Observable<any> {
+        let params = JSON.stringify(clothing); 
         let headersUpdate = new HttpHeaders().set('Content-Type', 'application/json'); 
-        return this.http.put(`${ApiConfig.baseUrl}/clothes/${updatedClothing.id}`, params, {headers: headersUpdate});
-      }
+        return this.http.put(`${ApiConfig.baseUrl}/clothes/` + id, params, {headers: headersUpdate});
+   }
 }

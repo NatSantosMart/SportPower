@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ClientService } from '../../services/client.service';
+import { AdminService } from '../../services/admin.service';
 import { Client } from '../../models/client.model';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../material.module';
@@ -15,11 +16,12 @@ import { AuthenticatorService } from '../../services/authenticator.service';
   imports: [CommonModule, MaterialModule, FormsModule, HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  providers: [ClientService, AuthenticatorService]
+  providers: [ClientService, AdminService, AuthenticatorService]
 })
 export class LoginComponent {
   constructor(
     private _clientService: ClientService,
+    private _adminService: AdminService,
     private _authenticatorService: AuthenticatorService,
     private router: Router
   ) {}
@@ -28,6 +30,7 @@ export class LoginComponent {
   email! : string;
   password! : string;
   clients: any[] = [];
+  admins: any[] = [];
   login! : boolean;
   repitedEmail! : string;
   name! : string;
@@ -43,6 +46,8 @@ export class LoginComponent {
   }
 
   public checkUser(): void {
+
+    //Comprobar si es cliente
     this._clientService.getAllClients().subscribe((response: any) => {
       const clientsData: Client[] = response.data; 
       this.clients = clientsData; 
@@ -52,10 +57,28 @@ export class LoginComponent {
         this._authenticatorService.logIn(exists); 
         this.router.navigate(['/home']);
       } else {
+        //Comprobar si es admin
+        this.checkAdmin(); 
+      }
+    });
+  }
+
+  public checkAdmin(): void {
+    this._adminService.getAllAdmins().subscribe((response: any) => {
+      const adminsData: Client[] = response.data; 
+      this.admins = adminsData; 
+      const exists = this.admins.find(admin => admin.email === this.email && admin.password === this.password);
+
+      if (exists) {
+        this._authenticatorService.logIn(exists); 
+        this.router.navigate(['/products']);
+      } else {
+        //Comprobar si es admin
         this.errorMessage = 'Usuario no existe. Inténtelo de nuevo. '; 
       }
     });
   }
+
 
   public changeToSignUp(){
     this.login = false;

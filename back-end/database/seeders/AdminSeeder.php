@@ -18,6 +18,11 @@ class AdminSeeder extends Seeder
                 'email' => 'ines@gmail.com',
                 'password' => bcrypt('laurita123'),
             ],
+            [
+                'dni' => '22222222D',
+                'email' => 'admin@gmail.com',
+                'password' => '1234',
+            ],
            
         ];
 
