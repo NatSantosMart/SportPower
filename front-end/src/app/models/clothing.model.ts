@@ -1,10 +1,10 @@
 import { Product } from "./product.model";
 
-export interface Clothing extends Product{
+export interface Clothing{
     id : number;
-    gender : string;
-    size : string;
+    gender: "Femenino" | "Masculino" | "Unisex";
+    size: "S" | "M" | "L" | "XL";
     color : string;
     product_id : number; 
     product: Product | null;
-}
+} 

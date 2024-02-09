@@ -35,4 +35,9 @@ export class SupplementService{
         let headersUpdate = new HttpHeaders().set('Content-Type', 'application/json'); 
         return this.http.put(`${ApiConfig.baseUrl}/supplements/` + id, params, {headers: headersUpdate});
    }
+
+   
+   deleteSupplement(product_id:number) {
+    return this.http.delete(`${ApiConfig.baseUrl}/supplements/` + product_id);      
+}
 }

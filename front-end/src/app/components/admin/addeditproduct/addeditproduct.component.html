@@ -4,44 +4,44 @@
         <h1 *ngIf="!data.addMode">Editar producto</h1>
     </div>
     <div class="dialog-content">
-        <mat-form-field appearance="outline">
-            <mat-label>Tipo de producto</mat-label>
-            <mat-select [(ngModel)]="type">
-                <mat-option value="clothes">Ropa</mat-option>
-                <mat-option value="supplementation">Suplementación</mat-option>
+        <mat-form-field appearance="outline"><mat-label>Tipo de producto</mat-label>
+            <mat-select [(ngModel)]="product.product.type">
+                <mat-option value="ropa">Ropa</mat-option>
+                <mat-option value="suplemento">Suplementación</mat-option>
             </mat-select>
         </mat-form-field>
         <div style="padding: 2rem;" class="d-flex">
             <div class="d-flex flex-column" style="margin-right:2rem">
                 <mat-form-field appearance="outline">
                     <mat-label>Nombre</mat-label>
-                    <input matInput [(ngModel)]="product.name" #input>
+                    <input matInput [(ngModel)]="product.product.name" #input>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Precio</mat-label>
-                    <input matInput [(ngModel)]="product.price" #input>
-                </mat-form-field>
+                        <mat-label>Precio</mat-label>
+                        <input matInput [(ngModel)]="product.product.price" #input matInput type="number" placeholder="0">
+                        <span matTextPrefix>€&nbsp;</span>
+                 </mat-form-field>
             </div>
-            <div *ngIf="type === 'clothes'" class="d-flex flex-column">
+            <div *ngIf="product.product.type === 'ropa'" class="d-flex flex-column">
                 <mat-form-field appearance="outline"><mat-label>Color</mat-label>
-                    <mat-select>
-                        <mat-option value="white">Blanco</mat-option>
-                        <mat-option value="black">Negro</mat-option>
-                        <mat-option value="pink">Rosa</mat-option>
-                        <mat-option value="red">Rojo</mat-option>
-                        <mat-option value="green">Verde</mat-option>
-                        <mat-option value="blue">Azul</mat-option>
-                        <mat-option value="yellow">Amarillo</mat-option>
+                    <mat-select [(ngModel)]="product.color">
+                        <mat-option value="Blanco">Blanco</mat-option>
+                        <mat-option value="Negro">Negro</mat-option>
+                        <mat-option value="Rosa">Rosa</mat-option>
+                        <mat-option value="Rojo">Rojo</mat-option>
+                        <mat-option value="Verde">Verde</mat-option>
+                        <mat-option value="Azul">Azul</mat-option>
+                        <mat-option value="Amarillo">Amarillo</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="outline"><mat-label>Género</mat-label>
-                    <mat-select>
-                        <mat-option value="woman">Hombre</mat-option>
-                        <mat-option value="man">Mujer</mat-option>
+                    <mat-select [(ngModel)]="product.gender">
+                        <mat-option value="Femenino">Femenino</mat-option>
+                        <mat-option value="Masculino">Masculino</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="outline"><mat-label>Talla</mat-label>
-                    <mat-select>
+                    <mat-select [(ngModel)]="product.size">
                         <mat-option value="XS">XS</mat-option>
                         <mat-option value="S">S</mat-option>
                         <mat-option value="M">M</mat-option>
@@ -50,39 +50,48 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div *ngIf="type === 'supplementation'" class="d-flex flex-column">
+            <div *ngIf="product.product.type === 'suplemento'" class="d-flex flex-column">
                 <mat-form-field appearance="outline"><mat-label>Tipo</mat-label>
-                    <mat-select>
-                        <mat-option value="white">Proteína</mat-option>
-                        <mat-option value="black">Vitaminas</mat-option>
-                        <mat-option value="pink">Snacks</mat-option>
+                    <mat-select [(ngModel)]="product.type">
+                        <mat-option value="Proteina">Proteína</mat-option>
+                        <mat-option value="Vitaminas">Vitaminas</mat-option>
+                        <mat-option value="Snacks">Snacks</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="outline"><mat-label>Sabor</mat-label>
-                    <mat-select>
-                        <mat-option value="strawberry">Fresa</mat-option>
-                        <mat-option value="chocolate">Chocolate</mat-option>
+                    <mat-select [(ngModel)]="product.flavor">
+                        <mat-option value="Chocolate">Chocolate</mat-option>
+                        <mat-option value="Caramelo">Caramelo</mat-option>
+                        <mat-option value="Limón">Limón</mat-option>
+                        <mat-option value="Galleta">Galleta</mat-option>
+                        <mat-option value="Fresa">Fresa</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="outline"><mat-label>Medida</mat-label>
-                    <mat-select>
+                    <mat-select [(ngModel)]="product.quantity">
                         <mat-option value="1kg">1kg</mat-option>
+                        <mat-option value="2.5kg">2.5kg</mat-option>
                         <mat-option value="5kg">5kg</mat-option>
+                        <mat-option value="10kg">10kg</mat-option>
+                        <mat-option value="90 cápsulas">90 cápsulas</mat-option>
+                        <mat-option value="150 cápsulas">150 cápsulas</mat-option>
+                        <mat-option value="250 cápsulas">250 cápsulas</mat-option>
+                        <mat-option value="Opción pack">Opción pack</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
         </div>
         <mat-form-field style="margin-right:2rem" appearance="outline">
             <mat-label>Descripción</mat-label>
-            <input matInput [(ngModel)]="product.description" #input>
+            <input matInput [(ngModel)]="product.product.description" #input>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Url</mat-label>
-            <input matInput [(ngModel)]="product.url_image" #input>
+            <input matInput [(ngModel)]="product.product.url_image" #input>
         </mat-form-field>
         <mat-dialog-actions class="dialog-actions">
             <button class="button-style" mat-button (click)="onNoClick()">Cancelar</button>
-            <button class="button-style" mat-button (click)="onYesClick()">Guardar</button>
+            <button class="button-style" mat-button (click)="pressGuardar()">Guardar</button>
         </mat-dialog-actions>
     </div>
 </div>

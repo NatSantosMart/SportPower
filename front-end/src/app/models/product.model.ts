@@ -4,4 +4,5 @@ export interface Product{
     price : number;
     url_image?: string;
     description : string;
+    type: "suplemento" | "ropa"; 
 }

@@ -41,4 +41,8 @@ export class ClothingService{
         let headersUpdate = new HttpHeaders().set('Content-Type', 'application/json'); 
         return this.http.put(`${ApiConfig.baseUrl}/clothes/` + id, params, {headers: headersUpdate});
    }
+
+   deleteClothing(product_id:number) {
+        return this.http.delete(`${ApiConfig.baseUrl}/clothes/` + product_id);      
+    }
 }

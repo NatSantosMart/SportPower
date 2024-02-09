@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../filter/filter.component';
 import { HttpClientModule } from '@angular/common/http'; 
-import { Clothing } from '../../models/clothes.model';
+import { Clothing } from '../../models/clothing.model';
 import { ActivatedRoute } from '@angular/router';
 
 

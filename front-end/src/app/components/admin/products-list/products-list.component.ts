@@ -69,27 +69,18 @@ export class ProductsListAdminComponent implements OnInit {
         product : product
       }
     }));
-
-    dialogRef.afterClosed().subscribe(product => {
-      if (product) {
-        const updateSucces = this._productService.updateProduct(product.id, product)
-
-        
-
-
-
-
-        if(updateSucces){
-          const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
-            data: {
-              satisfactory : true,
-              editMode : true
-            }       
-          })
-          setTimeout(() => { dialogRef.close(); }, 3000);
-        }
-
-        else{
+    // Suponiendo que tienes una referencia al MatDialogRef llamada dialogRef
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
+          data: {
+            satisfactory : true,
+            editMode : true
+          }       
+        })
+        setTimeout(() => { dialogRef.close(); }, 3000);
+      } else {
+        {
           const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
             data: {
               editMode : false,
@@ -104,83 +95,66 @@ export class ProductsListAdminComponent implements OnInit {
 
   addProduct(){
     
-    // const dialogRef = this.dialog.open(AddeditproductComponent,({
-    //   data: {
-    //     addMode : true
-    //   }
-    // }));
+    const dialogRef = this.dialog.open(AddeditproductComponent,({
+      data: {
+        addMode : true
+      }
+    }));
 
-    // dialogRef.afterClosed().subscribe(product => {
-    //   if (product) {
-    //     const status = this._productService.addProduct(product)
-    //     if(status){
-    //       const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
-    //         data: {
-    //           satisfactory : true,
-    //           addMode : true
-    //         }
-           
-    //       })
-
-    //       setTimeout(() => {
-    //         dialogRef.close();
-    //       }, 3000);
-    //     }
-    //     else{
-    //       const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
-    //         data: {
-    //           addMode : true,
-    //           satisfactory : false
-    //         }
-           
-    //       })
-    //     }
-    //     setTimeout(() => {
-    //       dialogRef.close();
-    //     }, 3000);
-    //   }
-    // });
+    // Suponiendo que tienes una referencia al MatDialogRef llamada dialogRef
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
+          data: {
+            satisfactory : true,
+            editMode : true
+          }       
+        })
+        setTimeout(() => { dialogRef.close(); }, 3000);
+      } else {
+        {
+          const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
+            data: {
+              editMode : false,
+              satisfactory : false
+            }         
+          })
+        }
+        setTimeout(() => {dialogRef.close();}, 3000);
+      }
+    });
   }
 
   deleteProduct(product: Product) {
    
-//     const dialogRef = this.dialog.open(DeletedialogComponent, {
-//       data: {
-//         product : product
-//       }
-//     });
+    const dialogRef = this.dialog.open(DeletedialogComponent, {
+      data: {
+        product : product
+      }
+    });
 
-//     dialogRef.afterClosed().subscribe(result => {
-//       if (result) {
-//         const status = this._productService.deleteProduct(product.id)
-//         if(status){
-//           const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
-//             data: {
-//               editMode : false,
-//               satisfactory : true
-//             }
-           
-//           })
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
+          data: {
+            satisfactory : false,
+            editMode : true
+          }       
+        })
+        setTimeout(() => { dialogRef.close(); }, 3000);
+      } else {
+        {
+          const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
+            data: {
+              editMode : false,
+              satisfactory : false
+            }         
+          })
+        }
+        setTimeout(() => {dialogRef.close();}, 3000);
+      }
+    });
 
-//           setTimeout(() => {
-//             dialogRef.close();
-//           }, 3000);
-//         }
-//         else{
-//           const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
-//             data: {
-//               editMode : false,
-//               satisfactory : false
-//             }
-           
-//           })
-//         }
-//         setTimeout(() => {
-//           dialogRef.close();
-//         }, 3000);
-//       }
-//     });
-//   }
 }
 
 }

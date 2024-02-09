@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Supplement extends Product
 {
     use HasFactory;
-    protected $fillable = ['quantity']; 
+    protected $fillable = ['quantity', 'type', 'flavor', 'product_id']; 
 
         //Acceso al producto asociado de un Clothing
         public function product()

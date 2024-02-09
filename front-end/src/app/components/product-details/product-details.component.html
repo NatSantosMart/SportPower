@@ -10,7 +10,7 @@
 
     <div class="d-flex flex-column " style="margin-top:4rem; margin-left: 90px;">
 
-        <h1 style="font-size:2rem; font-weight:bold;">{{product.product.name}}</h1>
+        <h1 style="font-size:2rem; font-weight:bold;">{{product.product.name | uppercase }}</h1>
         <p class="infoSize topMargin">{{product.product.price}} €</p>
 
         <div *ngIf="typeProduct === 'clothing'">
@@ -35,11 +35,13 @@
             <mat-form-field class="topMargin" appearance="outline">
                 <mat-label>Color</mat-label>
                 <mat-select [(ngModel)]="product.color">
-                    <mat-option value="Rosa">Rosa</mat-option>
+                    <mat-option value="Blanco">Blanco</mat-option>
                     <mat-option value="Negro">Negro</mat-option>
-                    <mat-option value="Azul">Azul</mat-option>
+                    <mat-option value="Rosa">Rosa</mat-option>
                     <mat-option value="Rojo">Rojo</mat-option>
                     <mat-option value="Verde">Verde</mat-option>
+                    <mat-option value="Azul">Azul</mat-option>
+                    <mat-option value="Amarillo">Amarillo</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>

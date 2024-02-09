@@ -61,10 +61,6 @@ class SupplementController extends Controller
                 'flavor' => $request->get('flavor'),
             ]);
 
-            if ($request->has('flavor')) {
-                $newSupplement->flavor = $request->get('flavor');
-            }
-
             $newSupplement->save();
 
             $resultResponse->setData($newSupplement);
@@ -72,7 +68,7 @@ class SupplementController extends Controller
             $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
 
         } catch (\Exception $e) {
-            Log::debug($e);
+            dd($e);
             $resultResponse->setStatusCode(ResultResponse::ERROR_CODE);
             $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
         }
@@ -170,7 +166,7 @@ class SupplementController extends Controller
         $resultResponse = new ResultResponse(); 
 
         try{
-            $supplement = Supplement::findOrFail($id); 
+            $clothing = Clothing::where('product_id', $id)->firstOrFail(); 
 
             $supplement->delete();
 
@@ -179,6 +175,7 @@ class SupplementController extends Controller
             $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
 
         } catch(\Exception $e){
+            dd($e);
             $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
             $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
         }
@@ -191,9 +188,6 @@ class SupplementController extends Controller
         $messages = [];
 
         // Campos obligatorios
-
-        $rules['name'] = 'required';
-        $messages['name.required'] = Lang::get('alerts.product_name_required');
 
         $rules['quantity'] = 'required';
         $messages['quantity.required'] = Lang::get('alerts.supplement_quantity_required');

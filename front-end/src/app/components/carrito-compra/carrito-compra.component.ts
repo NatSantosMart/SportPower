@@ -9,7 +9,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ClothingService } from '../../services/clothing.service';
-import { Clothing } from '../../models/clothes.model';
+import { Clothes } from '../../models/clothes.model';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
@@ -21,7 +21,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
   styleUrl: './carrito-compra.component.css'
 })
 export class CarritoCompraComponent {
-  productosCarrito : Clothing[] = []
+  productosCarrito : Clothes[] = []
   
   constructor(private _clothingService: ClothingService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer){
     this.matIconRegistry.addSvgIcon(

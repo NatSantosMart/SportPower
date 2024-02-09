@@ -1,7 +1,10 @@
 import { Product } from "./product.model";
 
-export interface Supplement extends Product{
+export interface Supplement {
     id : number;
-    quantity : number;
+    quantity : string;
     product_id : number;
+    product?: Product | null; 
+    type: "vitamina" | "proteina" | "snack"; 
+    flavor: string; 
 }

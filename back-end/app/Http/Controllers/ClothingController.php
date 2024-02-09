@@ -68,19 +68,11 @@ class ClothingController extends Controller
 
         try {
             $newClothing = new Clothing([
-                'name' => $request->get('name'),
-                'price' => $request->get('price'),
-                'genero' => $request->get('genero'),
-                'talla' => $request->get('talla'),
+                'gender' => $request->get('gender'),
+                'size' => $request->get('size'),
                 'color' => $request->get('color'),
+                'product_id' => $request->get('product_id'),
             ]);
-
-            if ($request->has('url_image')) {
-                $newClothing->url_image = $request->get('url_image');
-            }
-            if ($request->has('description')) {
-                $newClothing->description = $request->get('description');
-            }
 
             $newClothing->save();
 
@@ -89,7 +81,7 @@ class ClothingController extends Controller
             $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
 
         } catch (\Exception $e) {
-            Log::debug($e);
+             dd($e);
             $resultResponse->setStatusCode(ResultResponse::ERROR_CODE);
             $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
         }
@@ -195,7 +187,7 @@ class ClothingController extends Controller
         $resultResponse = new ResultResponse(); 
 
         try{
-            $clothing = Clothing::findOrFail($id); 
+            $clothing = Clothing::where('product_id', $id)->firstOrFail(); 
 
             $clothing->delete();
 
@@ -223,6 +215,10 @@ class ClothingController extends Controller
 
         $rules['size'] = 'required';
         $messages['size.required'] = Lang::get('alerts.clothing_size_required');
+
+        $rules['product_id'] = 'required';
+        $messages['product_id.required'] = Lang::get('alerts.clothing_product_idrequired');
+
 
         return Validator::make($request->all(), $rules, $messages);
     }
