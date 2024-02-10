@@ -26,4 +26,8 @@ export class ToolbarComponent {
     this.router.navigate(['/foro']);
   }
 
+  redirectToCarritoCompra(): void {
+    this.router.navigate(['/carrito_compra']);
+  }
+
 }

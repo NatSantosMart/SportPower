@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Product } from '../../models/product.model';
 import { UserService } from '../../services/user.service';
 import { ProductService } from '../../services/product.service';
 import { ProductoComponent } from '../elements/producto/producto.component';
@@ -9,11 +8,9 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ClothingService } from '../../services/clothing.service';
-import { Clothes } from '../../models/clothes.model';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { CartService } from '../../services/cart.service';
-import { get } from 'http';
-import { forkJoin } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrito-compra',
@@ -24,9 +21,9 @@ import { forkJoin } from 'rxjs';
   styleUrl: './carrito-compra.component.css'
 })
 export class CarritoCompraComponent {
-  productosCarrito : Clothes[] = []
   
-  constructor(private _clothingService: ClothingService,
+  constructor(
+   private router: Router,
    private _cartService: CartService,
    private _productsService: ProductService,
     private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer){
@@ -35,12 +32,13 @@ export class CarritoCompraComponent {
       this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/papelera.svg')
     );
   }
-
+  mostrarModal: boolean = false;
   allProducts: any[] = [];
   allProductsID: any[] = [];
   precioTotal: number = 0;
   impuestos: number = 0;
   total: number = 0;
+
   ngOnInit(): void {
     const currentUserString = localStorage.getItem('currentUser');
     const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
@@ -72,8 +70,6 @@ export class CarritoCompraComponent {
         console.error('Error al obtener los productos', error);
       }
     } 
-    
-    console.log("PRODUCTOSSSSSSSSSS",this.allProducts);
     this.precioTotal = 0;
     this.allProducts.forEach(producto => {
       this.precioTotal += parseInt(producto.price);
@@ -84,7 +80,33 @@ export class CarritoCompraComponent {
 
   }
 
+  onProductoEliminado = (productId: number) => {
+    console.log("HE entrado al evento de eliminar producto")
+    const index = this.allProducts.findIndex(product => product.id === productId);
+    if (index !== -1) {
+      this.allProducts.splice(index, 1);
+      this.actualizarTotal();
+    }
+  }
+
+  actualizarTotal() {
+    this.precioTotal = 0;
+    this.allProducts.forEach(producto => {
+      this.precioTotal += parseInt(producto.price);
+    });
+
+    this.impuestos = this.precioTotal * 0.16;
+    this.total = this.precioTotal + this.impuestos + 5;
+  }
+
   realizarCompra = () => {
+    this.mostrarModal= true
     console.log('Realizando compra');
+    console.log(this.mostrarModal)
+  }
+
+  cerrarModal = () => {
+    this.mostrarModal = false;
+    this.router.navigate(['/']);  
   }
 }
