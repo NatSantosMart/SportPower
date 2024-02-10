@@ -17,8 +17,8 @@ export class ToolbarComponentAdmin {
   constructor(private router: Router, 
     private _authenticatorService: AuthenticatorService) { }
 
-  redirectToProductsList(gender : string): void {
-    this.router.navigate(['/products/clothing/women']);
+  redirectToProducts(): void {
+    this.router.navigate(['/products']);
   }
   redirectToForo(): void {
     this.router.navigate(['/foro']);
