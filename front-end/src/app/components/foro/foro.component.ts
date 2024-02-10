@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { ToolbarComponentAdmin } from '../admin/toolbar/toolbar.component';
 import { CommonModule } from '@angular/common';
 import { CommentService } from '../../services/comment.service';
 import { Router } from '@angular/router';
@@ -10,13 +11,14 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { MaterialModule } from '../../material.module';
 import { DialogPostComponent } from '../dialog-post/dialog-post.component';
+import { AuthenticatorService } from '../../services/authenticator.service';
 
 
 @Component({
   selector: 'app-foro',
   standalone: true,
-  imports: [ToolbarComponent, CommonModule, DialogPostComponent, HttpClientModule, MatButtonModule, MatDialogModule, MaterialModule],
-  providers: [ CommentService, PostService, ClientService],
+  imports: [ToolbarComponent, ToolbarComponentAdmin, CommonModule, DialogPostComponent, HttpClientModule, MatButtonModule, MatDialogModule, MaterialModule],
+  providers: [ CommentService, PostService, ClientService, AuthenticatorService],
   templateUrl: './foro.component.html',
   styleUrls: ['./foro.component.css']
 })
@@ -25,14 +27,23 @@ export class ForoComponent implements OnInit {
     private _commentsService: CommentService,
     private _postsService: PostService,
     private _clientsService: ClientService,
+    private _authenticatorService: AuthenticatorService,
     public dialog: MatDialog, 
     private router: Router
   ) {}
 
   posts: any[] = [];
   comments: any[] = [];
+  currentUserEmail: any; 
+  isAdmin: any; 
 
   ngOnInit(): void {
+
+    this.currentUserEmail = this._authenticatorService.currentUser.email; 
+    if(this.currentUserEmail === "admin@gmail.com"){
+      this.isAdmin = true; 
+    }
+
     this._postsService.getAllPosts().subscribe(
       (postsData: any) => {
         this.posts = postsData.data;

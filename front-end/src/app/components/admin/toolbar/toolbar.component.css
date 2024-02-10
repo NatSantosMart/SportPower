@@ -1,28 +1,69 @@
 mat-toolbar {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 mat-toolbar {
-  display: flex;
-  background-color:#88D4F3;
+display: flex;
+background-color:#88D4F3;
 }
 
 .search{
-  height: 3.8rem;
-  margin-top: 1.3rem;
+height: 3.8rem;
+margin-top: 1.3rem;
 }
 
 .custom-menu {
-  padding: 10px;
+padding: 10px;
 }
 
 .custom-menu button {
-  width: 100%;
-  text-align: left;
+width: 100%;
+text-align: left;
 }
 
 .fontSize{
-  font-size: 1.5rem;
+font-size: 1.5rem;
 }
 
+
+.mat-toolbar-container {
+display: flex;
+justify-content: space-around;
+}
+
+.mat-toolbar {
+display: flex;
+background-color: #88D4F3;
+}
+
+.mat-form-field-underline::before,
+.mat-icon-button .mat-icon {
+transition: color 0.3s ease; 
+}
+
+.mat-toolbar span:hover,
+.mat-toolbar button:hover, 
+.mat-toolbar mat-icon:hover, 
+.mat-toolbar mat-form-field:hover 
+{
+color: #fff;
+}
+
+.search {
+height: 3.8rem;
+margin-top: 1.3rem;
+}
+
+.custom-menu {
+padding: 10px;
+}
+
+.custom-menu button {
+width: 100%;
+text-align: left;
+}
+
+.fontSize {
+font-size: 1.5rem;
+}

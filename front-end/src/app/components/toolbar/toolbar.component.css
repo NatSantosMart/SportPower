@@ -39,13 +39,13 @@ mat-toolbar {
 
 .mat-form-field-underline::before,
 .mat-icon-button .mat-icon {
-  transition: color 0.3s ease; /* Agregar una transición suave al cambio de color */
+  transition: color 0.3s ease; 
 }
 
-.mat-toolbar span:hover, /* Cambiar color del texto del span cuando se pasa el mouse sobre él */
-.mat-toolbar button:hover, /* Cambiar color del texto del botón cuando se pasa el mouse sobre él */
-.mat-toolbar mat-icon:hover, /* Cambiar color del icono cuando se pasa el mouse sobre él */
-.mat-toolbar mat-form-field:hover /* Cambiar color del texto del input cuando se pasa el mouse sobre él */
+.mat-toolbar span:hover,
+.mat-toolbar button:hover, 
+.mat-toolbar mat-icon:hover, 
+.mat-toolbar mat-form-field:hover 
 {
   color: #fff;
 }

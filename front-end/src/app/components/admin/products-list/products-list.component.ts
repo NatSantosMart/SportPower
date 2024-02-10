@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { ToolbarComponentAdmin } from '../toolbar/toolbar.component';
 import { ProductService } from '../../../services/product.service';
 import { ClothingService } from '../../../services/clothing.service';
 import { SupplementService } from '../../../services/supplements.service';
@@ -17,7 +17,7 @@ import { AddeditproductComponent } from '../addeditproduct/addeditproduct.compon
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [ToolbarComponent, CommonModule, MaterialModule, HttpClientModule],
+  imports: [ToolbarComponentAdmin, CommonModule, MaterialModule, HttpClientModule],
   providers: [ProductService, ClothingService, SupplementService],
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.css'

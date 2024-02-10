@@ -9,7 +9,10 @@
     <button class = "fontSize" mat-button>Productos</button>
     <button class = "fontSize" mat-button>Pedidos</button>
     <button class = "fontSize" mat-button>Clientes</button>
-    <span class = "fontSize">Foro</span>
-    <button class = "fontSize" mat-button >Cuenta</button>
+    <span  mat-button (click)="redirectToForo()" class = "fontSize">Foro</span>
+    <button  mat-button [matMenuTriggerFor]="cuentaMenu"  class = "fontSize" mat-button >Cuenta</button>
+    <mat-menu #cuentaMenu="matMenu" class="custom-menu">
+      <button (click)="cerrarSesion()" mat-menu-item>Cerrar sesión</button>
+    </mat-menu>
   </mat-toolbar>
 </div>

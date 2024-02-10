@@ -2,23 +2,30 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MaterialModule } from '../../../material.module';
 import { Router } from '@angular/router';
+import { AuthenticatorService } from '../../../services/authenticator.service';
 
 @Component({
-  selector: 'app-toolbar',
+  selector: 'app-toolbarAdmin',
   standalone: true,
   imports: [CommonModule, MaterialModule],
+  providers: [AuthenticatorService],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.css'
 })
-export class ToolbarComponent {
+export class ToolbarComponentAdmin {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, 
+    private _authenticatorService: AuthenticatorService) { }
 
   redirectToProductsList(gender : string): void {
     this.router.navigate(['/products/clothing/women']);
   }
   redirectToForo(): void {
     this.router.navigate(['/foro']);
+  }
+  cerrarSesion(): void {
+    this.router.navigate(['/login']);
+    this._authenticatorService.logout(); 
   }
 
 }
