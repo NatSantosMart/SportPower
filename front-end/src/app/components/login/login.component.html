@@ -1,4 +1,4 @@
-<div class="center-container">
+<div class="center-container" style="background-image: url('../../../assets/imgs/fondoLogin.png'); background-repeat: no-repeat; background-size: cover; background-position: left;">
     <div class="d-flex">
         <div style="text-align: center;">
             <h1 *ngIf="login" class="title">INICIO DE SESIÓN</h1>
@@ -37,13 +37,13 @@
                 </mat-form-field>
                 <button style="margin-top:1rem" class="buttomStyle" *ngIf="login; else signupButtons"
                     (click)="checkUser()">Iniciar Sesión</button>
-                <p *ngIf="login" style="margin-top:2rem">¿No tienes cuenta todavía?</p>
-                <a *ngIf="login" (click)="changeToSignUp()">Regístrarme</a>
+                <p *ngIf="login" style="margin-top:2rem">¿No tienes cuenta todavía? ¡Es el momento de crearla!</p>
+                <a *ngIf="login" (click)="changeToSignUp()"> <strong>Registrarme</strong></a>
                 <ng-template #signupButtons>
                     <button style="margin-top:1rem" class="buttomStyle"
                     (click)="signup()">Registrar</button>
-                   <p style="margin-top:2rem">Ya tienes una cuenta?</p>
-                    <a (click)="changeToLogin()">Iniciar sesión</a>
+                   <p style="margin-top:2rem">¿Ya tienes una cuenta?</p>
+                    <a (click)="changeToLogin()"><strong>Registrarme</strong></a>
                 </ng-template>
             </div>
 

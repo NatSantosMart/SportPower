@@ -15,19 +15,14 @@
   border-radius: 3rem;
   background-color: #88D4F3;
 }
+p{
+  font-size: 15px;
+}
 
 .title{
   color:#88D4F3; 
   font-weight: bold; 
-  font-size:xx-large
-}
-
-.buttomStyle{
-  background-color: #C5CDD1;
-  border: 1px solid black;
-  color:black;
-  padding:0.5rem;
-
+  font-size:xx-large; 
 }
 
 .error-box {
@@ -44,4 +39,18 @@
 
 .error-box p {
   margin: 0;
+}
+
+.buttomStyle {
+  background-color: #344064; 
+  font-size: 16px;
+  color:white; 
+  padding:0.5rem;
+  border: 2px solid #3A506B;
+  border-radius: 10px; 
+  transition: background-color 0.3s ease; 
+}
+
+.buttomStyle:hover {
+  background-color: #5b678b; 
 }

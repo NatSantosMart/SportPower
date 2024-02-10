@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MaterialModule } from '../../material.module';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-toolbar',
   standalone: true,
@@ -24,6 +25,9 @@ export class ToolbarComponent {
 
   redirectToForo(): void {
     this.router.navigate(['/foro']);
+  }
+  redirectToHome(): void {
+    this.router.navigate(['/home']);
   }
 
 }

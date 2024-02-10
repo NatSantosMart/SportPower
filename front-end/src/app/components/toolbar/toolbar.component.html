@@ -1,31 +1,31 @@
-<div class="mat-toolbar-container">
-  <mat-toolbar>
-    <div>
-      <mat-form-field style="font-size:15px" class="search">
-        <input matInput placeholder="Buscar">
-      </mat-form-field>
-      <mat-icon style="margin-left:1rem">search</mat-icon>
-    </div>
-    <button class = "fontSize" mat-button [matMenuTriggerFor]="clothesMenu">Ropa</button>
-    <mat-menu #clothesMenu="matMenu" class="custom-menu">
-      <button (click)="redirectToClothingList('women')" mat-menu-item>Mujer</button>
-      <button (click)="redirectToClothingList('men')" mat-menu-item>Hombre</button>
-    </mat-menu>
-    <button class = "fontSize" mat-button [matMenuTriggerFor]="supplementationMenu">Suplementación</button>
-    <mat-menu #supplementationMenu="matMenu" class="custom-menu">
-      <button (click)="redirectToSupplementList('proteins')" mat-menu-item>Proteína</button>
-      <button (click)="redirectToSupplementList('vitamins')" mat-menu-item>Vitaminas</button>
-      <button (click)="redirectToSupplementList('snacks')" mat-menu-item>Snacks</button>
-    </mat-menu>
-    <span (click)="redirectToForo()"class = "fontSize">Foro</span>
-    <button class = "fontSize" mat-button [matMenuTriggerFor]="ProfileMenu">Cuenta</button>
-    <mat-menu #ProfileMenu="matMenu" class="custom-menu">
-      <button (click)="redirectToClothingList('favorites')" mat-menu-item>Favoritos</button>
-      <button (click)="redirectToClothingList('vitamins')" mat-menu-item>Pedidos</button>
-      <button (click)="redirectToClothingList('profile')" mat-menu-item>Perfil personal</button>
-      <button (click)="redirectToClothingList('logout')" mat-menu-item>Cerrar sesión</button>
-    </mat-menu>
-    <span></span>
-    <span class = "fontSize">Carrito</span>
-  </mat-toolbar>
-</div>
+<mat-toolbar>
+  <div>
+    <mat-form-field style="font-size:15px" class="search">
+      <input matInput placeholder="Buscar">
+    </mat-form-field>
+    <button mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+  <button mat-button (click)="redirectToHome()" class="fontSize">Inicio</button>
+  <button mat-button [matMenuTriggerFor]="clothesMenu" class="fontSize">Ropa</button>
+  <mat-menu #clothesMenu="matMenu" class="custom-menu">
+    <button (click)="redirectToClothingList('women')" mat-menu-item>Mujer</button>
+    <button (click)="redirectToClothingList('men')" mat-menu-item>Hombre</button>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="supplementationMenu" class="fontSize">Suplementación</button>
+  <mat-menu #supplementationMenu="matMenu" class="custom-menu">
+    <button (click)="redirectToSupplementList('proteins')" mat-menu-item>Proteína</button>
+    <button (click)="redirectToSupplementList('vitamins')" mat-menu-item>Vitaminas</button>
+    <button (click)="redirectToSupplementList('snacks')" mat-menu-item>Snacks</button>
+  </mat-menu>
+  <button mat-button (click)="redirectToForo()" class="fontSize">Foro</button>
+  <button mat-button [matMenuTriggerFor]="ProfileMenu" class="fontSize">Cuenta</button>
+  <mat-menu #ProfileMenu="matMenu" class="custom-menu">
+    <button (click)="redirectToClothingList('favorites')" mat-menu-item>Favoritos</button>
+    <button (click)="redirectToClothingList('vitamins')" mat-menu-item>Pedidos</button>
+    <button (click)="redirectToClothingList('profile')" mat-menu-item>Perfil personal</button>
+    <button (click)="redirectToClothingList('logout')" mat-menu-item>Cerrar sesión</button>
+  </mat-menu>
+  <span class="fontSize">Carrito</span>
+</mat-toolbar>
