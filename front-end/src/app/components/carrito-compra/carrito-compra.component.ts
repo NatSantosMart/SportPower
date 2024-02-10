@@ -11,19 +11,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { ClothingService } from '../../services/clothing.service';
 import { Clothes } from '../../models/clothes.model';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { CartService } from '../../services/cart.service';
+import { get } from 'http';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-carrito-compra',
   standalone: true,
   imports: [CommonModule, ProductoComponent, MatIconModule, HttpClientModule, ToolbarComponent],
-  providers: [UserService, ClothingService],
+  providers: [UserService, ClothingService, CartService, ProductService],
   templateUrl: './carrito-compra.component.html',
   styleUrl: './carrito-compra.component.css'
 })
 export class CarritoCompraComponent {
   productosCarrito : Clothes[] = []
   
-  constructor(private _clothingService: ClothingService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer){
+  constructor(private _clothingService: ClothingService,
+   private _cartService: CartService,
+   private _productsService: ProductService,
+    private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer){
     this.matIconRegistry.addSvgIcon(
       'papelera',
       this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/papelera.svg')
@@ -31,30 +37,51 @@ export class CarritoCompraComponent {
   }
 
   allProducts: any[] = [];
+  allProductsID: any[] = [];
+  precioTotal: number = 0;
+  impuestos: number = 0;
+  total: number = 0;
   ngOnInit(): void {
-    this._clothingService.getAllClothes().subscribe(
-        (response: any) => {
-          this.allProducts = response.data;
-        },
-        (error: any) => {
-          console.error('Error al obtener la ropa', error);
-        });
+    const currentUserString = localStorage.getItem('currentUser');
+    const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
+    const dni = currentUser ? currentUser.dni : null;
+ 
+    if(dni){
+      this._cartService.getProductsFromClient(dni).subscribe(
+      (response: any) => {
+        this.allProductsID = response.data.map((product: any) => product.product_id);
+        if (this.allProductsID.length > 0) {
+          this.getProductsById();
+        } else {
+          console.log("No hay productos en el carrito.");
+        }
+      },
+      (error: any) => {
+        console.error('Error al obtener los productos del carrito', error);
+      }
+    );
+    }
   }
 
-   getPrecioTotal = () => {
-    let precioTotal = 0;
+  getProductsById = async() => {
+    for (const id of this.allProductsID) {
+      try {
+        const response: any = await this._productsService.getProductById(id).toPromise();
+        this.allProducts.push(response.data);
+      } catch (error) {
+        console.error('Error al obtener los productos', error);
+      }
+    } 
+    
+    console.log("PRODUCTOSSSSSSSSSS",this.allProducts);
+    this.precioTotal = 0;
     this.allProducts.forEach(producto => {
-      precioTotal += parseInt(producto.product.price);
+      this.precioTotal += parseInt(producto.price);
     });
-    return precioTotal;
-  }
 
-  getImpuestos = () => {
-    return this.getPrecioTotal() * 0.16;
-  }
+    this.impuestos = this.precioTotal * 0.16;
+    this.total = this.precioTotal + this.impuestos + 5;
 
-  getTotal = () => {
-    return this.getPrecioTotal() + this.getImpuestos() + 5;
   }
 
   realizarCompra = () => {

@@ -1,7 +1,11 @@
 <app-toolbar></app-toolbar>
+<div *ngIf="confirmationMessage" class="alert alert-success" role="alert"> <!-- mensaje de confirmacion superior -->
+    <p style="text-align: center;"><i style="margin-right: 10px;" class="fas fa-exclamation-circle"></i>{{ confirmationMessage }}</p> 
+</div>
 <div class="d-flex " style="margin-top:1rem; margin-left:7rem">
+   
     <div class="d-flex flex-column" style="width: 680px;" *ngIf="product !== undefined">
-        <img [src]=product.product.url_image>
+        <img style="border: 1px solid; border-radius: 4px;" [src]=product.product.url_image>
         <h2 class = "titleFont topMargin">Descripción del producto:</h2>
         <p class="infoSize topMargin">{{product.product.description}}</p>
         <h2 class = "titleFont topMargin">Valoraciones</h2>
@@ -82,7 +86,7 @@
 
         <div class ="d-flex">
             <div class="d-flex flex-column">
-                <button class="buttonCartValoracion topMargin">Añadir al carrito</button>
+                <button (click)="addProductToCart()" class="buttonCartValoracion topMargin">Añadir al carrito</button>
             </div>
             <div class="d-flex flex-column">
                 <mat-icon class="addFavorite topMargin">favorite</mat-icon>

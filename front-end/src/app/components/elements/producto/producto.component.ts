@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../../../models/product.model';
 import { CommonModule } from '@angular/common';
+import { Product } from '../../../models/product.model';
 
 @Component({
   selector: 'app-producto',
@@ -10,11 +10,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './producto.component.css'
 })
 export class ProductoComponent {
-  @Input() producto: any;
+  @Input() producto: Product = {} as Product;
   @Input() eliminar: boolean = false;
 
   constructor() {
-    this.producto = {} as Product;
+    //this.producto = {} as Product;
+    console.log("Producto",this.producto);
   }
 
   eliminarProducto = () => {
