@@ -11,12 +11,14 @@ import { ClothingService } from '../../services/clothing.service';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
+import { ConfirmCompraModalComponent } from '../confirm-compra-modal/confirm-compra-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-carrito-compra',
   standalone: true,
   imports: [CommonModule, ProductoComponent, MatIconModule, HttpClientModule, ToolbarComponent],
-  providers: [UserService, ClothingService, CartService, ProductService],
+  providers: [UserService, ClothingService, CartService, ProductService, MatDialog],
   templateUrl: './carrito-compra.component.html',
   styleUrl: './carrito-compra.component.css'
 })
@@ -26,6 +28,7 @@ export class CarritoCompraComponent {
    private router: Router,
    private _cartService: CartService,
    private _productsService: ProductService,
+   public dialog: MatDialog,
     private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer){
     this.matIconRegistry.addSvgIcon(
       'papelera',
@@ -100,13 +103,18 @@ export class CarritoCompraComponent {
   }
 
   realizarCompra = () => {
-    this.mostrarModal= true
-    console.log('Realizando compra');
-    console.log(this.mostrarModal)
-  }
+    this.mostrarPopupCompraExitosa();  }
 
-  cerrarModal = () => {
-    this.mostrarModal = false;
-    this.router.navigate(['/']);  
-  }
+    mostrarPopupCompraExitosa() {
+      const dialogRef = this.dialog.open(ConfirmCompraModalComponent, {
+        width: '400px',
+      });
+  
+      dialogRef.afterClosed().subscribe(() => {
+        // Redirigir o realizar acciones adicionales después de cerrar el popup
+        this.router.navigate(['/home']);
+      });
+    }
+
+ 
 }
