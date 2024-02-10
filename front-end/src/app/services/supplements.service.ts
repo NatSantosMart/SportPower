@@ -33,7 +33,7 @@ export class SupplementService{
     updateSupplement(id:number, supplement: Supplement): Observable<any> {
         let params = JSON.stringify(supplement); 
         let headersUpdate = new HttpHeaders().set('Content-Type', 'application/json'); 
-        return this.http.put(`${ApiConfig.baseUrl}/supplements/` + id, params, {headers: headersUpdate});
+        return this.http.post(`${ApiConfig.baseUrl}/supplements/` + id, params, {headers: headersUpdate});
    }
 
    

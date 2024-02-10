@@ -1,6 +1,6 @@
-<span class="dialog-style" *ngIf="data.editMode && data.satisfactory" style="background-color:rgb(69, 200, 69)">El producto se ha editado correctamente</span>
-<span class="dialog-style" *ngIf="data.editMode && !data.satisfactory" style="background-color:red">El producto no se ha podido editar</span>
-<span class="dialog-style" *ngIf="!data.editMode && data.satisfactory"  style="background-color:rgb(69, 200, 69)">El producto se ha eliminado correctamente</span>
-<span class="dialog-style" *ngIf="!data.editMode && !data.satisfactory"  style="background-color:red">El producto no se ha podido eliminar</span>
-<span class="dialog-style" *ngIf="data.addMode && data.satisfactory"  style="background-color:rgb(69, 200, 69)">El producto se ha añadido correctamente</span>
-<span class="dialog-style" *ngIf="data.addMode && !data.satisfactory"  style="background-color:red">El producto se ha podido aañdir</span>
+<span class="dialog-style succesMessage" *ngIf="data.editMode && data.satisfactory">El producto se ha editado correctamente</span>
+<span class="dialog-style errorMessage" *ngIf="data.editMode && !data.satisfactory">El producto no se ha podido editar</span>
+<span class="dialog-style succesMessage" *ngIf="data.deleteMode && data.satisfactory">El producto se ha eliminado correctamente</span>
+<span class="dialog-style errorMessage" *ngIf="data.deleteMode && !data.satisfactory">El producto no se ha podido eliminar</span>
+<span class="dialog-style succesMessage" *ngIf="data.addMode && data.satisfactory">El producto se ha añadido correctamente</span>
+<span class="dialog-style errorMessage" *ngIf="data.addMode && !data.satisfactory">El producto se ha podido aañdir</span>

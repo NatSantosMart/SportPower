@@ -2,3 +2,11 @@
     padding:3rem;
     font-size:2rem
 }
+
+.succesMessage{
+    background-color: rgb(148, 255, 148); 
+}
+
+.errorMessage{
+    background-color: rgb(247, 156, 156); 
+}

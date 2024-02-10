@@ -61,7 +61,6 @@ export class ProductsListAdminComponent implements OnInit {
     );
   }
 
-
   updateProduct(product: number) {
     const dialogRef = this.dialog.open(AddeditproductComponent,({
       data: {
@@ -69,7 +68,6 @@ export class ProductsListAdminComponent implements OnInit {
         product : product
       }
     }));
-    // Suponiendo que tienes una referencia al MatDialogRef llamada dialogRef
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
@@ -79,49 +77,30 @@ export class ProductsListAdminComponent implements OnInit {
           }       
         })
         setTimeout(() => { dialogRef.close(); }, 3000);
-      } else {
-        {
-          const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
-            data: {
-              editMode : false,
-              satisfactory : false
-            }         
-          })
-        }
-        setTimeout(() => {dialogRef.close();}, 3000);
+      } else{
+        location.reload();
       }
     });
   }
 
-  addProduct(){
-    
+  addProduct(){   
     const dialogRef = this.dialog.open(AddeditproductComponent,({
-      data: {
-        addMode : true
-      }
+      data: {addMode : true}
     }));
 
-    // Suponiendo que tienes una referencia al MatDialogRef llamada dialogRef
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
           data: {
             satisfactory : true,
-            editMode : true
+            addMode : true
           }       
         })
-        setTimeout(() => { dialogRef.close(); }, 3000);
-      } else {
-        {
-          const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
-            data: {
-              editMode : false,
-              satisfactory : false
-            }         
-          })
-        }
-        setTimeout(() => {dialogRef.close();}, 3000);
-      }
+        setTimeout(() => { 
+          dialogRef.close(); 
+          location.reload();
+        }, 3000);
+      } 
     });
   }
 
@@ -137,24 +116,16 @@ export class ProductsListAdminComponent implements OnInit {
       if (result) {
         const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
           data: {
-            satisfactory : false,
-            editMode : true
+            satisfactory : true,
+            deleteMode : true
           }       
         })
-        setTimeout(() => { dialogRef.close(); }, 3000);
-      } else {
-        {
-          const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
-            data: {
-              editMode : false,
-              satisfactory : false
-            }         
-          })
-        }
-        setTimeout(() => {dialogRef.close();}, 3000);
-      }
+        setTimeout(() => {
+            dialogRef.close(); 
+            location.reload();
+        }, 3000);
+      } 
     });
-
 }
 
 }

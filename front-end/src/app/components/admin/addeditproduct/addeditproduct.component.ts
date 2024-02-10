@@ -47,13 +47,13 @@ export class AddeditproductComponent implements OnInit{
     this.newSupplement = {
       quantity: '',
       product_id: 0,
-      type: 'vitamina',
+      type: '',
       flavor: ''
     };
     this.newClothing = {
-      gender: 'Femenino',
+      gender: '',
       product_id: 0,
-      size: 'S',
+      size: '',
       color: '',
     };
   }
@@ -68,7 +68,6 @@ export class AddeditproductComponent implements OnInit{
     else{
       //Editar un producto 
       this.product = this.data.product;
-
     }
   }
 
@@ -78,8 +77,8 @@ export class AddeditproductComponent implements OnInit{
     if (this.tipoProducto === 'clothes') {
       const emptyClothing: Clothing = {
         id: 0,
-        gender: 'Femenino',
-        size: 'S',
+        gender: '',
+        size: '',
         color: '',
         product_id: 0,
         product: {
@@ -105,9 +104,9 @@ export class AddeditproductComponent implements OnInit{
           },
           id: 0,
           product_id: 0,
-          type: 'proteina',
-          flavor: 'Fresa',
-          quantity: '1kg'
+          type: '',
+          flavor: '',
+          quantity: ''
       };
       this.product = emptySupplement;
     }
@@ -118,70 +117,107 @@ export class AddeditproductComponent implements OnInit{
 	}
 
 	pressGuardar(): void {
-		//this.dialogRef.close(this.product);
 
+    this.addUpdateProduct(); 
+	}
 
-    console.log(this.product.product.url_image);
-
+  addUpdateProduct(){
     this.newProduct.url_image = this.product.product.url_image; 
     this.newProduct.name = this.product.product.name; 
     this.newProduct.price = this.product.product.price; 
     this.newProduct.description = this.product.product.description; 
     this.newProduct.type = this.product.product.type; 
 
-    this._productService.createProduct(this.newProduct).subscribe(
-      (response) => {
-
-        // Crear un nuevo post utilizando el ID del comentario
-        this.newProductId = response.data.id;
-
-        if (this.product.product.type === "ropa"){
-          this.storeNewClothing(); 
-        } else {
-          this.storeNewSupplement();
+    //Añadir producto
+    if(this.data.addMode === true){
+      this._productService.createProduct(this.newProduct).subscribe(
+        (response) => {
+          this.newProductId = response.data.id;
+          if (this.product.product.type === "ropa"){
+            this.storeUpdateClothing(); 
+          } else {
+            this.storeUpdateSupplement();
+          }
+        },
+        (error) => {
+          console.error('Error:', error);
         }
-      },
-      (error) => {
-        console.error('Error creating comment:', error);
-      }
-    );
+      );
 
-	}
-
-  storeNewClothing (){
-
+      //Editar producto
+    } else{
+      this._productService.updateProduct(this.product.product.id, this.newProduct).subscribe(
+        (response) => {
+          this.newProductId = response.data.id;
+          if (this.product.product.type === "ropa"){
+            this.storeUpdateClothing(); 
+          } else {
+            this.storeUpdateSupplement();
+          }
+        },
+        (error) => {
+          console.error('Error:', error);
+        }
+      );
+    }
+  }
+  
+  storeUpdateClothing (){
     this.newClothing.product_id = this.newProductId; 
     this.newClothing.color = this.product.color; 
     this.newClothing.gender = this.product.gender; 
     this.newClothing.size = this.product.size; 
 
-    this._clothingService.createClothing(this.newClothing).subscribe(
-      (postResponse) => {
-        console.log('Clothing created successfully:', postResponse);
-         this.dialogRef.close(true);
-      },
-      (postError) => {
-        console.error('Error creating post:', postError);
-      }
-    );
+    //Añadir ropa
+    if(this.data.addMode === true){
+      this._clothingService.createClothing(this.newClothing).subscribe(
+        (postResponse) => {
+          this.dialogRef.close(true);
+        },
+        (postError) => {
+          console.error('Error:', postError);
+        }
+      );
+      //Editar ropa
+    } else{
+      this._clothingService.updateClothing(this.product.product_id, this.newClothing).subscribe(
+        (postResponse) => {
+          this.dialogRef.close(true);
+        },
+        (postError) => {
+          console.error('Error:', postError);
+        }
+      );
+    }
   }
   
-  storeNewSupplement (){
-    
+  storeUpdateSupplement (){
     this.newSupplement.product_id = this.newProductId; 
     this.newSupplement.flavor = this.product.flavor; 
     this.newSupplement.quantity = this.product.quantity; 
     this.newSupplement.type = this.product.type; 
 
-    this._supplementService.createClothing(this.newSupplement).subscribe(
-      (postResponse) => {
-        console.log('Supplement created successfully:', postResponse);
-         this.dialogRef.close(true);
-      },
-      (postError) => {
-        console.error('Error creating post:', postError);
-      }
-    );
+    //Añadir suplemento
+    if(this.data.addMode === true){
+      this._supplementService.createClothing(this.newSupplement).subscribe(
+        (postResponse) => {
+          this.dialogRef.close(true);
+        },
+        (postError) => {
+          console.error('Error:', postError);
+        }
+      );
+    
+    //Editar suplemento
+    } else{
+      this._supplementService.updateSupplement(this.product.product.id, this.newSupplement).subscribe(
+        (postResponse) => {
+          this.dialogRef.close(true);
+        },
+        (postError) => {
+          console.error('Error:', postError);
+        }
+      );
+    }
   }
-
 }

@@ -39,7 +39,7 @@ export class ClothingService{
     updateClothing(id:number, clothing: Clothing): Observable<any> {
         let params = JSON.stringify(clothing); 
         let headersUpdate = new HttpHeaders().set('Content-Type', 'application/json'); 
-        return this.http.put(`${ApiConfig.baseUrl}/clothes/` + id, params, {headers: headersUpdate});
+        return this.http.post(`${ApiConfig.baseUrl}/clothes/` + id, params, {headers: headersUpdate});
    }
 
    deleteClothing(product_id:number) {

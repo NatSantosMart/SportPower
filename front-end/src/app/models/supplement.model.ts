@@ -5,6 +5,6 @@ export interface Supplement {
     quantity : string;
     product_id : number;
     product?: Product | null; 
-    type: "vitamina" | "proteina" | "snack"; 
+    type: string; 
     flavor: string; 
 }
