@@ -6,7 +6,7 @@
             <div class="productos-seleccionados">
                 <ul class="list-group">
                     <li class="list-group-item" *ngFor="let producto of allProducts">
-                        <app-producto [producto]="producto" [eliminar]="true"></app-producto>
+                        <app-producto *ngIf="producto" [producto]="producto" [eliminar]="true" (productoEliminado)="onProductoEliminado($event)"></app-producto>
                     </li>
                 </ul>
             </div>
@@ -15,11 +15,11 @@
         <div class="col-md-6">
             <div class="resumen-compra">
                 <h2>Resumen de la Compra</h2>
-                <p>PVP: {{getPrecioTotal()}}€</p>
-                <p>Impuestos: {{getImpuestos()}}€</p>
+                <p>PVP: {{precioTotal}}€</p>
+                <p>Impuestos: {{impuestos}}€</p>
                 <p>Gastos de envio: 5€</p>
                 <div class="divider"></div>
-                <p>Total: {{getTotal()}}€</p>
+                <p>Total: {{total}}€</p>
             </div>
             <div class="button-section">
                 <button class="btn btn-secondary" style="width: 100%" (click)="realizarCompra()">Realizar Compra</button>
@@ -27,3 +27,5 @@
         </div>
     </div>
   </div>
+
+  

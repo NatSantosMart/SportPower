@@ -30,4 +30,8 @@ export class ToolbarComponent {
     this.router.navigate(['/home']);
   }
 
+  redirectToCarritoCompra(): void {
+    this.router.navigate(['/carrito_compra']);
+  }
+
 }
