@@ -1,0 +1,32 @@
+<h2 mat-dialog-title class="custom-dialog-title">Añadir valoración</h2>
+<mat-dialog-content class="mat-typography custom-dialog-content">
+  <div class="d-flex" style="height: 100px; margin-top: 10px; overflow-x: auto;">
+    <label>Puntuación:</label>
+    <div class="d-flex flex-column mx-1">
+      <mat-icon (click)="setScore(1)" class="star" [class.selected]="solicitud.score >= 1" style="font-size: 4rem;">star</mat-icon>
+    </div>
+    <div class="d-flex flex-column mx-1"> 
+      <mat-icon (click)="setScore(2)" class="star" [class.selected]="solicitud.score >= 2" style="font-size: 4rem;">star</mat-icon>
+    </div>
+    <div class="d-flex flex-column mx-1">
+      <mat-icon (click)="setScore(3)" class="star" [class.selected]="solicitud.score >= 3" style="font-size: 4rem;">star</mat-icon>
+    </div>
+    <div class="d-flex flex-column mx-1">
+      <mat-icon (click)="setScore(4)" class="star" [class.selected]="solicitud.score >= 4" style="font-size: 4rem;">star</mat-icon>
+    </div>
+    <div class="d-flex flex-column mx-1">
+      <mat-icon (click)="setScore(5)" class="star" [class.selected]="solicitud.score >= 5" style="font-size: 4rem;">star</mat-icon>
+    </div>
+  </div>
+
+  <mat-form-field class="custom-form-field">
+    <label>Contenido valoración</label>
+    <textarea matInput [(ngModel)]="solicitud.description" name="description" #description="ngModel"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="pressAddRatingComment()">Añadir</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

@@ -9,13 +9,25 @@
         <h2 class = "titleFont topMargin">Descripción del producto:</h2>
         <p class="infoSize topMargin">{{product.product.description}}</p>
         <h2 class = "titleFont topMargin">Valoraciones</h2>
-        <button class="buttonCartValoracion" (click)="addAssessment()">Añadir valoración</button>
+        <button class="buttonCartValoracion" (click)="openDialog()">Añadir valoración</button>  
+      
+        <div *ngFor="let rating of ratings" class="rating">
+            <div class="rating-header">
+                <p class="client-email">{{ rating.comment.client.email }}</p>
+                <p class="rating-date" style="margin-left: 100px;">{{ rating.comment.date | date:'medium' }}</p>
+            </div>        
+            <div class="rating-content">
+                <h2 class="rating-title">{{ rating.score }}</h2>
+                <img class="rating-image" [src]="rating.comment.url_image" alt="Imagen del comentario" *ngIf="rating.comment.url_image">
+                <p class="rating-description">{{ rating.comment.description }}</p>
+            </div>
+        </div>
     </div>
 
     <div class="d-flex flex-column " style="margin-top:4rem; margin-left: 90px;">
 
         <h1 style="font-size:2rem; font-weight:bold;">{{product.product.name | uppercase }}</h1>
-        <p class="infoSize topMargin">{{product.product.price}} €</p>
+        <h2 class="infoPrice topMargin">{{product.product.price}} €</h2>
 
         <div *ngIf="typeProduct === 'clothing'">
             <p class="infoSize topMargin">Talla:</p>
@@ -88,6 +100,7 @@
             <div class="d-flex flex-column">
                 <button (click)="addProductToCart()" class="buttonCartValoracion topMargin">Añadir al carrito</button>
             </div>
+            
             <div class="d-flex flex-column">
                 <mat-icon class="addFavorite topMargin">favorite</mat-icon>
             </div>

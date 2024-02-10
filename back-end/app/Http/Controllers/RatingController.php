@@ -16,9 +16,10 @@ class RatingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function indexFromProduct($id)
     {
-        $ratings = Rating::all(); 
+
+        $ratings = Rating::where('product_id', $id)->with('product')->get();
 
         $resultResponse = new ResultResponse(); 
 
@@ -57,7 +58,6 @@ class RatingController extends Controller
             $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
 
         } catch(\Exception $e){
-            Log::debug($e); 
             dd($e); 
             $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
             $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
@@ -89,53 +89,6 @@ class RatingController extends Controller
         return response()->json($resultResponse); 
     }
 
-    public function put(Request $request, $comment_id)
-    {
-        $resultResponse = new ResultResponse(); 
-
-        try{
-            $rating = Rating::where('comment_id', $comment_id)->firstOrFail();
-            
-            $rating->score = $request->get('score', $rating->score); 
-
-            $rating->save(); 
-
-            $resultResponse->setData($rating); 
-            $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
-            $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
-
-        } catch(\Exception $e){
-            Log::debug($e); 
-            dd($e); 
-            $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
-            $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
-        }
-        return response()->json($resultResponse); 
-    }
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        $resultResponse = new ResultResponse(); 
-
-        try{
-                $rating = Rating::where('comment_id', $id)->firstOrFail();
-            
-                $rating->delete();
-
-                $resultResponse->setData($rating); 
-                $resultResponse->setStatusCode(ResultResponse::SUCCESS_CODE); 
-                $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
-
-        } catch(\Exception $e){
-            $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
-            $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
-        }
-        return response()->json($resultResponse); 
-    }
 
     private function validateRating($request){
 

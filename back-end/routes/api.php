@@ -63,7 +63,7 @@ Route::controller(PostController::class)->prefix('posts')->group(function() {
     Route::delete('/{comment_id}', 'destroy'); 
 });
 Route::controller(RatingController::class)->prefix('ratings')->group(function() {
-    Route::get('/', 'index'); 
+    Route::get('/from_product/{id}', 'indexFromProduct'); 
     Route::post('/', 'store'); 
     Route::put('/{comment_id}', 'put'); 
     Route::get('/{comment_id}', 'show'); 
