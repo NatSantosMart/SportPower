@@ -47,6 +47,18 @@ class ClothingSeeder extends Seeder
                 'color' => 'Blanco',
                 'product_id' => 10,
             ],
+            [
+                'gender' => 'Masculino',
+                'size' => 'L',
+                'color' => 'Gris',
+                'product_id' => 11,
+            ],
+            [
+                'gender' => 'Masculino',
+                'size' => 'XL',
+                'color' => 'Rojo',
+                'product_id' => 12,
+            ],
         ];
 
         DB::table('clothing')->insert($clothing);

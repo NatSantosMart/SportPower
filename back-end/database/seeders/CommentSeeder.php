@@ -20,7 +20,7 @@ class CommentSeeder extends Seeder
             ],
             [
                 'date' => '2023-11-02',
-                'description' => 'No me gustó mucho',
+                'description' => 'He estado usando este ganador de peso durante un par de semanas y estoy muy decepcionado. A pesar de seguir las instrucciones de uso y consumirlo regularmente, no he experimentado ningún aumento significativo en mi masa muscular. Además, el sabor es extremadamente dulce y artificial, lo que hace que sea difícil de beber. También he notado que me siento hinchado y con malestar estomacal después de tomarlo, lo que me hace cuestionar la calidad de los ingredientes utilizados. En general, no recomendaría este producto y buscaré alternativas más efectivas y mejor toleradas.',
                 'id' => 2,
                 'client_dni' => '34567890C',
             ],
@@ -32,7 +32,7 @@ class CommentSeeder extends Seeder
             ],
             [
                 'date' => '2023-11-04',
-                'description' => 'Entrega rápida y eficiente',
+                'description' => 'Entrega rápida y eficiente!!',
                 'id' => 4,
                 'client_dni' => '12345678A',
             ],
