@@ -8,6 +8,7 @@ import { ForoComponent } from './components/foro/foro.component';
 import { CarritoCompraComponent } from './components/carrito-compra/carrito-compra.component';
 import { ProductsListAdminComponent } from './components/admin/products-list/products-list.component';
 import { ConfirmCompraModalComponent } from './components/confirm-compra-modal/confirm-compra-modal.component';
+import { OrdersListComponent } from './components/orders-list/orders-list.component';
 
 export const routes: Routes = [
     {path: 'home', component : HomeComponent},
@@ -33,5 +34,5 @@ export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: "carrito_compra", component: CarritoCompraComponent}, 
     {path: "products", component : ProductsListAdminComponent},
-    {path: 'modal', component : ConfirmCompraModalComponent},
+    {path: "orders", component: OrdersListComponent}
 ];

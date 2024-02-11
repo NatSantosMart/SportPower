@@ -36,6 +36,10 @@ export class ToolbarComponent {
   redirectToCarritoCompra(): void {
     this.router.navigate(['/carrito_compra']);
   }
+
+  redirectToOrders(): void {
+    this.router.navigate(['/orders']);
+  }
   cerrarSesion(): void {
     this.router.navigate(['/login']);
     this._authenticatorService.logout(); 

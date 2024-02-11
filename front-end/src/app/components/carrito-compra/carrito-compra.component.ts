@@ -13,12 +13,14 @@ import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
 import { ConfirmCompraModalComponent } from '../confirm-compra-modal/confirm-compra-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { OrderService } from '../../services/order.service';
+import { Order } from '../../models/order.model';
 
 @Component({
   selector: 'app-carrito-compra',
   standalone: true,
   imports: [CommonModule, ProductoComponent, MatIconModule, HttpClientModule, ToolbarComponent],
-  providers: [UserService, ClothingService, CartService, ProductService, MatDialog],
+  providers: [UserService, ClothingService, CartService, ProductService, MatDialog, OrderService],
   templateUrl: './carrito-compra.component.html',
   styleUrl: './carrito-compra.component.css'
 })
@@ -28,6 +30,7 @@ export class CarritoCompraComponent {
    private router: Router,
    private _cartService: CartService,
    private _productsService: ProductService,
+   private _orderService: OrderService,
    public dialog: MatDialog,
     private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer){
     this.matIconRegistry.addSvgIcon(
@@ -102,8 +105,30 @@ export class CarritoCompraComponent {
     this.total = this.precioTotal + this.impuestos + 5;
   }
 
-  realizarCompra = () => {
-    this.mostrarPopupCompraExitosa();  }
+  realizarCompra = async() => {
+    this.mostrarPopupCompraExitosa();
+
+    const currentUserString = localStorage.getItem('currentUser');
+    const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
+    const dni = currentUser ? currentUser.dni : null;
+  
+    const newOrder:Order={
+      status: 'En proceso',
+      delivery_date: '2021-08-01',
+      request_date: '2021-07-01',
+      total_price: this.total,
+      client_dni: dni
+    }
+
+    try {
+     const res =  await this._orderService.storeNewOrder(newOrder).toPromise();
+     console.log("Response: ", res);
+    } catch (error) {
+      console.error('Error al guardar el pedido', error);
+    }
+  }
+
+    
 
     mostrarPopupCompraExitosa() {
       const dialogRef = this.dialog.open(ConfirmCompraModalComponent, {
