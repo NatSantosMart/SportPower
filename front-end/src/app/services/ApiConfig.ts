@@ -1,4 +1,4 @@
 export class ApiConfig {
-    static baseUrl = 'http://localhost/api';
+    static baseUrl = 'http://localhost:8000/api';
   }
   

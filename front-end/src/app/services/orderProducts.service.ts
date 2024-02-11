@@ -18,14 +18,14 @@ export class OrderProductService{
     }
 
   
-    addProductToOrder(order_id: number, product_id: number): Observable<any> {
+    storeProductsToOrder(order_id: number, product_id: any[]): Observable<any> {
         const body = {
-            order: order_id,
-            product: product_id
+            order_id: order_id,
+            product_id: product_id
           };
 
         let headersCreate = new HttpHeaders().set('Content-Type', 'application/json'); 
-        return this.http.post(`${ApiConfig.baseUrl}/order_product`, body, {headers:headersCreate});
+        return this.http.post(`${ApiConfig.baseUrl}/order_products`, body, {headers:headersCreate});
     }  
 
     
