@@ -8,6 +8,8 @@
                     <p style="text-align: center;"><i style="margin-right: 10px;" class="fas fa-exclamation-circle"></i>{{ errorMessage }}</p> 
                 </div>
                 <p style="margin-bottom:3rem">¡Bienvenido a SportPower! <span *ngIf="login">Inicia sesión</span><span *ngIf="!login">Regístrate</span> para poder <br> acceder a todos los servicios.</p>
+               
+               <!-- Registro usuario -->
                 <div *ngIf="!login" class="d-flex justify-content-around">
                     <div class="d-flex flex-column">
                         <mat-form-field appearance="outline">
@@ -22,26 +24,73 @@
                         </mat-form-field>
                     </div>
                 </div>
-                <mat-form-field appearance="outline">
+
+                <!-- Login -->
+                <mat-form-field *ngIf="login"appearance="outline">
                     <mat-label>Email</mat-label>
                     <input matInput [(ngModel)]="email" #input>
                 </mat-form-field>
-                <mat-form-field *ngIf="!login" appearance="outline">
-                    <mat-label>Repite email</mat-label>
-                    <input matInput [(ngModel)]="repitedEmail" #input>
-                </mat-form-field>
+                
+                <!-- Registro -->
+                <div *ngIf="!login" class="d-flex justify-content-around">
+                    <div class="d-flex flex-column">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput [(ngModel)]="email" #input>
+                        </mat-form-field>
+                    </div>
+                    <div class="d-flex flex-clumn" style="margin-left:1rem">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Dni</mat-label>
+                            <input matInput [(ngModel)]="dni" #input>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Registro usuario -->
+                <div *ngIf="!login" class="d-flex justify-content-around">
+                    <div class="d-flex flex-clumn">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Teléfono</mat-label>
+                            <input matInput [(ngModel)]="phone" #input>
+                        </mat-form-field>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <mat-form-field appearance="outline" style="margin-left:1rem">
+                            <mat-label>Ciudad</mat-label>
+                            <input matInput [(ngModel)]="city" #input>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div *ngIf="!login" class="d-flex justify-content-around">
+                    <div class="d-flex flex-column">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Dirección</mat-label>
+                            <mat-hint>*Incluir calle, número y piso</mat-hint>
+                            <input matInput [(ngModel)]="address" #input>
+                        </mat-form-field>
+                    </div>
+                    <div class="d-flex flex-clumn" style="margin-left:1rem">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput [(ngModel)]="password" #input  type="password">
+                        </mat-form-field>
+                    </div>
+                </div>
+
                 <p style="color:red" *ngIf="wrongEmail">El email no es el mismo</p>
-                <mat-form-field appearance="outline">
+                <mat-form-field *ngIf="login" appearance="outline">
                     <mat-label>Contraseña</mat-label>
                     <input matInput [(ngModel)]="password" #input  type="password">
                 </mat-form-field>
                 <button style="margin-top:1rem" class="buttomStyle" *ngIf="login; else signupButtons"
-                    (click)="checkUser()">Iniciar Sesión</button>
+                    (click)="loginUser()">Iniciar Sesión</button>
                 <p *ngIf="login" style="margin-top:2rem">¿No tienes cuenta todavía? ¡Es el momento de crearla!</p>
                 <a *ngIf="login" (click)="changeToSignUp()"> <strong>Registrarme</strong></a>
+
                 <ng-template #signupButtons>
                     <button style="margin-top:1rem" class="buttomStyle"
-                    (click)="signup()">Registrar</button>
+                    (click)="signUp()">Registrar</button>
                    <p style="margin-top:2rem">¿Ya tienes una cuenta?</p>
                     <a (click)="changeToLogin()"><strong>Registrarme</strong></a>
                 </ng-template>

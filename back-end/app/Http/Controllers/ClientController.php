@@ -51,15 +51,10 @@ class ClientController extends Controller
                 'password' => $request->get('password'), 
                 'name' => $request->get('name'), 
                 'surnames' => $request->get('surnames'), 
-                'country' => $request->get('country'), 
-                'postal_code' => $request->get('postal_code'), 
                 'city' => $request->get('city'), 
                 'address' => $request->get('address'), 
+                'phone' => $request->get('phone'), 
             ]); 
-
-            if($request->has('phone')){
-                $newClient->phone = $request->get('phone'); 
-            }
 
             $newClient->save(); 
 
@@ -68,6 +63,7 @@ class ClientController extends Controller
             $resultResponse->setMessage(ResultResponse::TXT_SUCCESS_CODE);
 
         } catch(\Exception $e){
+            dd($e); 
             $resultResponse->setStatusCode(ResultResponse::ERROR_CODE); 
             $resultResponse->setMessage(ResultResponse::TXT_ERROR_CODE);
         }
@@ -128,14 +124,9 @@ class ClientController extends Controller
             $client->password = $request->get('password'); 
             $client->name = $request->get('name'); 
             $client->surnames = $request->get('surnames'); 
-            $client->country = $request->get('country'); 
-            $client->postal_code = $request->get('postal_code'); 
             $client->city = $request->get('city'); 
             $client->address = $request->get('address'); 
-
-            if($request->has('phone')){
-                $client->phone = $request->get('phone'); 
-            }
+            $client->phone = $request->get('phone'); 
 
             $client->save(); 
 
@@ -165,8 +156,6 @@ class ClientController extends Controller
             $client->name = $request->get('name', $client->name); 
             $client->surnames = $request->get('surnames', $client->surnames);  
             $client->phone = $request->get('phone', $client->phone); 
-            $client->country = $request->get('country', $client->country); 
-            $client->postal_code = $request->get('postal_code', $client->password); 
             $client->city = $request->get('city', $client->city); 
             $client->address = $request->get('address', $client->address); 
 
@@ -227,11 +216,8 @@ class ClientController extends Controller
         $rules['surnames'] = 'required'; 
         $messages['surnames.required'] = Lang::get('alerts.client_surnames_required'); 
 
-        $rules['country'] = 'required'; 
-        $messages['country.required'] = Lang::get('alerts.client_country_required'); 
-
-        $rules['postal_code'] = 'required'; 
-        $messages['name.postal_code'] = Lang::get('alerts.client_postal_code_required'); 
+        $rules['phone'] = 'required'; 
+        $messages['phone.required'] = Lang::get('alerts.client_phone_required'); 
 
         $rules['city'] = 'required'; 
         $messages['city.required'] = Lang::get('alerts.client_city_required'); 

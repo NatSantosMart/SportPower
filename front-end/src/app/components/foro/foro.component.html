@@ -11,7 +11,7 @@
   <div *ngFor="let post of posts" class="post">
     <div class="post-header">
       <p class="client-email">{{ post.comment.client.email }}</p>
-      <p class="post-date">Publicado el {{ post.comment.date | date:'medium' }}</p>
+      <p class="post-date">Publicado el {{ post.comment.date | date:'dd/MM/yyyy' }}</p>
     </div>
     
     <div class="post-content">

@@ -24,7 +24,18 @@ export class LoginComponent {
     private _adminService: AdminService,
     private _authenticatorService: AuthenticatorService,
     private router: Router
-  ) {}
+  ) {
+    this.newClient = {
+      dni: '',
+      phone: '',
+      city: '',
+      address: '',
+      email: '',
+      password: '',
+      name: '',
+      surnames: '',
+    };
+  }
 
   hide = true;
   email! : string;
@@ -35,18 +46,24 @@ export class LoginComponent {
   repitedEmail! : string;
   name! : string;
   lastname! : string;
+  city! : string;
+  country! : string;
+  dni! : string;
+  phone! : number;
+  address! : string;
   wrongEmail! : boolean;
   errorMessage: string = '';
   isLoggedIn = false;
   currentUser: any;
+  newClient: any; 
 
   ngOnInit(): void {
     this.login = true;
     this.wrongEmail = false;
   }
 
-  public checkUser(): void {
-
+  //Inicio sesión
+  public loginUser(): void {
     //Comprobar si es cliente
     this._clientService.getAllClients().subscribe((response: any) => {
       const clientsData: Client[] = response.data; 
@@ -63,6 +80,7 @@ export class LoginComponent {
     });
   }
 
+    //Inicio sesión
   public checkAdmin(): void {
     this._adminService.getAllAdmins().subscribe((response: any) => {
       const adminsData: Client[] = response.data; 
@@ -73,7 +91,6 @@ export class LoginComponent {
         this._authenticatorService.logIn(exists); 
         this.router.navigate(['/products']);
       } else {
-        //Comprobar si es admin
         this.errorMessage = 'Usuario no existe. Inténtelo de nuevo. '; 
       }
     });
@@ -95,7 +112,8 @@ export class LoginComponent {
     this.router.navigate(['/login']);
   }
 
-  public signup(): void {
+  //Registro
+  public signUp(): void {
     // if (this.email === this.repitedEmail) {
     //   this._clientService.createClient(
     //     new Client(this.name, this.lastname, this.email, this.password, 
@@ -109,5 +127,24 @@ export class LoginComponent {
     // } else {
     //   this.wrongEmail = true;
     // }
+
+    this.newClient.dni = this.dni; 
+    this.newClient.phone = this.phone; 
+    this.newClient.email = this.email; 
+    this.newClient.name = this.name; 
+    this.newClient.surnames = this.lastname; 
+    this.newClient.city = this.city; 
+    this.newClient.address = this.address; 
+    this.newClient.password = this.password; 
+  
+
+    this._clientService.createClient(this.newClient).subscribe(
+      (response) => {
+          console.log("El cliente ha sido creado")
+      },
+      (error) => {
+        console.error('Error creating comment:', error);
+      }
+    );
   }
 }
