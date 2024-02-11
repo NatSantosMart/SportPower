@@ -145,16 +145,16 @@ export class CarritoCompraComponent {
     }
   }
 
-    mostrarPopupCompraExitosa() {
-      const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
-        data: {
-          satisfactory : true,
-          addOrder : true
-        }       
-      })
-      setTimeout(() => { 
-        dialogRef.close(); 
-        this.router.navigate(['/home']);
-      }, 3000); 
-    }
+  mostrarPopupCompraExitosa() {
+    const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
+      data: {
+        satisfactory : true,
+        addOrder : true
+      }       
+    })
+    setTimeout(() => { 
+      dialogRef.close(); 
+      this.router.navigate(['/home']);
+    }, 3000); 
+  }
 }

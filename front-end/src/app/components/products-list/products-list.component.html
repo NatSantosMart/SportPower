@@ -10,7 +10,7 @@
         <div class="product-container" (click)="redirectToProductDetails(element.product.id)" style="cursor: pointer;">
           <img [src]=element.product.url_image>
           <span>{{element.product.name}}</span>
-          <span>{{element.product.price}}</span>
+          <span style="color: brown;"><strong>{{element.product.price}}€</strong></span>
         </div>
       </ng-container>
       <h2 *ngIf="filteredProducts.length === 0" style="margin-left: 60px; margin-top: 40px; color: grey;">No hay datos para la búsqueda aplicada</h2>

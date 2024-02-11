@@ -1,13 +1,7 @@
 <mat-toolbar>
-  <div>
-    <mat-form-field style="font-size:15px" class="search">
-      <input matInput placeholder="Buscar">
-    </mat-form-field>
-    <button mat-icon-button>
-      <mat-icon>search</mat-icon>
-    </button>
-  </div>
-  <button mat-button (click)="redirectToHome()" class="fontSize">Inicio</button>
+  <button mat-button (click)="redirectToHome()" class="fontSize">
+    <img src="../../../assets/imgs/logoApp.png" style="height: 50px; width: 50px; margin: auto;">
+  </button>
   <button mat-button [matMenuTriggerFor]="clothesMenu" class="fontSize">Ropa</button>
   <mat-menu #clothesMenu="matMenu" class="custom-menu">
     <button (click)="redirectToClothingList('women')" mat-menu-item>Mujer</button>
