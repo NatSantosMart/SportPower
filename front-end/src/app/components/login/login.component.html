@@ -36,13 +36,14 @@
                     <div class="d-flex flex-column">
                         <mat-form-field appearance="outline">
                             <mat-label>Email</mat-label>
-                            <input matInput [(ngModel)]="email" #input>
+                            <input matInput [(ngModel)]="email" #input name="email"
+                                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                         </mat-form-field>
                     </div>
                     <div class="d-flex flex-clumn" style="margin-left:1rem">
                         <mat-form-field appearance="outline">
                             <mat-label>Dni</mat-label>
-                            <input matInput [(ngModel)]="dni" #input>
+                            <input matInput [(ngModel)]="dni" name="dni" pattern="[0-9]{8}[A-Za-z]" maxlength="9">
                         </mat-form-field>
                     </div>
                 </div>
@@ -52,7 +53,8 @@
                     <div class="d-flex flex-clumn">
                         <mat-form-field appearance="outline">
                             <mat-label>Teléfono</mat-label>
-                            <input matInput [(ngModel)]="phone" #input>
+                            <input matInput type="tel" inputmode="numeric" [(ngModel)]="phone" #input name="phone"
+                                    pattern="[0-9]{9}" maxlength="9">
                         </mat-form-field>
                     </div>
                     <div class="d-flex flex-column">

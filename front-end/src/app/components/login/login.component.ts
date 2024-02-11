@@ -9,6 +9,10 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'; 
 import { AuthenticatorService } from '../../services/authenticator.service';
+import { MatDialog } from '@angular/material/dialog';
+
+import { ConfirmationdialogComponent } from '../../../app/components/admin/confirmationdialog/confirmationdialog.component';
+import { AddeditproductComponent } from '../../../app/components/admin/addeditproduct/addeditproduct.component'; 
 
 @Component({
   selector: 'app-login',
@@ -23,6 +27,7 @@ export class LoginComponent {
     private _clientService: ClientService,
     private _adminService: AdminService,
     private _authenticatorService: AuthenticatorService,
+    public dialog: MatDialog,
     private router: Router
   ) {
     this.newClient = {
@@ -114,19 +119,6 @@ export class LoginComponent {
 
   //Registro
   public signUp(): void {
-    // if (this.email === this.repitedEmail) {
-    //   this._clientService.createClient(
-    //     new Client(this.name, this.lastname, this.email, this.password, 
-    //       "", "", "", "", "", ""); 
-    //   ).subscribe(() => {
-    //     // Éxito al crear el cliente, puedes redirigir o mostrar un mensaje de confirmación
-    //   }, error => {
-    //     console.error('Error al crear el cliente:', error);
-    //     // Manejar el error si es necesario
-    //   });
-    // } else {
-    //   this.wrongEmail = true;
-    // }
 
     this.newClient.dni = this.dni; 
     this.newClient.phone = this.phone; 
@@ -140,11 +132,40 @@ export class LoginComponent {
 
     this._clientService.createClient(this.newClient).subscribe(
       (response) => {
-          console.log("El cliente ha sido creado")
+          this.dialogConfirm(); 
       },
       (error) => {
+        this.dialogError(); 
         console.error('Error creating comment:', error);
       }
     );
   }
+
+
+  dialogConfirm (){ 
+    const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
+      data: {
+        satisfactory : true,
+        addClient : true
+      }       
+    })
+    setTimeout(() => { 
+      dialogRef.close(); 
+      this.changeToSignUp(); 
+      location.reload();
+    }, 3000); 
+  }
+
+  dialogError(){ 
+    const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
+      data: {
+        satisfactory : false,
+        addClient : true
+      }       
+    })
+    setTimeout(() => { 
+      dialogRef.close(); 
+    }, 3000); 
+  }
+  
 }
