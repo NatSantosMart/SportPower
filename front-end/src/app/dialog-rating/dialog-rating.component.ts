@@ -53,23 +53,27 @@ export class DialogRatingComponent {
 
 
   ngOnInit(): void {
+    // Itera sobre todas las estrellas y agrega un listener de eventos de clic a cada una
     document.querySelectorAll('.star').forEach((star: Element) => {
-        star.addEventListener('click', () => {
-            const value: number = parseInt((star as HTMLElement).getAttribute('data-value') || '0', 10);
-
-            document.querySelectorAll('.star').forEach((s: Element) => {
-                const sValue: number = parseInt((s as HTMLElement).getAttribute('data-value') || '0', 10);
-                (s as HTMLElement).innerHTML = sValue <= value ? 'star' : 'star_border';
-                (s as HTMLElement).style.color = sValue <= value ? 'yellow' : 'gray';
-            });
-        });
+      star.addEventListener('click', () => {
+        const value: number = parseInt((star as HTMLElement).getAttribute('data-value') || '0', 10);
+        
+        // Actualiza el puntaje seleccionado
+        this.setScore(value);
+      });
     });
   }
 
-  setScore(score: number) {
+  setScore(score: number): void {
     this.solicitud.score = score;
+    
+    // Actualiza las clases de las estrellas según el puntaje seleccionado
+    document.querySelectorAll('.star').forEach((s: Element) => {
+      const sValue: number = parseInt((s as HTMLElement).getAttribute('data-value') || '0', 10);
+      (s as HTMLElement).innerHTML = sValue <= score ? 'star' : 'star_border';
+      (s as HTMLElement).style.color = sValue <= score ? 'yellow' : 'gray';
+    });
   }
-
   pressAddRatingComment() {
 
     //const url = this.route.snapshot.url;

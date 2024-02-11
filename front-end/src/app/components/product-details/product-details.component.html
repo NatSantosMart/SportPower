@@ -14,14 +14,43 @@
         <div *ngFor="let rating of ratings" class="rating">
             <div class="rating-header">
                 <p class="client-email">{{ rating.comment.client.email }}</p>
-                <p class="rating-date" style="margin-left: 100px;">{{ rating.comment.date | date:'medium' }}</p>
+                <p class="rating-date" style="margin-left: 100px;">{{ rating.comment.date | date:'dd/MM/yyyy'}}</p>
             </div>        
             <div class="rating-content">
-                <h2 class="rating-title">{{ rating.score }}</h2>
+
+                <div class="rating-title">
+                    <ng-container *ngIf="rating.score == 1.00">
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                    </ng-container>
+                    <ng-container *ngIf="rating.score == 2.00">
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                    </ng-container>
+                    <ng-container *ngIf="rating.score == 3.00">
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                    </ng-container>
+                    <ng-container *ngIf="rating.score == 4.00">
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                    </ng-container>
+                    <ng-container *ngIf="rating.score == 5.00">
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                        <mat-icon class="star" style="font-size: 1rem;">star</mat-icon>
+                    </ng-container>
+                </div>
+
                 <img class="rating-image" [src]="rating.comment.url_image" alt="Imagen del comentario" *ngIf="rating.comment.url_image">
                 <p class="rating-description">{{ rating.comment.description }}</p>
             </div>
         </div>
+        
     </div>
 
     <div class="d-flex flex-column " style="margin-top:4rem; margin-left: 90px;">

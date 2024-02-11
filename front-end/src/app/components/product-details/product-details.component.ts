@@ -42,6 +42,7 @@ export class ProductDetailsComponent  implements OnInit{
     product: any;
     productId! : any;
     confirmationMessage: string = "";
+    Math = Math;
 
   ngOnInit(): void {
 
@@ -67,6 +68,7 @@ export class ProductDetailsComponent  implements OnInit{
     this._ratingService.getRatingsFromProduct(this.productId).subscribe(
       (ratingsData: any) => {
         this.ratings = ratingsData.data;
+        console.log(this.ratings);
         this.getComment();
       },
       (error: any) => {
