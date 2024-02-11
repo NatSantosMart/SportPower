@@ -1,15 +1,15 @@
-<div>
-    <div>
+<div class="pedido-container">
+    <div class="pedido-header">
         <h2>Pedido : {{ orderProduct.request_date }}</h2>
     </div>
     <div>
         <h3>Productos</h3>
-        <ul>
-            <li *ngFor="let product of products">
+        <ul class="preoduct-list">
+            <li class="product-item" *ngFor="let product of products">
                 {{ product.name }} - Precio: {{ product.price }}€
             </li>
         </ul>  
-             <h2 style="text-align: right;">Precio: {{ orderProduct.total_price }}€</h2>  
+             <h2 class="total-price" style="text-align: right;">Precio: {{ orderProduct.total_price }}€</h2>  
     </div>
     
 </div>

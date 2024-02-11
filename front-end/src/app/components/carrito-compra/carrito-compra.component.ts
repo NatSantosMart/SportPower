@@ -140,6 +140,15 @@ export class CarritoCompraComponent {
     try {
       const res = await this._orderProductService.storeProductsToOrder(orderId, productId).toPromise();
       console.log("Response: ", res);
+
+      const res2 = this._cartService.clearCart(orderId.toString(), this.allProducts).subscribe(
+        (response: any) => {
+          console.log("Carrito limpiado");
+        },
+        (error: any) => {
+          console.error('Error al limpiar el carrito', error);
+        }
+      );
     } catch (error) {
       console.error('Error al guardar los productos del pedido', error);
     }

@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaderResponse, HttpHeaders } from "@angular/common/htt
 import { Observable } from "rxjs";
 import { ApiConfig } from "./ApiConfig"; 
 import {Cart} from "../models/cart.model"; 
+import { Product } from "../models/product.model";
+import { forkJoin } from "rxjs";
 
 @Injectable()
 export class CartService{
@@ -30,5 +32,16 @@ export class CartService{
         let params = JSON.stringify(cartObject); 
         let headersCreate = new HttpHeaders().set('Content-Type', 'application/json'); 
         return this.http.put(`${ApiConfig.baseUrl}/carts`, params, {headers:headersCreate});
-    }  
+    } 
+    
+    clearCart(dni: string, products: Product[]): Observable<any> {
+        const deleteRequests: Observable<any>[] = [];
+
+        products.forEach(product => {
+            const deleteRequest = this.http.delete(`${ApiConfig.baseUrl}/carts/${dni}/${product.id}`);
+            deleteRequests.push(deleteRequest);
+        });
+
+        return forkJoin(deleteRequests);
+    }
 }
