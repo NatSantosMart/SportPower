@@ -5,7 +5,7 @@
 <div class="d-flex " style="margin-top:1rem; margin-left:7rem">
    
     <div class="d-flex flex-column" style="width: 680px;" *ngIf="product !== undefined">
-        <img style="border: 1px solid; border-radius: 4px;" [src]=product.product.url_image>
+        <img [src]=product.product.url_image>
         <h2 class = "titleFont topMargin">Descripción del producto:</h2>
         <p class="infoSize topMargin">{{product.product.description}}</p>
         <h2 class = "titleFont topMargin">Valoraciones</h2>
@@ -87,6 +87,7 @@
                     <mat-option value="Verde">Verde</mat-option>
                     <mat-option value="Azul">Azul</mat-option>
                     <mat-option value="Amarillo">Amarillo</mat-option>
+                    <mat-option value="Gris">Gris</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
