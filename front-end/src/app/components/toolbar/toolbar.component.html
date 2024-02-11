@@ -23,6 +23,7 @@
   <button mat-button [matMenuTriggerFor]="ProfileMenu" class="fontSize">Cuenta</button>
   <mat-menu #ProfileMenu="matMenu" class="custom-menu">
     <button (click)="redirectToClothingList('favorites')" mat-menu-item>Favoritos</button>
+    <button (click)="redirectToOrders()" mat-menu-item>Pedidos</button>
     <button (click)="redirectToClothingList('vitamins')" mat-menu-item>Pedidos</button>
     <button (click)="redirectToClothingList('profile')" mat-menu-item>Perfil personal</button>
     <button (click)="cerrarSesion()" mat-menu-item>Cerrar sesión</button>
