@@ -1,1 +1,8 @@
-<p>orders-list works!</p>
+<app-toolbar></app-toolbar>
+<div class="lista-pedidos">
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let order of orders">
+            <app-order-product [orderProduct]="order"></app-order-product>
+        </li>
+    </ul>
+</div>

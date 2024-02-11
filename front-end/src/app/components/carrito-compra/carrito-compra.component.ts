@@ -15,12 +15,13 @@ import { ConfirmCompraModalComponent } from '../confirm-compra-modal/confirm-com
 import { MatDialog } from '@angular/material/dialog';
 import { OrderService } from '../../services/order.service';
 import { Order } from '../../models/order.model';
+import { OrderProductService } from '../../services/orderProducts.service';
 
 @Component({
   selector: 'app-carrito-compra',
   standalone: true,
   imports: [CommonModule, ProductoComponent, MatIconModule, HttpClientModule, ToolbarComponent],
-  providers: [UserService, ClothingService, CartService, ProductService, MatDialog, OrderService],
+  providers: [UserService, ClothingService, CartService, ProductService, MatDialog, OrderService, OrderProductService],
   templateUrl: './carrito-compra.component.html',
   styleUrl: './carrito-compra.component.css'
 })
@@ -31,6 +32,7 @@ export class CarritoCompraComponent {
    private _cartService: CartService,
    private _productsService: ProductService,
    private _orderService: OrderService,
+   private _orderProductService: OrderProductService,
    public dialog: MatDialog,
     private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer){
     this.matIconRegistry.addSvgIcon(
@@ -123,12 +125,25 @@ export class CarritoCompraComponent {
     try {
      const res =  await this._orderService.storeNewOrder(newOrder).toPromise();
      console.log("Response: ", res);
+     const orderId = res.data.id;
+
+     this.allProductsID.forEach((productId:number) => {
+      this.saveProductsToOrder(orderId, productId);
+     })
+     
     } catch (error) {
       console.error('Error al guardar el pedido', error);
     }
   }
 
-    
+  saveProductsToOrder = async(orderId: number, productId: any) => {
+    try {
+      const res = await this._orderProductService.storeProductsToOrder(orderId, productId).toPromise();
+      console.log("Response: ", res);
+    } catch (error) {
+      console.error('Error al guardar los productos del pedido', error);
+    }
+  }
 
     mostrarPopupCompraExitosa() {
       const dialogRef = this.dialog.open(ConfirmCompraModalComponent, {
