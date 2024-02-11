@@ -44,6 +44,7 @@ class ProductController extends Controller
         $resultResponse = new ResultResponse(); 
 
         try{
+
             $newProduct = new Product ([
                 'name' => $request->get('name'), 
                 'price' => $request->get('price'), 

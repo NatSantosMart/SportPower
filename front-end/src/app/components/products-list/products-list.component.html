@@ -13,6 +13,5 @@
           <span>{{element.product.price}}</span>
         </div>
       </ng-container>
-    </div>
-  </div>
+      <h2 *ngIf="filteredProducts.length === 0" style="margin-left: 60px; margin-top: 40px; color: grey;">No hay datos para la búsqueda aplicada</h2>
 </div>

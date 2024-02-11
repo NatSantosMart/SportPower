@@ -47,13 +47,13 @@ class ClientController extends Controller
         try{
             $newClient = new Client ([
                 'dni' => $request->get('dni'), 
+                'phone' => $request->get('phone'), 
                 'email' => $request->get('email'), 
                 'password' => $request->get('password'), 
                 'name' => $request->get('name'), 
                 'surnames' => $request->get('surnames'), 
                 'city' => $request->get('city'), 
                 'address' => $request->get('address'), 
-                'phone' => $request->get('phone'), 
             ]); 
 
             $newClient->save(); 
