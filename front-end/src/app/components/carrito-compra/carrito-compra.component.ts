@@ -11,7 +11,7 @@ import { ClothingService } from '../../services/clothing.service';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
-import { ConfirmCompraModalComponent } from '../confirm-compra-modal/confirm-compra-modal.component';
+import { ConfirmationdialogComponent } from '../../../app/components/admin/confirmationdialog/confirmationdialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderService } from '../../services/order.service';
 import { Order } from '../../models/order.model';
@@ -146,15 +146,15 @@ export class CarritoCompraComponent {
   }
 
     mostrarPopupCompraExitosa() {
-      const dialogRef = this.dialog.open(ConfirmCompraModalComponent, {
-        width: '400px',
-      });
-  
-      dialogRef.afterClosed().subscribe(() => {
-        // Redirigir o realizar acciones adicionales después de cerrar el popup
+      const dialogRef = this.dialog.open(ConfirmationdialogComponent,{
+        data: {
+          satisfactory : true,
+          addOrder : true
+        }       
+      })
+      setTimeout(() => { 
+        dialogRef.close(); 
         this.router.navigate(['/home']);
-      });
+      }, 3000); 
     }
-
- 
 }
