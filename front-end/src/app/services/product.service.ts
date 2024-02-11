@@ -7,7 +7,6 @@ import { Product } from "../models/product.model";
 @Injectable()
 export class ProductService{
 
-    
     constructor(
         private http: HttpClient
     ){}
@@ -15,12 +14,10 @@ export class ProductService{
     getAllProducts(): Observable<Product[]> {
         return this.http.get<Product[]>(`${ApiConfig.baseUrl}/products`);
     }
-
     
     getProductById(id : number) {
         return this.http.get(`${ApiConfig.baseUrl}/products/` + id);      
     }
-
 
     createProduct(newProduct: Product): Observable<any> {
         let params = JSON.stringify(newProduct); 

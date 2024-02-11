@@ -1,4 +1,11 @@
 
+/* img {
+  width: 100%;
+  max-width: 350px;
+  max-height: 350px;
+  margin-bottom: 10px;
+} */
+
 
 img{
     height: 30rem;
@@ -16,7 +23,8 @@ img{
 .infoPrice{
   font-size: 35px;
   font-style: italic; 
-  font-weight: 300;
+  font-weight: 400;
+  color: brown; 
 }
 
 
@@ -135,12 +143,7 @@ img{
   .comments-section h3 {
     color: #333;
   }
-  img {
-    width: 100%;
-    max-width: 350px;
-    max-height: 350px;
-    margin-bottom: 10px;
-  }
+
   .d-flex.flex-column {
     display: flex;
     flex-direction: column;

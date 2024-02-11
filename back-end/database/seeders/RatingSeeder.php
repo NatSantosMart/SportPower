@@ -32,6 +32,21 @@ class RatingSeeder extends Seeder
                 'product_id' => 4,
                 'comment_id' => 5,
             ],
+            [
+                'score' => 5,
+                'product_id' => 8,
+                'comment_id' => 8,
+            ],
+            [
+                'score' => 4,
+                'product_id' => 8,
+                'comment_id' => 9,
+            ],
+            [
+                'score' => 1,
+                'product_id' => 8,
+                'comment_id' => 10,
+            ],
         ];
 
         // Insertar los datos en la tabla 'VALORACION'

@@ -12,16 +12,12 @@ class PostSeeder extends Seeder
     {
         $datosPost = [
             [
-                'type' => 'recetas saludables',
+                'type' => 'Recetas saludables',
                 'comment_id' => 3,
             ],
             [
-                'type' => 'recetas saludables',
+                'type' => 'Consejos deportivos',
                 'comment_id' => 6,
-            ],
-            [
-                'type' => 'recetas saludables',
-                'comment_id' => 7,
             ],
         ];
         DB::table('posts')->insert($datosPost);
